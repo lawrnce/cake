@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Camera View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Cake" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="CKCameraViewController" customModule="Cake" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,13 +16,172 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4uA-2N-wMf">
+                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="64"/>
+                                <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="C3X-DF-5HY"/>
+                                    <constraint firstAttribute="width" id="NQq-ac-hFB"/>
+                                    <constraint firstAttribute="width" id="q9k-Os-1VI"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="NQq-ac-hFB"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ajj-O0-HBY" userLabel="RecordingView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OST-4H-DCx">
+                                        <rect key="frame" x="10" y="10" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="4wP-0t-9P9"/>
+                                            <constraint firstAttribute="width" constant="44" id="Nv4-69-A56"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="27"/>
+                                        <state key="normal" title="X">
+                                            <color key="titleColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelRecordingPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AQE-Zu-4sr"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D4n-Y5-3ck">
+                                        <rect key="frame" x="321" y="10" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="OtA-LL-Jmb"/>
+                                            <constraint firstAttribute="height" constant="44" id="vyu-B4-jcx"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="27"/>
+                                        <state key="normal" title="L">
+                                            <color key="titleColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="finishRecordingPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bTZ-fe-gja"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="ASw-WQ-S1c"/>
+                                    <constraint firstItem="OST-4H-DCx" firstAttribute="leading" secondItem="ajj-O0-HBY" secondAttribute="leading" constant="10" id="FSZ-Ql-Esi"/>
+                                    <constraint firstAttribute="trailing" secondItem="D4n-Y5-3ck" secondAttribute="trailing" constant="10" id="MBM-Cn-71K"/>
+                                    <constraint firstItem="OST-4H-DCx" firstAttribute="centerY" secondItem="ajj-O0-HBY" secondAttribute="centerY" id="NNb-pe-SUo"/>
+                                    <constraint firstAttribute="height" constant="64" id="nTs-iY-SdR"/>
+                                    <constraint firstItem="D4n-Y5-3ck" firstAttribute="centerY" secondItem="ajj-O0-HBY" secondAttribute="centerY" id="zPa-M2-GhH"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="nTs-iY-SdR"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <toolbar hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p1S-tm-trP">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" id="2U9-7I-fYm"/>
+                                    <constraint firstAttribute="height" constant="64" id="fCO-Xq-2Eo"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem systemItem="add" id="K5x-px-Tyl"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="VXc-1B-9j6"/>
+                                    <barButtonItem systemItem="compose" id="LsC-uW-zUf"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="O0E-DC-UgM"/>
+                                    <barButtonItem systemItem="bookmarks" id="yXM-A8-PkQ"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="xwl-6z-oyk"/>
+                                    <barButtonItem systemItem="trash" id="Si4-6G-ShW"/>
+                                </items>
+                                <color key="tintColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="2U9-7I-fYm"/>
+                                    </mask>
+                                </variation>
+                            </toolbar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="p1S-tm-trP" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="3Je-vG-kkz"/>
+                            <constraint firstItem="4uA-2N-wMf" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="7JG-bI-SHt"/>
+                            <constraint firstItem="ajj-O0-HBY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="7bW-18-NQY"/>
+                            <constraint firstItem="4uA-2N-wMf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="BLb-HY-hmU"/>
+                            <constraint firstAttribute="trailing" secondItem="ajj-O0-HBY" secondAttribute="trailing" id="BhI-Re-qbJ"/>
+                            <constraint firstItem="ajj-O0-HBY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="DWh-8O-ENb"/>
+                            <constraint firstAttribute="trailing" secondItem="p1S-tm-trP" secondAttribute="trailing" id="J68-3b-cYl"/>
+                            <constraint firstAttribute="trailing" secondItem="p1S-tm-trP" secondAttribute="trailing" id="dLC-Xf-cOs"/>
+                            <constraint firstAttribute="trailing" secondItem="ajj-O0-HBY" secondAttribute="trailing" id="mob-fw-pXZ"/>
+                            <constraint firstItem="ajj-O0-HBY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="ydP-Wi-0B5"/>
+                            <constraint firstItem="p1S-tm-trP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zCW-bi-VsE"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="7bW-18-NQY"/>
+                                <exclude reference="BhI-Re-qbJ"/>
+                                <exclude reference="J68-3b-cYl"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="cancelRecordingButton" destination="OST-4H-DCx" id="d1d-ob-sZu"/>
+                        <outlet property="finishRecordingButton" destination="D4n-Y5-3ck" id="bzf-hm-bXv"/>
+                        <outlet property="recordingView" destination="ajj-O0-HBY" id="Wof-RF-ZUQ"/>
+                        <outlet property="timeViewWidthConstraint" destination="q9k-Os-1VI" id="AT4-rW-sqd"/>
+                        <outlet property="timerView" destination="4uA-2N-wMf" id="09R-U0-cEF"/>
+                        <outlet property="toolBar" destination="p1S-tm-trP" id="Nrd-so-6dq"/>
+                        <segue destination="5Ug-BE-N4O" kind="show" identifier="ShowGifs" id="9fi-LL-nie"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="288.5" y="450.5"/>
+            <point key="canvasLocation" x="308.5" y="483.5"/>
+        </scene>
+        <!--Gifs View Controller-->
+        <scene sceneID="PPa-oS-ic3">
+            <objects>
+                <viewController id="oFa-z2-DOZ" customClass="CKGifsViewController" customModule="Cake" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6bi-VS-cwf"/>
+                        <viewControllerLayoutGuide type="bottom" id="Oh7-H6-KW4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zCh-8o-8tD">
+                        <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Myi-xh-oy1">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="8b3-OX-kz4">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="oFa-z2-DOZ" id="3UH-Ul-tYY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lhf-VM-yn6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="771.5" y="1277.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="m6Q-Au-94r">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5Ug-BE-N4O" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="CJe-da-rbu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="oFa-z2-DOZ" kind="relationship" relationship="rootViewController" id="2oH-Lv-bSF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WPk-SE-7n5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="308.5" y="1277.5"/>
         </scene>
     </scenes>
 </document>
