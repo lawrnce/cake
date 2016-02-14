@@ -20,10 +20,12 @@ enum CameraState {
     case Recording
 }
 
-let kDEFAULT_CAMERA_DURATION = 5.0
+let kDEFAULT_CAMERA_DURATION = 4.0
 let kDEFAULT_FRAMES_PER_SECOND = 18
-let kDEFAULT_TOTAL_FRAMES = 90
+let kDEFAULT_TOTAL_FRAMES = Int(Int(kDEFAULT_CAMERA_DURATION) * Int(kDEFAULT_FRAMES_PER_SECOND))
 
+// MARK: - Notification
+let GIF_FINALIZED = "com.cakegifs.GifFinalized"
 
 
 // MARK: - Error Domains

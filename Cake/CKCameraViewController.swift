@@ -24,6 +24,7 @@ class CKCameraViewController: UIViewController {
     private var recordButtonImageView: UIImageView!
     private var gifsButton: UIButton!
     private var state: CameraState = .Idle
+    private var gifToDisplay: NSURL!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +52,8 @@ class CKCameraViewController: UIViewController {
         self.view.addSubview(self.recordButtonImageView)
         self.view.addSubview(self.gifsButton)
         updateStateLayout()
+        
+        self.cameraController.startSession()
     }
 
     override func didReceiveMemoryWarning() {
@@ -77,6 +80,7 @@ class CKCameraViewController: UIViewController {
             self.recordingView.hidden = false
             self.gifsButton.hidden = true
         }
+        self.view.insertSubview(self.timerView, belowSubview: self.recordingView)
         setNeedsFocusUpdate()
     }
     
@@ -89,7 +93,6 @@ class CKCameraViewController: UIViewController {
         do {
             if try self.cameraController.setupSession() {
                 self.cameraController.delegate = self
-                self.cameraController.startSession()
             }
         }
         catch CKCameraError.FailedToAddInput {
@@ -157,16 +160,22 @@ class CKCameraViewController: UIViewController {
     }
     
     @IBAction func finishRecordingPressed(sender: AnyObject) {
-        
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
-        
+        self.cameraController.stopRecording()
     }
     
     func showGifs(sender: AnyObject) {
         self.performSegueWithIdentifier("ShowGifs", sender: nil)
     }
     
-    
+    // MARK: - Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowEdit" {
+            self.state = .Idle
+            self.cancelRecordingButton.enabled = true
+            self.finishRecordingButton.enabled = true
+        }
+    }
 }
 
 extension CKCameraViewController: CKGifCameraControllerDelegate {
@@ -178,10 +187,10 @@ extension CKCameraViewController: CKGifCameraControllerDelegate {
         }
         
         let incrementWidth = Double(kSCREEN_WIDTH) / Double(kDEFAULT_TOTAL_FRAMES)
-        let xOffset = incrementWidth * Double(index + 1)
+        let xOffset = incrementWidth * Double(index)
         
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            UIView.animateWithDuration(Double(5.0/90.0)) { () -> Void in
+            UIView.animateWithDuration(Double(kDEFAULT_CAMERA_DURATION / Double(kDEFAULT_TOTAL_FRAMES))) { () -> Void in
                 self.timeViewWidthConstraint.constant = CGFloat(xOffset)
                 self.view.insertSubview(self.timerView, belowSubview: self.recordingView)
                 self.setNeedsFocusUpdate()
@@ -189,11 +198,10 @@ extension CKCameraViewController: CKGifCameraControllerDelegate {
         }
     }
     
-    func controller(cameraController: CKGifCameraController, didFinishFinalizeGifToOutput fileOutput: NSURL!) {
+    func controller(cameraController: CKGifCameraController, didFinishRecording finished: Bool) {
         print("Finished Gif")
-        
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
-//        self.performSegueWithIdentifier("ShowEdit", sender: self)
+        self.performSegueWithIdentifier("ShowEdit", sender: self)
     }
 }
 

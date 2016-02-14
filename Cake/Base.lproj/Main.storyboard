@@ -132,6 +132,7 @@
                         <outlet property="timerView" destination="4uA-2N-wMf" id="09R-U0-cEF"/>
                         <outlet property="toolBar" destination="p1S-tm-trP" id="Nrd-so-6dq"/>
                         <segue destination="5Ug-BE-N4O" kind="show" identifier="ShowGifs" id="9fi-LL-nie"/>
+                        <segue destination="8fG-yi-vsg" kind="show" identifier="ShowEdit" id="miT-mj-0rX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -182,6 +183,74 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WPk-SE-7n5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="308.5" y="1277.5"/>
+        </scene>
+        <!--Edit View Controller-->
+        <scene sceneID="te0-iW-OVv">
+            <objects>
+                <viewController id="8fG-yi-vsg" customClass="CKEditViewController" customModule="Cake" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bTG-CF-e8h"/>
+                        <viewControllerLayoutGuide type="bottom" id="m9q-4d-Ymg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AL6-aU-IAO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eqX-hT-vXR" customClass="FLAnimatedImageView">
+                                <rect key="frame" x="28" y="174" width="320" height="320"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="Nkf-fh-p26"/>
+                                    <constraint firstAttribute="height" constant="320" id="k4b-Vl-aPS"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LQm-Vb-km4">
+                                <rect key="frame" x="88" y="603" width="200" height="44"/>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.25490196079999999" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="35c-R0-Jf4"/>
+                                    <constraint firstAttribute="width" constant="200" id="nWU-gm-0O4"/>
+                                </constraints>
+                                <state key="normal" title="Close">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="redoButtonPressed:" destination="8fG-yi-vsg" eventType="touchUpInside" id="MTT-16-HGb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1aW-BP-naX" userLabel="Save">
+                                <rect key="frame" x="88" y="526" width="200" height="44"/>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.25490196079999999" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Ef3-2r-qao"/>
+                                    <constraint firstAttribute="height" constant="44" id="bdy-r2-2H3"/>
+                                </constraints>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveButtonPressed:" destination="8fG-yi-vsg" eventType="touchUpInside" id="4Fn-Mh-d9a"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="eqX-hT-vXR" firstAttribute="centerX" secondItem="AL6-aU-IAO" secondAttribute="centerX" id="Gh2-sR-hfH"/>
+                            <constraint firstItem="eqX-hT-vXR" firstAttribute="centerY" secondItem="AL6-aU-IAO" secondAttribute="centerY" id="Jq4-1u-Zhn"/>
+                            <constraint firstItem="m9q-4d-Ymg" firstAttribute="top" secondItem="LQm-Vb-km4" secondAttribute="bottom" constant="20" id="MWu-fa-meT"/>
+                            <constraint firstItem="1aW-BP-naX" firstAttribute="centerX" secondItem="AL6-aU-IAO" secondAttribute="centerX" id="Tok-Ae-9t6"/>
+                            <constraint firstItem="LQm-Vb-km4" firstAttribute="centerX" secondItem="AL6-aU-IAO" secondAttribute="centerX" id="gUy-wl-IdP"/>
+                            <constraint firstItem="LQm-Vb-km4" firstAttribute="top" secondItem="1aW-BP-naX" secondAttribute="bottom" constant="33" id="xYH-9R-jU3"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="animatedImageView" destination="eqX-hT-vXR" id="6bb-Zi-9Bf"/>
+                        <outlet property="saveButton" destination="1aW-BP-naX" id="aHE-54-YXm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u5G-CY-pz1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="771.5" y="483.5"/>
         </scene>
     </scenes>
 </document>
