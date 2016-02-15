@@ -174,6 +174,13 @@ class CKCameraViewController: UIViewController {
             self.state = .Idle
             self.cancelRecordingButton.enabled = true
             self.finishRecordingButton.enabled = true
+            
+            let frames = ((sender as! NSArray) as Array)[0]
+            let duration = ((sender as! NSArray) as Array)[1]
+            
+            let editVC = segue.destinationViewController as! CKEditViewController
+            editVC.rawFrames = frames as! [CGImage]
+            editVC.duration = duration as! Double
         }
     }
 }
@@ -198,10 +205,10 @@ extension CKCameraViewController: CKGifCameraControllerDelegate {
         }
     }
     
-    func controller(cameraController: CKGifCameraController, didFinishRecording finished: Bool) {
+    func controller(cameraController: CKGifCameraController, didFinishRecordingWithFrames frames: [CGImage], withTotalDuration duration: Double) {
         print("Finished Gif")
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
-        self.performSegueWithIdentifier("ShowEdit", sender: self)
+        self.performSegueWithIdentifier("ShowEdit", sender: [frames, duration])
     }
 }
 

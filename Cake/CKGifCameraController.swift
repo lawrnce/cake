@@ -81,7 +81,7 @@ class CKGifCameraController: NSObject {
     }
     
     private func sessionPreset() -> String {
-        return AVCaptureSessionPresetHigh
+        return AVCaptureSessionPresetPhoto
     }
     
     private func setupSessionInputs() throws {
@@ -180,16 +180,20 @@ class CKGifCameraController: NSObject {
         self.pausedDuration = CMTime(seconds: 0, preferredTimescale: 600)
         self.recording = false
         self.paused = false
+        self.currentFrame = 0
+        self.frames = [CGImage]()
     }
     
     func stopRecording() {
-        createGif()
+        self.delegate?.controller(self, didFinishRecordingWithFrames: self.frames!, withTotalDuration: self.totalRecordedDuration!.seconds)
+        self.frames = nil
+        self.totalRecordedDuration = nil
+        self.differenceDuration = nil
+        self.pausedDuration = CMTime(seconds: 0, preferredTimescale: 600)
         self.recording = false
         self.paused = false
-        self.pausedDuration = CMTime(seconds: 0, preferredTimescale: 600)
-        self.differenceDuration = nil
         self.currentFrame = 0
-        self.delegate?.controller(self, didFinishRecording: true)
+        self.frames = [CGImage]()
     }
     
     func returnedOrientation() -> AVCaptureVideoOrientation {
@@ -243,15 +247,12 @@ extension CKGifCameraController : AVCaptureVideoDataOutputSampleBufferDelegate {
                 print(self.totalRecordedDuration.seconds)
                 
                 if self.totalRecordedDuration >= self.timePoints[self.currentFrame] {
-                    
+                 
                     if let frame = getDownscaleImageMirrored(previewImage) {
-                        
                         self.frames?.append(frame)
-                        
 //                        CGImageDestinationAddImage(self.gifDestination, frame, frameProperties as CFDictionaryRef)
                         print("FRAME: ", self.frames?.count, CMTimeGetSeconds(self.totalRecordedDuration))
                         delegate?.controller(self, didAppendFrameNumber: (self.frames?.count)!)
-                        
                     }
                     
                     if (self.timePoints.count - 1) == self.currentFrame {
@@ -271,6 +272,10 @@ extension CKGifCameraController : AVCaptureVideoDataOutputSampleBufferDelegate {
     }
     
     // MARK: - Gif Helper Methods
+    private func getUIImageForCGImage(ciimage: CIImage) -> UIImage {
+        return UIImage(CIImage: ciimage, scale: 0.5, orientation: .Up)
+    }
+    
     func createGif() {
         if self.frames == nil {
             return
@@ -341,5 +346,5 @@ extension CKGifCameraController : AVCaptureVideoDataOutputSampleBufferDelegate {
 // MARK: - Protocol CKCaptureSessionDelegate
 protocol CKGifCameraControllerDelegate {
     func controller(cameraController: CKGifCameraController, didAppendFrameNumber index: Int)
-    func controller(cameraController: CKGifCameraController, didFinishRecording finished: Bool)
+    func controller(cameraController: CKGifCameraController, didFinishRecordingWithFrames frames: [CGImage], withTotalDuration duration: Double)
 }

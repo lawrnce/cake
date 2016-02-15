@@ -21,43 +21,89 @@ struct EditableGIF {
     }
 }
 
-class CKEditViewController: UIViewController {
+enum EditMode {
+    case Preview
+    case Edit
+}
 
-    @IBOutlet weak var animatedImageView: FLAnimatedImageView!
-    @IBOutlet weak var saveButton: UIButton!
+class CKEditViewController: UIViewController {
     
+    @IBOutlet weak var editView: UIView!
+    @IBOutlet weak var framesCollectionView: UICollectionView!
+    @IBOutlet weak var layout: UICollectionViewFlowLayout!
+    @IBOutlet weak var frameSlider: UISlider!
+    @IBOutlet weak var framesLabel: UILabel!
+    @IBOutlet weak var playButton: UIButton!
+    
+    @IBOutlet weak var previewView: UIView!
+    @IBOutlet weak var previewGifImageView: UIImageView!
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var editButton: UIButton!
+    
+    var state: EditMode = .Preview
     var duration: Double!
     var framesPerSecond: Int!
     var gifURL: NSURL!
     
+    var rawFrames: [CGImage]!
+    var frames: [UIImage] = [UIImage]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupNotifications()
-        
         self.saveButton.enabled = false
+        setupGif()
+        setupFramesCollectionView()
+        setupFramesLabel()
+    }
+    
+    private func setupGif() {
+        for frame in rawFrames {
+            let image = UIImage(CGImage: frame)
+            self.frames.append(image)
+        }
+        let gif = UIImage.animatedImageWithImages(self.frames, duration: NSTimeInterval(self.duration))
+        self.previewGifImageView.image = gif
+        self.previewGifImageView.startAnimating()
+        self.framesCollectionView.reloadData()
+    }
+
+    private func setupFramesCollectionView() {
+        let viewNib = UINib(nibName: "CKEditCollectionViewCell", bundle: nil)
+        self.framesCollectionView.registerNib(viewNib, forCellWithReuseIdentifier: editCollectionCellIdentifier)
+        self.framesCollectionView.dataSource = self
+        self.framesCollectionView.delegate = self
+        
+        self.layout.itemSize = CGSize(width: kSCREEN_WIDTH, height: self.framesCollectionView.frame.height)
+        self.layout.minimumInteritemSpacing = 0
+        self.layout.minimumLineSpacing = 0
+    }
+    
+    private func setupFramesLabel() {
+        self.framesLabel.text = "0 of \(self.frames.count)"
+    }
+    
+    private func setupFramesSlider() {
+        self.frameSlider.value = 0
+        self.frameSlider.minimumValue = 0
+        self.frameSlider.maximumValue = Float(self.frames.count)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        updateState()
     }
     
-    private func setupNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setAnimatedImage:"), name: GIF_FINALIZED, object: nil)
-    }
-    
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+    func updateState() {
+        if self.state == .Preview {
+            self.previewView.hidden = false
+            self.editView.hidden = true
+        } else if self.state == .Edit {
+            self.previewView.hidden = true
+            self.editView.hidden = false
+        }
     }
 
     func setAnimatedImage(notification: NSNotification) {
-        self.gifURL = notification.object as! NSURL
-        let animatedImage = FLAnimatedImage(animatedGIFData: NSData(contentsOfURL: gifURL))
-        self.animatedImageView.animatedImage = animatedImage
-        self.animatedImageView.startAnimating()
-        
-        self.saveButton.enabled = true
-        
         let imageSize: Int = NSData(contentsOfURL: gifURL)!.length
         print("size of image in MB: ", Float(imageSize) / 1024.0 / 1000.0)
     }
@@ -73,6 +119,13 @@ class CKEditViewController: UIViewController {
         }
     }
 
+    // MARK: - Button Actions
+    @IBAction func editButtonPressed(sender: AnyObject) {
+        self.state = .Edit
+        updateState()
+        setNeedsFocusUpdate()
+    }
+    
     @IBAction func saveButtonPressed(sender: AnyObject) {
         
 //        let backend = BackendManager()
@@ -86,6 +139,18 @@ class CKEditViewController: UIViewController {
 //        }
     }
     
+    @IBAction func frameSliderValueChanged(sender: AnyObject) {
+        let frameIndex = Int(self.frameSlider.value * Float(self.frames.count))
+        self.framesLabel.text = "\(frameIndex) of \(self.frames.count)"
+    }
+    
+    @IBAction func playButtonPressed(sender: AnyObject) {
+        self.state = .Preview
+        updateState()
+        setNeedsFocusUpdate()
+    }
+    
+    
     
     /*
     // MARK: - Navigation
@@ -96,5 +161,38 @@ class CKEditViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
+
+extension CKEditViewController: UICollectionViewDataSource {
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.frames.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(editCollectionCellIdentifier, forIndexPath: indexPath) as! CKEditCollectionViewCell
+        let index: Int = indexPath.row
+        let image = self.frames[index]
+        cell.imageView.image = image
+        return cell
+    }
+}
+
+extension CKEditViewController: UICollectionViewDelegate {
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+//        print("Collection View: ", collectionView.tag, "Index: ", indexPath.row)
+//        let index: Int = indexPath.row
+//        let gif: GIF = self.gifs[index] as GIF
+//        self.gifToDisplayId = gif.id
+//        self.performSegueWithIdentifier("ShowDetail", sender: self)
+    }
+}
+
+extension CKEditViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+    }
+}
+
+

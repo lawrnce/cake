@@ -28,6 +28,10 @@ let kDEFAULT_TOTAL_FRAMES = Int(Int(kDEFAULT_CAMERA_DURATION) * Int(kDEFAULT_FRA
 let GIF_FINALIZED = "com.cakegifs.GifFinalized"
 
 
+// MARK: - Reuse Identifier
+let editCollectionCellIdentifier = "editCollectionCellIdentifier"
+
+
 // MARK: - Error Domains
 enum CKCameraError : ErrorType {
     case FailedToAddInput
