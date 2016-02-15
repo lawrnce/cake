@@ -184,7 +184,7 @@
             </objects>
             <point key="canvasLocation" x="308.5" y="1277.5"/>
         </scene>
-        <!--Edit View Controller-->
+        <!--Data Source-->
         <scene sceneID="te0-iW-OVv">
             <objects>
                 <viewController id="8fG-yi-vsg" customClass="CKEditViewController" customModule="Cake" customModuleProvider="target" sceneMemberID="viewController">
@@ -205,7 +205,7 @@
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="240" id="Tk4-DR-75W"/>
                                             <constraint firstAttribute="height" constant="240" id="wO7-Qp-PkV"/>
                                         </constraints>
-                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LiA-ed-s8B">
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gp4-C2-gtz">
                                             <size key="itemSize" width="50" height="50"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -227,6 +227,17 @@
                                             <outlet property="delegate" destination="8fG-yi-vsg" id="uCh-QT-0yD"/>
                                         </connections>
                                     </collectionView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7F3-Ac-pEJ" customClass="iCarousel">
+                                        <rect key="frame" x="0.0" y="44" width="375" height="240"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="240" id="0dN-bI-39I"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="dataSource" destination="8fG-yi-vsg" id="0ci-kc-qRu"/>
+                                            <outlet property="delegate" destination="8fG-yi-vsg" id="XQ7-y5-2vc"/>
+                                        </connections>
+                                    </view>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="L62-UJ-ShU">
                                         <rect key="frame" x="42" y="298" width="291" height="31"/>
                                         <color key="tintColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -264,11 +275,14 @@
                                     <constraint firstItem="nFr-mk-hya" firstAttribute="leading" secondItem="ILP-Zk-1yd" secondAttribute="leading" id="5uY-Ms-Ffo"/>
                                     <constraint firstItem="gOe-e6-Pzs" firstAttribute="top" secondItem="ILP-Zk-1yd" secondAttribute="top" id="DFw-kH-zHQ"/>
                                     <constraint firstAttribute="trailing" secondItem="nFr-mk-hya" secondAttribute="trailing" id="IIe-lZ-vYj"/>
+                                    <constraint firstAttribute="trailing" secondItem="7F3-Ac-pEJ" secondAttribute="trailing" id="IYa-Yd-IYP"/>
                                     <constraint firstAttribute="bottom" secondItem="tcG-Nn-0Gi" secondAttribute="bottom" constant="30" id="Y5C-aQ-qlU"/>
                                     <constraint firstItem="nFr-mk-hya" firstAttribute="top" secondItem="ILP-Zk-1yd" secondAttribute="top" constant="44" id="YTQ-yB-MV9"/>
                                     <constraint firstAttribute="trailing" secondItem="L62-UJ-ShU" secondAttribute="trailing" constant="44" id="djJ-Nt-dFH"/>
                                     <constraint firstItem="L62-UJ-ShU" firstAttribute="top" secondItem="nFr-mk-hya" secondAttribute="bottom" constant="14" id="k1W-la-lsB"/>
+                                    <constraint firstItem="7F3-Ac-pEJ" firstAttribute="leading" secondItem="ILP-Zk-1yd" secondAttribute="leading" id="nzn-f5-98m"/>
                                     <constraint firstItem="tcG-Nn-0Gi" firstAttribute="centerX" secondItem="ILP-Zk-1yd" secondAttribute="centerX" id="ptS-8Y-VH5"/>
+                                    <constraint firstItem="7F3-Ac-pEJ" firstAttribute="top" secondItem="gOe-e6-Pzs" secondAttribute="bottom" id="tqH-J4-6Gw"/>
                                     <constraint firstItem="L62-UJ-ShU" firstAttribute="leading" secondItem="ILP-Zk-1yd" secondAttribute="leading" constant="44" id="zc8-tm-IhJ"/>
                                 </constraints>
                             </view>
@@ -353,12 +367,13 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="carousel" destination="7F3-Ac-pEJ" id="wNU-J8-eBx"/>
                         <outlet property="editButton" destination="VsJ-pg-ipP" id="hbb-UO-0JB"/>
                         <outlet property="editView" destination="ILP-Zk-1yd" id="OOD-UC-WaQ"/>
                         <outlet property="frameSlider" destination="L62-UJ-ShU" id="Y6r-BY-Dg0"/>
                         <outlet property="framesCollectionView" destination="nFr-mk-hya" id="3qs-Q3-AIn"/>
                         <outlet property="framesLabel" destination="gOe-e6-Pzs" id="hhz-V0-Hg9"/>
-                        <outlet property="layout" destination="LiA-ed-s8B" id="Rne-18-49R"/>
+                        <outlet property="layout" destination="gp4-C2-gtz" id="PV2-aw-vh7"/>
                         <outlet property="playButton" destination="tcG-Nn-0Gi" id="zzX-0S-8X8"/>
                         <outlet property="previewGifImageView" destination="hhd-lQ-yCJ" id="jdS-6D-IED"/>
                         <outlet property="previewView" destination="gSU-c1-IBB" id="c4Y-2D-5Ax"/>

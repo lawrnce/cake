@@ -29,6 +29,8 @@ enum EditMode {
 class CKEditViewController: UIViewController {
     
     @IBOutlet weak var editView: UIView!
+    @IBOutlet weak var carousel: iCarousel!
+    
     @IBOutlet weak var framesCollectionView: UICollectionView!
     @IBOutlet weak var layout: UICollectionViewFlowLayout!
     @IBOutlet weak var frameSlider: UISlider!
@@ -54,6 +56,7 @@ class CKEditViewController: UIViewController {
         setupGif()
         setupFramesCollectionView()
         setupFramesLabel()
+        setupCarousel()
     }
     
     private func setupGif() {
@@ -86,6 +89,13 @@ class CKEditViewController: UIViewController {
         self.frameSlider.value = 0
         self.frameSlider.minimumValue = 0
         self.frameSlider.maximumValue = Float(self.frames.count)
+    }
+    
+    private func setupCarousel() {
+        self.carousel.type = .CoverFlow
+        self.carousel.bounces = false
+        self.carousel.reloadData()
+        self.carousel.scrollToItemAtIndex(0, animated: false)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -142,6 +152,9 @@ class CKEditViewController: UIViewController {
     @IBAction func frameSliderValueChanged(sender: AnyObject) {
         let frameIndex = Int(self.frameSlider.value * Float(self.frames.count))
         self.framesLabel.text = "\(frameIndex) of \(self.frames.count)"
+        if frameIndex != self.carousel.currentItemIndex {
+            self.carousel.scrollToItemAtIndex(frameIndex, animated: false)
+        }
     }
     
     @IBAction func playButtonPressed(sender: AnyObject) {
@@ -162,6 +175,51 @@ class CKEditViewController: UIViewController {
     }
     */
 }
+
+extension CKEditViewController: iCarouselDataSource, iCarouselDelegate {
+    
+    func numberOfItemsInCarousel(carousel: iCarousel) -> Int {
+        return self.frames.count
+    }
+    
+    func carousel(carousel: iCarousel, viewForItemAtIndex index: Int, reusingView view: UIView?) -> UIView {
+        var imageView: UIImageView
+        
+        if (view == nil) {
+            imageView = UIImageView(frame: CGRectMake(0, 0, 240, 240))
+            imageView.contentMode = .ScaleAspectFit
+        } else {
+            imageView = view as! UIImageView
+        }
+        
+        imageView.image = self.frames[index]
+        
+        return imageView
+    }
+    
+    func carousel(carousel: iCarousel, valueForOption option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
+        if (option == .Spacing)
+        {
+            return value * 1.1
+        }
+        return value
+    }
+    
+    func carouselCurrentItemIndexDidChange(carousel: iCarousel) {
+        let index = carousel.currentItemIndex
+        let value = Float(index) / Float(self.frames.count)
+        self.frameSlider.value = Float(value)
+        frameSliderValueChanged(UISlider())
+    }
+    
+//    func carouselDidEndScrollingAnimation(carousel: iCarousel) {
+//        let index = carousel.currentItemIndex
+//        let value = Float(index) / Float(self.frames.count)
+//        self.frameSlider.value = Float(value)
+//        frameSliderValueChanged(UISlider())
+//    }
+}
+
 
 extension CKEditViewController: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
