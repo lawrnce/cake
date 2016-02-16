@@ -4,6 +4,9 @@ platform :ios, ‘8.0’
 use_frameworks!
 
 target 'Cake' do
+
+	pod “TTRangeSlider”
+
 	#pod 'Alamofire', '~> 3.2'
 	#pod 'AlamofireImage', '~> 2.0'
 	#pod 'Bolts'

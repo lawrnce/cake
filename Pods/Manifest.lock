@@ -5,14 +5,17 @@ PODS:
   - Realm/Headers (0.98.1)
   - RealmSwift (0.98.1):
     - Realm (= 0.98.1)
+  - TTRangeSlider (1.0.3)
 
 DEPENDENCIES:
   - FLAnimatedImage (~> 1.0)
   - RealmSwift
+  - TTRangeSlider
 
 SPEC CHECKSUMS:
   FLAnimatedImage: e16a1e1cef08e4c509b47e4acbe3923f65c16135
   Realm: ca4a4122e939e228e10694fc49011386cb2ecb07
   RealmSwift: 7d3c7033427816a2c3417ba0d004d694987e503a
+  TTRangeSlider: a12d0ac242a785cf96d4c7dacfe07e42a161251e
 
 COCOAPODS: 0.39.0

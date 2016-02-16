@@ -25,6 +25,7 @@
 		E6BA12601C7007720075F98D /* CKRecordGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BA125F1C7007720075F98D /* CKRecordGestureRecognizer.swift */; };
 		E6C034291C724B5E00A61141 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6C034281C724B5E00A61141 /* QuartzCore.framework */; };
 		E6C0342F1C724BAC00A61141 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = E6C0342E1C724BAC00A61141 /* iCarousel.m */; };
+		E6C034311C727AAA00A61141 /* CKAddTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C034301C727AAA00A61141 /* CKAddTextViewController.swift */; };
 		E6EC6E861C719DCB00E4A9F6 /* CKEditCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EC6E841C719DCB00E4A9F6 /* CKEditCollectionViewCell.swift */; };
 		E6EC6E871C719DCB00E4A9F6 /* CKEditCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6EC6E851C719DCB00E4A9F6 /* CKEditCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -97,6 +98,7 @@
 		E6C0342C1C724BAC00A61141 /* Cake-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cake-Bridging-Header.h"; sourceTree = "<group>"; };
 		E6C0342D1C724BAC00A61141 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
 		E6C0342E1C724BAC00A61141 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
+		E6C034301C727AAA00A61141 /* CKAddTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKAddTextViewController.swift; sourceTree = "<group>"; };
 		E6EC6E841C719DCB00E4A9F6 /* CKEditCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKEditCollectionViewCell.swift; sourceTree = "<group>"; };
 		E6EC6E851C719DCB00E4A9F6 /* CKEditCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CKEditCollectionViewCell.xib; sourceTree = "<group>"; };
 		F1F4D3BBE70B940B708211FC /* Pods-Cake.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cake.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cake/Pods-Cake.debug.xcconfig"; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				E6B3F1261C70285000031B87 /* CKEditViewController.swift */,
 				E6EC6E841C719DCB00E4A9F6 /* CKEditCollectionViewCell.swift */,
 				E6EC6E851C719DCB00E4A9F6 /* CKEditCollectionViewCell.xib */,
+				E6C034301C727AAA00A61141 /* CKAddTextViewController.swift */,
 			);
 			name = Edit;
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 				E6B3F1271C70285000031B87 /* CKEditViewController.swift in Sources */,
 				E6BA12191C6FFA520075F98D /* CKCameraViewController.swift in Sources */,
 				E6BA12171C6FFA520075F98D /* AppDelegate.swift in Sources */,
+				E6C034311C727AAA00A61141 /* CKAddTextViewController.swift in Sources */,
 				E6BA12451C6FFD0E0075F98D /* Constants.swift in Sources */,
 				E6BA125A1C6FFE7D0075F98D /* CKPreviewView.swift in Sources */,
 				E6BA12581C6FFE1E0075F98D /* CKGifCameraController.swift in Sources */,

@@ -24,20 +24,30 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>TTRangeSlider.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>182545DD6949FE17C5C3F92CD3381355</key>
+		<key>180BEEE0ACBCECF58C29A70DFBCA181F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5E9E9DA2082E7CF69090A89EDC4F18B9</key>
+		<key>3E0E8430E03639C5DB5735DC5ABFDE7D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F9931E5401D7AE564A544692CDED88FF</key>
+		<key>6A3509E2DE4D9E7E5F9EAB79BCCBB581</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8F1F0B566FC9A2F12273213AEDD9FD7F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

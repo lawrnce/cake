@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import FLAnimatedImage
+//import FLAnimatedImage
 
 struct EditableGIF {
     var gifURL: NSURL!
@@ -37,6 +37,8 @@ class CKEditViewController: UIViewController {
     @IBOutlet weak var framesLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     
+    @IBOutlet weak var addTextButton: UIButton!
+    
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var previewGifImageView: UIImageView!
     @IBOutlet weak var saveButton: UIButton!
@@ -57,6 +59,8 @@ class CKEditViewController: UIViewController {
         setupFramesCollectionView()
         setupFramesLabel()
         setupCarousel()
+        setupAddTextButton()
+        setupFramesSlider()
     }
     
     private func setupGif() {
@@ -82,13 +86,13 @@ class CKEditViewController: UIViewController {
     }
     
     private func setupFramesLabel() {
-        self.framesLabel.text = "0 of \(self.frames.count)"
+        self.framesLabel.text = "1 of \(self.frames.count)"
     }
     
     private func setupFramesSlider() {
-        self.frameSlider.value = 0
-        self.frameSlider.minimumValue = 0
-        self.frameSlider.maximumValue = Float(self.frames.count)
+        self.frameSlider.minimumValue = 0.0
+        self.frameSlider.maximumValue = 1.0
+        self.frameSlider.value = 0.0
     }
     
     private func setupCarousel() {
@@ -96,6 +100,11 @@ class CKEditViewController: UIViewController {
         self.carousel.bounces = false
         self.carousel.reloadData()
         self.carousel.scrollToItemAtIndex(0, animated: false)
+    }
+    
+    private func setupAddTextButton() {
+        self.addTextButton.layer.cornerRadius = 4.0
+        self.addTextButton.clipsToBounds = true
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -132,48 +141,46 @@ class CKEditViewController: UIViewController {
     // MARK: - Button Actions
     @IBAction func editButtonPressed(sender: AnyObject) {
         self.state = .Edit
+        self.previewGifImageView.stopAnimating()
         updateState()
         setNeedsFocusUpdate()
     }
     
     @IBAction func saveButtonPressed(sender: AnyObject) {
-        
-//        let backend = BackendManager()
-//        backend.saveGif(self.gifURL, withDuration: self.duration, withFPS: self.framesPerSecond) { (task) -> AnyObject? in
-//            NSNotificationCenter.defaultCenter().postNotificationName(SAVED_GIF, object: nil)
-//            self.dismissViewControllerAnimated(true, completion: { () -> Void in
-//                
-//            })
-//            
-//            return nil
-//        }
+
     }
     
     @IBAction func frameSliderValueChanged(sender: AnyObject) {
-        let frameIndex = Int(self.frameSlider.value * Float(self.frames.count))
-        self.framesLabel.text = "\(frameIndex) of \(self.frames.count)"
+        let frameIndex = Int(self.frameSlider.value * Float(self.frames.count-1))
         if frameIndex != self.carousel.currentItemIndex {
+            updateFramesLabel(frameIndex)
             self.carousel.scrollToItemAtIndex(frameIndex, animated: false)
         }
     }
     
+    private func updateFramesLabel(index: Int) {
+        self.framesLabel.text = "\(index + 1) of \(self.frames.count)"
+    }
+    
     @IBAction func playButtonPressed(sender: AnyObject) {
         self.state = .Preview
+        self.previewGifImageView.startAnimating()
         updateState()
         setNeedsFocusUpdate()
     }
     
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func addTextButtonPressed(sender: AnyObject) {
+        self.performSegueWithIdentifier("ShowAddText", sender: nil)
     }
-    */
+    
+    // MARK: - Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowAddText" {
+            let addTextVC = segue.destinationViewController as! CKAddTextViewController
+            addTextVC.frames = self.frames
+        }
+    }
+
 }
 
 extension CKEditViewController: iCarouselDataSource, iCarouselDelegate {
@@ -207,9 +214,10 @@ extension CKEditViewController: iCarouselDataSource, iCarouselDelegate {
     
     func carouselCurrentItemIndexDidChange(carousel: iCarousel) {
         let index = carousel.currentItemIndex
-        let value = Float(index) / Float(self.frames.count)
+        let value = Float(index) / Float(self.frames.count-1)
         self.frameSlider.value = Float(value)
-        frameSliderValueChanged(UISlider())
+        let frameIndex = Int(self.frameSlider.value * Float(self.frames.count-1))
+        updateFramesLabel(frameIndex)
     }
     
 //    func carouselDidEndScrollingAnimation(carousel: iCarousel) {
