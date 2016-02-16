@@ -31,8 +31,6 @@ class CKEditViewController: UIViewController {
     @IBOutlet weak var editView: UIView!
     @IBOutlet weak var carousel: iCarousel!
     
-    @IBOutlet weak var framesCollectionView: UICollectionView!
-    @IBOutlet weak var layout: UICollectionViewFlowLayout!
     @IBOutlet weak var frameSlider: UISlider!
     @IBOutlet weak var framesLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
@@ -50,13 +48,16 @@ class CKEditViewController: UIViewController {
     var gifURL: NSURL!
     
     var rawFrames: [CGImage]!
-    var frames: [UIImage] = [UIImage]()
+    var cleanFrames: [UIImage]!
+    var frames: [[UIImage]] = [[UIImage]]()
+    var flattenFrames : [UIImage]!
+    
+    var textEffects: [CKAddTextViewController]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.saveButton.enabled = false
         setupGif()
-        setupFramesCollectionView()
         setupFramesLabel()
         setupCarousel()
         setupAddTextButton()
@@ -65,24 +66,20 @@ class CKEditViewController: UIViewController {
     
     private func setupGif() {
         for frame in rawFrames {
-            let image = UIImage(CGImage: frame)
-            self.frames.append(image)
+            var frameImages = [UIImage]()
+            frameImages.append(UIImage(CGImage: frame))
+            self.frames.append(frameImages)
         }
-        let gif = UIImage.animatedImageWithImages(self.frames, duration: NSTimeInterval(self.duration))
+        
+        self.cleanFrames = [UIImage]()
+        
+        for frameSet in self.frames {
+            cleanFrames.append(frameSet.first!)
+        }
+        
+        let gif = UIImage.animatedImageWithImages(cleanFrames, duration: NSTimeInterval(self.duration))
         self.previewGifImageView.image = gif
         self.previewGifImageView.startAnimating()
-        self.framesCollectionView.reloadData()
-    }
-
-    private func setupFramesCollectionView() {
-        let viewNib = UINib(nibName: "CKEditCollectionViewCell", bundle: nil)
-        self.framesCollectionView.registerNib(viewNib, forCellWithReuseIdentifier: editCollectionCellIdentifier)
-        self.framesCollectionView.dataSource = self
-        self.framesCollectionView.delegate = self
-        
-        self.layout.itemSize = CGSize(width: kSCREEN_WIDTH, height: self.framesCollectionView.frame.height)
-        self.layout.minimumInteritemSpacing = 0
-        self.layout.minimumLineSpacing = 0
     }
     
     private func setupFramesLabel() {
@@ -164,23 +161,78 @@ class CKEditViewController: UIViewController {
     
     @IBAction func playButtonPressed(sender: AnyObject) {
         self.state = .Preview
+        
+        flattenPreviewFrames()
+        let gif = UIImage.animatedImageWithImages(self.flattenFrames, duration: NSTimeInterval(self.duration))
+        self.previewGifImageView.image = gif
+        
         self.previewGifImageView.startAnimating()
         updateState()
         setNeedsFocusUpdate()
     }
     
     @IBAction func addTextButtonPressed(sender: AnyObject) {
-        self.performSegueWithIdentifier("ShowAddText", sender: nil)
+        
+        if self.textEffects == nil {
+            self.textEffects = [CKAddTextViewController]()
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let textEffectVC = storyboard.instantiateViewControllerWithIdentifier("AddTextVC") as! CKAddTextViewController
+            textEffectVC.frames = self.cleanFrames
+            textEffectVC.delegate = self
+            self.textEffects.append(textEffectVC)
+        }
+        
+        self.presentViewController(self.textEffects.first!, animated: true) { () -> Void in
+            
+        }
     }
     
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowAddText" {
             let addTextVC = segue.destinationViewController as! CKAddTextViewController
-            addTextVC.frames = self.frames
+            addTextVC.frames = self.cleanFrames
         }
     }
+    
+    // MARK: - Gif Methods
+    private func flattenPreviewFrames() {
+        if self.flattenFrames != nil {
+            self.flattenFrames = nil
+        }
+        self.flattenFrames = [UIImage]()
+        for frameSet in self.frames {
+            if frameSet.count > 1 {
+                let image = mergeImages(frameSet)
+                self.flattenFrames.append(image)
+            } else {
+                self.flattenFrames.append(frameSet.first!)
+            }
+        }
+    }
+    
+    private func mergeImages(images: [UIImage]) -> UIImage {
+        let size = images.first?.size
+        UIGraphicsBeginImageContext(size!)
+        let areaSize = CGRectMake(0, 0, size!.width, size!.height)
+        for image in images {
+            image.drawInRect(areaSize)
+        }
+        let flattenedFrame: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return flattenedFrame
+    }
 
+}
+
+extension CKEditViewController: CKAddTextViewControllerDelegate {
+    func addTextFrameTo(textFrame: UIImage, fromStartFrameIndex startFrameIndex: Int, toEndFrame endFrameIndex: Int) {
+        for index in startFrameIndex...endFrameIndex {
+            self.frames[index].append(textFrame)
+        }
+        self.carousel.scrollToItemAtIndex(startFrameIndex, animated: false)
+    }
 }
 
 extension CKEditViewController: iCarouselDataSource, iCarouselDelegate {
@@ -190,18 +242,25 @@ extension CKEditViewController: iCarouselDataSource, iCarouselDelegate {
     }
     
     func carousel(carousel: iCarousel, viewForItemAtIndex index: Int, reusingView view: UIView?) -> UIView {
-        var imageView: UIImageView
+        
+        var frameView: UIView
         
         if (view == nil) {
-            imageView = UIImageView(frame: CGRectMake(0, 0, 240, 240))
-            imageView.contentMode = .ScaleAspectFit
+            frameView = UIView(frame: CGRectMake(0, 0, 240, 240))
         } else {
-            imageView = view as! UIImageView
+            for subview in (view?.subviews)! {
+                subview.removeFromSuperview()
+            }
+            frameView = view!
         }
         
-        imageView.image = self.frames[index]
+        for frame in self.frames[index] {
+            let imageView = UIImageView(frame: CGRectMake(0, 0, 240, 240))
+            imageView.image = frame
+            frameView.addSubview(imageView)
+        }
         
-        return imageView
+        return frameView
     }
     
     func carousel(carousel: iCarousel, valueForOption option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
@@ -218,46 +277,6 @@ extension CKEditViewController: iCarouselDataSource, iCarouselDelegate {
         self.frameSlider.value = Float(value)
         let frameIndex = Int(self.frameSlider.value * Float(self.frames.count-1))
         updateFramesLabel(frameIndex)
-    }
-    
-//    func carouselDidEndScrollingAnimation(carousel: iCarousel) {
-//        let index = carousel.currentItemIndex
-//        let value = Float(index) / Float(self.frames.count)
-//        self.frameSlider.value = Float(value)
-//        frameSliderValueChanged(UISlider())
-//    }
-}
-
-
-extension CKEditViewController: UICollectionViewDataSource {
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.frames.count
-    }
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(editCollectionCellIdentifier, forIndexPath: indexPath) as! CKEditCollectionViewCell
-        let index: Int = indexPath.row
-        let image = self.frames[index]
-        cell.imageView.image = image
-        return cell
-    }
-}
-
-extension CKEditViewController: UICollectionViewDelegate {
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-//        print("Collection View: ", collectionView.tag, "Index: ", indexPath.row)
-//        let index: Int = indexPath.row
-//        let gif: GIF = self.gifs[index] as GIF
-//        self.gifToDisplayId = gif.id
-//        self.performSegueWithIdentifier("ShowDetail", sender: self)
-    }
-}
-
-extension CKEditViewController: UIScrollViewDelegate {
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        
     }
 }
 

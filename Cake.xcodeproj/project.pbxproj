@@ -156,13 +156,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E62C976C1C72A32C00287F5A /* Add Text */ = {
+			isa = PBXGroup;
+			children = (
+				E6C034301C727AAA00A61141 /* CKAddTextViewController.swift */,
+			);
+			name = "Add Text";
+			sourceTree = "<group>";
+		};
 		E6B3F1281C70289200031B87 /* Edit */ = {
 			isa = PBXGroup;
 			children = (
 				E6B3F1261C70285000031B87 /* CKEditViewController.swift */,
 				E6EC6E841C719DCB00E4A9F6 /* CKEditCollectionViewCell.swift */,
 				E6EC6E851C719DCB00E4A9F6 /* CKEditCollectionViewCell.xib */,
-				E6C034301C727AAA00A61141 /* CKAddTextViewController.swift */,
+				E62C976C1C72A32C00287F5A /* Add Text */,
 			);
 			name = Edit;
 			sourceTree = "<group>";
