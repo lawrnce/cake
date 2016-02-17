@@ -84,12 +84,14 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-Cake/Bolts.framework"
   install_framework "Pods-Cake/FLAnimatedImage.framework"
   install_framework "Pods-Cake/Realm.framework"
   install_framework "Pods-Cake/RealmSwift.framework"
   install_framework "Pods-Cake/TTRangeSlider.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-Cake/Bolts.framework"
   install_framework "Pods-Cake/FLAnimatedImage.framework"
   install_framework "Pods-Cake/Realm.framework"
   install_framework "Pods-Cake/RealmSwift.framework"

@@ -10,6 +10,10 @@ import Foundation
 import AVFoundation
 import UIKit
 
+// MARK: - File Management
+let kSHARED_CONTAINER = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.cake.CakeExtensionSharedContainer")
+let kSHARED_GIF_DIRECTORY = kSHARED_CONTAINER?.URLByAppendingPathComponent("Gifs")
+
 // MARK: - General UI Constants
 let kSCREEN_WIDTH = UIScreen.mainScreen().bounds.width
 let kSCREEN_HEIGHT = UIScreen.mainScreen().bounds.height
@@ -26,7 +30,6 @@ let kDEFAULT_TOTAL_FRAMES = Int(Int(kDEFAULT_CAMERA_DURATION) * Int(kDEFAULT_FRA
 
 // MARK: - Notification
 let GIF_FINALIZED = "com.cakegifs.GifFinalized"
-
 
 // MARK: - Reuse Identifier
 let editCollectionCellIdentifier = "editCollectionCellIdentifier"

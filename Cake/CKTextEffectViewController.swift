@@ -12,13 +12,12 @@ import TTRangeSlider
 typealias KVOContext = UInt8
 var MyObservationContext = KVOContext()
 
-class CKAddTextViewController: UIViewController {
+class CKTextEffectViewController: UIViewController {
     
     @IBOutlet weak var previewFrame: UIImageView!
     @IBOutlet weak var previewFrameHeightConstant: NSLayoutConstraint!
     @IBOutlet weak var rangeSlider: TTRangeSlider!
     @IBOutlet weak var doneButton: UIButton!
-    
     
     var delegate: CKAddTextViewControllerDelegate?
     var frames: [UIImage]!
@@ -26,7 +25,7 @@ class CKAddTextViewController: UIViewController {
     var startFrameIndex: Int!
     var endFrameIndex: Int!
     
-    private var textView: UITextView!
+    var textView: UITextView!
     private var isFirstTextInput: Bool = true
     private var textViewLastLocation: CGPoint!
     private var textViewPanGestureRecognizer: UIPanGestureRecognizer!
@@ -230,25 +229,15 @@ class CKAddTextViewController: UIViewController {
     // MARK: - Button Actions
     @IBAction func doneButtonPressed(sender: AnyObject) {
         self.textFrame = createTextFrame()
-        self.delegate?.addTextFrameTo(self.textFrame!, fromStartFrameIndex: self.startFrameIndex!, toEndFrame: self.endFrameIndex!)
+        self.delegate?.addTextController(self, addTextFrame: self.textFrame!, fromStartFrameIndex: self.startFrameIndex!, toEndFrame: self.endFrameIndex!)
         self.dismissViewControllerAnimated(true) { () -> Void in
             
         }
     }
-
-    @IBAction func testRenderButtonPressed(sender: AnyObject) {
-        let testImageView = UIImageView(frame: CGRectMake(0, 30, kSCREEN_WIDTH, kSCREEN_WIDTH))
-        testImageView.image = createTextFrame()
-        testImageView.layer.borderColor = UIColor.lightGrayColor().CGColor
-        testImageView.layer.borderWidth = 1.0
-//        testImageView.backgroundColor = UIColor.lightGrayColor()
-        self.view.addSubview(testImageView)
-    }
-    
     
 }
 
-extension CKAddTextViewController: UITextViewDelegate {
+extension CKTextEffectViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(textView: UITextView) {
         
@@ -300,5 +289,6 @@ extension CKAddTextViewController: UITextViewDelegate {
 }
 
 protocol CKAddTextViewControllerDelegate {
-    func addTextFrameTo(textFrame: UIImage, fromStartFrameIndex startFrameIndex: Int, toEndFrame endFrameIndex: Int)
+    
+    func addTextController(controller: CKTextEffectViewController, addTextFrame textFrame: UIImage, fromStartFrameIndex startFrameIndex: Int, toEndFrame endFrameIndex: Int)
 }

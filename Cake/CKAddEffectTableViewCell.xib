@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="CKAddEffectTableViewCell" customModule="Cake" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c1T-1f-K3q">
+                        <rect key="frame" x="44" y="0.0" width="232" height="43"/>
+                        <color key="backgroundColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="aM0-yA-kuv"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                        <state key="normal" title="Add Text">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="aM0-yA-kuv"/>
+                            </mask>
+                        </variation>
+                        <connections>
+                            <action selector="addEffectButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="IHd-s2-SUS"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="c1T-1f-K3q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="44" id="0sF-WL-hIB"/>
+                    <constraint firstAttribute="trailing" secondItem="c1T-1f-K3q" secondAttribute="trailing" constant="44" id="CDe-Dj-1wf"/>
+                    <constraint firstAttribute="bottom" secondItem="c1T-1f-K3q" secondAttribute="bottom" id="iGJ-Is-q66"/>
+                    <constraint firstItem="c1T-1f-K3q" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="wY9-VP-hkV"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="addEffectButton" destination="c1T-1f-K3q" id="8nj-en-MKC"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

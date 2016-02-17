@@ -5,17 +5,22 @@ use_frameworks!
 
 target 'Cake' do
 
+	pod 'RealmSwift'
+	pod 'FLAnimatedImage', '~> 1.0'
 	pod “TTRangeSlider”
+	pod 'Bolts'
 
 	#pod 'Alamofire', '~> 3.2'
 	#pod 'AlamofireImage', '~> 2.0'
-	#pod 'Bolts'
+
+	
+
 	#pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 
 	#pod 'Regift’
-	pod 'FLAnimatedImage', '~> 1.0'
+	
 	#pod 'SinchVerification-Swift'
-	pod 'RealmSwift'
+	
 
 	#pod 'AWSCore'
 	#pod 'AWSDynamoDB'

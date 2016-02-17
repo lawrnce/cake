@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		7B2441C3FA38A7F3E746B9C9 /* Pods_Cake.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6317CD457A943ADA64327D72 /* Pods_Cake.framework */; };
+		E66D61B31C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66D61B11C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.swift */; };
+		E66D61B41C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E66D61B21C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.xib */; };
+		E66D61B71C73B9860013CB6E /* CKAddEffectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66D61B51C73B9860013CB6E /* CKAddEffectTableViewCell.swift */; };
+		E66D61B81C73B9860013CB6E /* CKAddEffectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E66D61B61C73B9860013CB6E /* CKAddEffectTableViewCell.xib */; };
+		E66D61BA1C73EBB90013CB6E /* CKBackendManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66D61B91C73EBB90013CB6E /* CKBackendManager.swift */; };
+		E68F555E1C73ED860029A086 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68F555D1C73ED860029A086 /* Models.swift */; };
+		E68F55601C73EEC30029A086 /* NSDateISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68F555F1C73EEC30029A086 /* NSDateISO8601.swift */; };
+		E68F55631C73F07F0029A086 /* CKGifCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68F55611C73F07F0029A086 /* CKGifCollectionViewCell.swift */; };
+		E68F55641C73F07F0029A086 /* CKGifCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68F55621C73F07F0029A086 /* CKGifCollectionViewCell.xib */; };
 		E6B3F1271C70285000031B87 /* CKEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B3F1261C70285000031B87 /* CKEditViewController.swift */; };
 		E6BA12171C6FFA520075F98D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BA12161C6FFA520075F98D /* AppDelegate.swift */; };
 		E6BA12191C6FFA520075F98D /* CKCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BA12181C6FFA520075F98D /* CKCameraViewController.swift */; };
@@ -25,9 +34,7 @@
 		E6BA12601C7007720075F98D /* CKRecordGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BA125F1C7007720075F98D /* CKRecordGestureRecognizer.swift */; };
 		E6C034291C724B5E00A61141 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6C034281C724B5E00A61141 /* QuartzCore.framework */; };
 		E6C0342F1C724BAC00A61141 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = E6C0342E1C724BAC00A61141 /* iCarousel.m */; };
-		E6C034311C727AAA00A61141 /* CKAddTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C034301C727AAA00A61141 /* CKAddTextViewController.swift */; };
-		E6EC6E861C719DCB00E4A9F6 /* CKEditCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EC6E841C719DCB00E4A9F6 /* CKEditCollectionViewCell.swift */; };
-		E6EC6E871C719DCB00E4A9F6 /* CKEditCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6EC6E851C719DCB00E4A9F6 /* CKEditCollectionViewCell.xib */; };
+		E6C034311C727AAA00A61141 /* CKTextEffectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C034301C727AAA00A61141 /* CKTextEffectViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +78,15 @@
 /* Begin PBXFileReference section */
 		6317CD457A943ADA64327D72 /* Pods_Cake.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cake.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65DBFFBCF3A6A36BFA21509F /* Pods-Cake.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cake.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cake/Pods-Cake.release.xcconfig"; sourceTree = "<group>"; };
+		E66D61B11C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKTextEffectAuxiliaryTableViewCell.swift; sourceTree = "<group>"; };
+		E66D61B21C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CKTextEffectAuxiliaryTableViewCell.xib; sourceTree = "<group>"; };
+		E66D61B51C73B9860013CB6E /* CKAddEffectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKAddEffectTableViewCell.swift; sourceTree = "<group>"; };
+		E66D61B61C73B9860013CB6E /* CKAddEffectTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CKAddEffectTableViewCell.xib; sourceTree = "<group>"; };
+		E66D61B91C73EBB90013CB6E /* CKBackendManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKBackendManager.swift; sourceTree = "<group>"; };
+		E68F555D1C73ED860029A086 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		E68F555F1C73EEC30029A086 /* NSDateISO8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateISO8601.swift; sourceTree = "<group>"; };
+		E68F55611C73F07F0029A086 /* CKGifCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKGifCollectionViewCell.swift; sourceTree = "<group>"; };
+		E68F55621C73F07F0029A086 /* CKGifCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CKGifCollectionViewCell.xib; sourceTree = "<group>"; };
 		E6B3F1261C70285000031B87 /* CKEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKEditViewController.swift; sourceTree = "<group>"; };
 		E6BA12131C6FFA520075F98D /* Cake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6BA12161C6FFA520075F98D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,9 +114,7 @@
 		E6C0342C1C724BAC00A61141 /* Cake-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cake-Bridging-Header.h"; sourceTree = "<group>"; };
 		E6C0342D1C724BAC00A61141 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
 		E6C0342E1C724BAC00A61141 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
-		E6C034301C727AAA00A61141 /* CKAddTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKAddTextViewController.swift; sourceTree = "<group>"; };
-		E6EC6E841C719DCB00E4A9F6 /* CKEditCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKEditCollectionViewCell.swift; sourceTree = "<group>"; };
-		E6EC6E851C719DCB00E4A9F6 /* CKEditCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CKEditCollectionViewCell.xib; sourceTree = "<group>"; };
+		E6C034301C727AAA00A61141 /* CKTextEffectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKTextEffectViewController.swift; sourceTree = "<group>"; };
 		F1F4D3BBE70B940B708211FC /* Pods-Cake.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cake.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cake/Pods-Cake.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -156,21 +170,43 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E62C976C1C72A32C00287F5A /* Add Text */ = {
+		E62C976C1C72A32C00287F5A /* Text Effect */ = {
 			isa = PBXGroup;
 			children = (
-				E6C034301C727AAA00A61141 /* CKAddTextViewController.swift */,
+				E6C034301C727AAA00A61141 /* CKTextEffectViewController.swift */,
+				E66D61B11C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.swift */,
+				E66D61B21C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.xib */,
 			);
-			name = "Add Text";
+			name = "Text Effect";
+			sourceTree = "<group>";
+		};
+		E68F555B1C73EC950029A086 /* ObjC */ = {
+			isa = PBXGroup;
+			children = (
+				E6C0342D1C724BAC00A61141 /* iCarousel.h */,
+				E6C0342E1C724BAC00A61141 /* iCarousel.m */,
+				E6C0342C1C724BAC00A61141 /* Cake-Bridging-Header.h */,
+			);
+			name = ObjC;
+			sourceTree = "<group>";
+		};
+		E68F555C1C73ED710029A086 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				E66D61B91C73EBB90013CB6E /* CKBackendManager.swift */,
+				E68F555D1C73ED860029A086 /* Models.swift */,
+				E68F555F1C73EEC30029A086 /* NSDateISO8601.swift */,
+			);
+			name = Data;
 			sourceTree = "<group>";
 		};
 		E6B3F1281C70289200031B87 /* Edit */ = {
 			isa = PBXGroup;
 			children = (
 				E6B3F1261C70285000031B87 /* CKEditViewController.swift */,
-				E6EC6E841C719DCB00E4A9F6 /* CKEditCollectionViewCell.swift */,
-				E6EC6E851C719DCB00E4A9F6 /* CKEditCollectionViewCell.xib */,
-				E62C976C1C72A32C00287F5A /* Add Text */,
+				E66D61B51C73B9860013CB6E /* CKAddEffectTableViewCell.swift */,
+				E66D61B61C73B9860013CB6E /* CKAddEffectTableViewCell.xib */,
+				E62C976C1C72A32C00287F5A /* Text Effect */,
 			);
 			name = Edit;
 			sourceTree = "<group>";
@@ -205,16 +241,15 @@
 				E6BA12461C6FFD310075F98D /* Cake.entitlements */,
 				E6BA12161C6FFA520075F98D /* AppDelegate.swift */,
 				E6BA12441C6FFD0E0075F98D /* Constants.swift */,
+				E68F555C1C73ED710029A086 /* Data */,
 				E6BA125B1C7003570075F98D /* Camera */,
 				E6B3F1281C70289200031B87 /* Edit */,
 				E6BA125E1C7003760075F98D /* Gifs */,
 				E6BA121A1C6FFA520075F98D /* Main.storyboard */,
 				E6BA121D1C6FFA520075F98D /* Assets.xcassets */,
 				E6BA121F1C6FFA520075F98D /* LaunchScreen.storyboard */,
-				E6C0342D1C724BAC00A61141 /* iCarousel.h */,
-				E6C0342E1C724BAC00A61141 /* iCarousel.m */,
 				E6BA12221C6FFA520075F98D /* Info.plist */,
-				E6C0342C1C724BAC00A61141 /* Cake-Bridging-Header.h */,
+				E68F555B1C73EC950029A086 /* ObjC */,
 			);
 			path = Cake;
 			sourceTree = "<group>";
@@ -261,6 +296,8 @@
 			isa = PBXGroup;
 			children = (
 				E6BA125C1C7003710075F98D /* CKGifsViewController.swift */,
+				E68F55611C73F07F0029A086 /* CKGifCollectionViewCell.swift */,
+				E68F55621C73F07F0029A086 /* CKGifCollectionViewCell.xib */,
 			);
 			name = Gifs;
 			sourceTree = "<group>";
@@ -402,10 +439,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6EC6E871C719DCB00E4A9F6 /* CKEditCollectionViewCell.xib in Resources */,
+				E66D61B81C73B9860013CB6E /* CKAddEffectTableViewCell.xib in Resources */,
 				E6BA12211C6FFA520075F98D /* LaunchScreen.storyboard in Resources */,
 				E6BA121E1C6FFA520075F98D /* Assets.xcassets in Resources */,
+				E68F55641C73F07F0029A086 /* CKGifCollectionViewCell.xib in Resources */,
 				E6BA121C1C6FFA520075F98D /* Main.storyboard in Resources */,
+				E66D61B41C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,17 +524,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6EC6E861C719DCB00E4A9F6 /* CKEditCollectionViewCell.swift in Sources */,
 				E6C0342F1C724BAC00A61141 /* iCarousel.m in Sources */,
+				E66D61B71C73B9860013CB6E /* CKAddEffectTableViewCell.swift in Sources */,
 				E6B3F1271C70285000031B87 /* CKEditViewController.swift in Sources */,
+				E68F55631C73F07F0029A086 /* CKGifCollectionViewCell.swift in Sources */,
 				E6BA12191C6FFA520075F98D /* CKCameraViewController.swift in Sources */,
 				E6BA12171C6FFA520075F98D /* AppDelegate.swift in Sources */,
-				E6C034311C727AAA00A61141 /* CKAddTextViewController.swift in Sources */,
+				E6C034311C727AAA00A61141 /* CKTextEffectViewController.swift in Sources */,
+				E66D61B31C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.swift in Sources */,
 				E6BA12451C6FFD0E0075F98D /* Constants.swift in Sources */,
 				E6BA125A1C6FFE7D0075F98D /* CKPreviewView.swift in Sources */,
 				E6BA12581C6FFE1E0075F98D /* CKGifCameraController.swift in Sources */,
 				E6BA12601C7007720075F98D /* CKRecordGestureRecognizer.swift in Sources */,
+				E68F55601C73EEC30029A086 /* NSDateISO8601.swift in Sources */,
+				E66D61BA1C73EBB90013CB6E /* CKBackendManager.swift in Sources */,
 				E6BA125D1C7003710075F98D /* CKGifsViewController.swift in Sources */,
+				E68F555E1C73ED860029A086 /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

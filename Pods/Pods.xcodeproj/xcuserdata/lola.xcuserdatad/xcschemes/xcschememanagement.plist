@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Bolts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>FLAnimatedImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,22 +37,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>180BEEE0ACBCECF58C29A70DFBCA181F</key>
+		<key>2DF46103EB328B104B26C42CFD3394BD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3E0E8430E03639C5DB5735DC5ABFDE7D</key>
+		<key>4C8C3B909B4282CB9F13BFCD547565D5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6A3509E2DE4D9E7E5F9EAB79BCCBB581</key>
+		<key>63A18C6A528BD7E47DDAF39B2AEAF1D1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8F1F0B566FC9A2F12273213AEDD9FD7F</key>
+		<key>D3206B49B88E51A888C56586F89778B2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA2D4A0C3F2E6CAEEA9A03E91A8B19C7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
