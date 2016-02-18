@@ -2,13 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Icon.png",
+      "filename" : "KeyboardInfoButton.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Icon@2x.png",
+      "filename" : "KeyboardInfoButton@2x.png",
       "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "KeyboardInfoButton@3x.png",
+      "scale" : "3x"
     }
   ],
   "info" : {

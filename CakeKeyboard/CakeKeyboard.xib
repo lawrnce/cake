@@ -3,13 +3,15 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KeyboardViewController" customModule="CakeKeyboard" customModuleProvider="target">
             <connections>
+                <outlet property="allowAccessView" destination="ibh-da-Cgo" id="d20-wh-sdt"/>
+                <outlet property="bottomBarView" destination="nSP-M7-WKv" id="ZMg-bJ-aY9"/>
                 <outlet property="collectionView" destination="Yc8-G3-pcB" id="BVM-8G-MTK"/>
                 <outlet property="deleteButton" destination="pVe-Zd-IfK" id="okp-tQ-DRS"/>
-                <outlet property="layout" destination="d6X-Qn-1v8" id="MSt-qR-W9C"/>
                 <outlet property="nextKeyboardButton" destination="0qo-iN-B92" id="ig6-Ac-HmA"/>
             </connections>
         </placeholder>
@@ -18,8 +20,66 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Yc8-G3-pcB">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ibh-da-Cgo">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="116"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allow full access" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zs6-la-HAJ">
+                            <rect key="frame" x="93" y="8" width="133" height="21"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings &gt; General &gt; Keyboard &gt; Keyboards &gt; Cake &gt; Allow Full Access" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PG8-7L-Mow">
+                            <rect key="frame" x="48" y="33" width="224" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="fGh-70-MiO"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cake will never record what you type. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDa-ak-XGc">
+                            <rect key="frame" x="35" y="70" width="251" height="17"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cake only records how often you copy a gif." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xk7-0X-tfi">
+                            <rect key="frame" x="16" y="91" width="288" height="17"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="zs6-la-HAJ" firstAttribute="centerX" secondItem="ibh-da-Cgo" secondAttribute="centerX" id="0jI-YA-kgm"/>
+                        <constraint firstAttribute="trailingMargin" secondItem="PG8-7L-Mow" secondAttribute="trailing" constant="40" id="6FP-ub-Bmg"/>
+                        <constraint firstItem="kDa-ak-XGc" firstAttribute="centerX" secondItem="ibh-da-Cgo" secondAttribute="centerX" id="FKh-nI-ue4"/>
+                        <constraint firstItem="kDa-ak-XGc" firstAttribute="top" secondItem="PG8-7L-Mow" secondAttribute="bottom" constant="8" id="OJj-DX-pjM"/>
+                        <constraint firstItem="PG8-7L-Mow" firstAttribute="leading" secondItem="ibh-da-Cgo" secondAttribute="leading" constant="8" id="OYr-cX-sTq"/>
+                        <constraint firstItem="PG8-7L-Mow" firstAttribute="centerX" secondItem="ibh-da-Cgo" secondAttribute="centerX" id="QwT-16-hdO"/>
+                        <constraint firstItem="PG8-7L-Mow" firstAttribute="top" secondItem="zs6-la-HAJ" secondAttribute="bottom" constant="4" id="S80-OS-LBA"/>
+                        <constraint firstItem="Xk7-0X-tfi" firstAttribute="top" secondItem="kDa-ak-XGc" secondAttribute="bottom" priority="252" constant="4" id="VIg-Qb-LtV"/>
+                        <constraint firstAttribute="trailing" secondItem="PG8-7L-Mow" secondAttribute="trailing" constant="8" id="gsH-Dx-ivf"/>
+                        <constraint firstItem="PG8-7L-Mow" firstAttribute="leading" secondItem="ibh-da-Cgo" secondAttribute="leadingMargin" constant="40" id="iO0-Uu-jqK"/>
+                        <constraint firstItem="zs6-la-HAJ" firstAttribute="top" secondItem="ibh-da-Cgo" secondAttribute="top" constant="8" id="imh-zc-UrK"/>
+                        <constraint firstAttribute="bottom" secondItem="Xk7-0X-tfi" secondAttribute="bottom" constant="8" id="pup-yR-l4F"/>
+                        <constraint firstItem="Xk7-0X-tfi" firstAttribute="centerX" secondItem="ibh-da-Cgo" secondAttribute="centerX" id="ujI-nd-oMt"/>
+                        <constraint firstItem="PG8-7L-Mow" firstAttribute="top" secondItem="zs6-la-HAJ" secondAttribute="bottom" priority="751" constant="8" id="xa3-f8-DVP"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="OYr-cX-sTq"/>
+                            <exclude reference="gsH-Dx-ivf"/>
+                            <exclude reference="xa3-f8-DVP"/>
+                            <exclude reference="OJj-DX-pjM"/>
+                        </mask>
+                    </variation>
+                </view>
+                <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Yc8-G3-pcB">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="116"/>
+                    <color key="backgroundColor" red="0.94901960784313721" green="0.83137254901960789" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="d6X-Qn-1v8">
                         <size key="itemSize" width="116" height="116"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -34,52 +94,84 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nSP-M7-WKv">
                     <rect key="frame" x="0.0" y="116" width="320" height="44"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0qo-iN-B92">
-                            <rect key="frame" x="8" y="6" width="32" height="32"/>
-                            <state key="normal" image="NextKeyboardButton"/>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pVe-Zd-IfK">
-                            <rect key="frame" x="282" y="7" width="30" height="30"/>
-                            <state key="normal" title="Del"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pVe-Zd-IfK">
+                            <rect key="frame" x="276" y="0.0" width="44" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="SbU-m8-MM5"/>
+                                <constraint firstAttribute="width" constant="44" id="VIB-9F-2sG"/>
+                            </constraints>
+                            <state key="normal" image="BackspaceButtonNormal"/>
                             <connections>
                                 <action selector="deleteButtonPressed:" destination="-1" eventType="touchUpInside" id="fFe-af-Fra"/>
                             </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0qo-iN-B92">
+                            <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="AqR-eU-sHG"/>
+                                <constraint firstAttribute="width" constant="44" id="dNA-c6-Z7O"/>
+                            </constraints>
+                            <state key="normal" image="NextKeyboardButton"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zJE-Mg-UGg">
+                            <rect key="frame" x="138" y="0.0" width="44" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="Tyu-DT-puS"/>
+                                <constraint firstAttribute="width" constant="44" id="rlH-DY-wqR"/>
+                            </constraints>
+                            <state key="normal" image="KeyboardInfoButtonNormal"/>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="pVe-Zd-IfK" firstAttribute="centerY" secondItem="nSP-M7-WKv" secondAttribute="centerY" id="2lT-sY-mW2"/>
+                        <constraint firstItem="zJE-Mg-UGg" firstAttribute="centerY" secondItem="nSP-M7-WKv" secondAttribute="centerY" id="6vd-8Z-MZ1"/>
                         <constraint firstItem="0qo-iN-B92" firstAttribute="centerY" secondItem="nSP-M7-WKv" secondAttribute="centerY" id="Kj5-oF-Htl"/>
-                        <constraint firstAttribute="trailing" secondItem="pVe-Zd-IfK" secondAttribute="trailing" constant="8" id="SSE-5B-ftb"/>
+                        <constraint firstAttribute="trailing" secondItem="pVe-Zd-IfK" secondAttribute="trailing" id="SSE-5B-ftb"/>
                         <constraint firstAttribute="height" constant="44" id="aOC-ew-Ntd"/>
-                        <constraint firstItem="0qo-iN-B92" firstAttribute="leading" secondItem="nSP-M7-WKv" secondAttribute="leading" constant="8" id="xL3-Cb-67z"/>
+                        <constraint firstItem="zJE-Mg-UGg" firstAttribute="centerX" secondItem="nSP-M7-WKv" secondAttribute="centerX" id="cJY-4U-i4O"/>
+                        <constraint firstItem="0qo-iN-B92" firstAttribute="leading" secondItem="nSP-M7-WKv" secondAttribute="leading" id="xL3-Cb-67z"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="nSP-M7-WKv" firstAttribute="top" secondItem="ibh-da-Cgo" secondAttribute="bottom" id="9Z4-WF-s4F"/>
                 <constraint firstAttribute="bottom" secondItem="nSP-M7-WKv" secondAttribute="bottom" id="AzB-xZ-Gj6"/>
                 <constraint firstAttribute="trailing" secondItem="Yc8-G3-pcB" secondAttribute="trailing" id="EbT-A9-D98"/>
+                <constraint firstItem="ibh-da-Cgo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="K1z-xO-M7H"/>
                 <constraint firstAttribute="bottom" secondItem="nSP-M7-WKv" secondAttribute="bottom" id="KUa-CE-5Vx"/>
                 <constraint firstItem="Yc8-G3-pcB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="OiA-1t-Tzh"/>
                 <constraint firstItem="Yc8-G3-pcB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="R9n-bf-Me6"/>
+                <constraint firstItem="Yc8-G3-pcB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="S2m-NF-YdT"/>
+                <constraint firstAttribute="trailing" secondItem="ibh-da-Cgo" secondAttribute="trailing" id="VgH-jM-p7d"/>
+                <constraint firstAttribute="trailing" secondItem="Yc8-G3-pcB" secondAttribute="trailing" id="aMi-f8-Enp"/>
                 <constraint firstAttribute="trailing" secondItem="nSP-M7-WKv" secondAttribute="trailing" id="bCb-Pe-zBc"/>
                 <constraint firstItem="nSP-M7-WKv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="cBv-3e-wzW"/>
                 <constraint firstItem="nSP-M7-WKv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="d1A-tv-E12"/>
                 <constraint firstItem="nSP-M7-WKv" firstAttribute="top" secondItem="Yc8-G3-pcB" secondAttribute="bottom" id="iXl-XH-hqD"/>
+                <constraint firstItem="Yc8-G3-pcB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="pJn-d5-2Wr"/>
+                <constraint firstItem="ibh-da-Cgo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="s3c-Bs-2Ad"/>
+                <constraint firstItem="nSP-M7-WKv" firstAttribute="top" secondItem="Yc8-G3-pcB" secondAttribute="bottom" id="xMB-OD-1Cz"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="EbT-A9-D98"/>
+                    <exclude reference="OiA-1t-Tzh"/>
+                    <exclude reference="R9n-bf-Me6"/>
                     <exclude reference="AzB-xZ-Gj6"/>
                     <exclude reference="d1A-tv-E12"/>
+                    <exclude reference="iXl-XH-hqD"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="31" y="563"/>
+            <point key="canvasLocation" x="45" y="574"/>
         </view>
     </objects>
     <resources>
-        <image name="NextKeyboardButton" width="32" height="32"/>
+        <image name="BackspaceButtonNormal" width="32" height="22"/>
+        <image name="KeyboardInfoButtonNormal" width="31" height="32"/>
+        <image name="NextKeyboardButton" width="36" height="36"/>
     </resources>
 </document>

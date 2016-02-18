@@ -16,18 +16,33 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oq2-ZX-GPS" customClass="FLAnimatedImageView">
                         <rect key="frame" x="0.0" y="0.0" width="185" height="174"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copied" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5e-VK-2wb">
+                        <rect key="frame" x="20" y="69" width="145" height="36"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="36" id="Rce-G3-Vkn"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
                 <constraint firstItem="oq2-ZX-GPS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="359-dJ-Dg5"/>
+                <constraint firstAttribute="trailing" secondItem="s5e-VK-2wb" secondAttribute="trailing" constant="20" id="DOD-V6-th3"/>
                 <constraint firstItem="oq2-ZX-GPS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="b8t-5k-A3l"/>
                 <constraint firstAttribute="trailing" secondItem="oq2-ZX-GPS" secondAttribute="trailing" id="hSE-Ip-4lX"/>
+                <constraint firstItem="s5e-VK-2wb" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="m8h-aD-WNJ"/>
+                <constraint firstItem="s5e-VK-2wb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="snD-cr-6ne"/>
                 <constraint firstAttribute="bottom" secondItem="oq2-ZX-GPS" secondAttribute="bottom" id="vhP-pO-Uik"/>
+                <constraint firstItem="s5e-VK-2wb" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="zgh-yW-eIh"/>
             </constraints>
             <size key="customSize" width="185" height="174"/>
             <connections>
                 <outlet property="animatedImageView" destination="oq2-ZX-GPS" id="Eli-y3-3te"/>
+                <outlet property="copiedLabel" destination="s5e-VK-2wb" id="9Oa-LK-I4F"/>
             </connections>
             <point key="canvasLocation" x="340.5" y="407"/>
         </collectionViewCell>

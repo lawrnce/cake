@@ -108,7 +108,9 @@ class CKCameraViewController: UIViewController {
                 self.finishRecordingButton.hidden = true
             }
             
+            self.recordButtonImageView.image = UIImage(named: "RecordButtonNormal")
             self.gifsButton.hidden = false
+            
         } else if self.state == .Recording {
             
             
@@ -245,6 +247,7 @@ class CKCameraViewController: UIViewController {
             let image = UIImage(data: NSData(contentsOfURL: gifURL)!)
             self.gifsButton.setImage(image, forState: .Normal)
             self.view.addSubview(self.gifsButton)
+            self.gifsButton.alpha = 0.8
         } else {
             self.gifsButton.removeFromSuperview()
         }
@@ -254,15 +257,14 @@ class CKCameraViewController: UIViewController {
     func recordPressed(gestureRecognizer: CKRecordGestureRecognizer) {
         
         if gestureRecognizer.state == .Began {
-            
+            self.recordButtonImageView.image = UIImage(named: "RecordButtonSelected")
             self.cameraController.startRecording()
             print("Begin Recording")
             
         } else if gestureRecognizer.state == .Ended {
-            
+            self.recordButtonImageView.image = UIImage(named: "RecordButtonNormal")
             self.cameraController.pauseRecording()
             print("Paused Recording")
-            
         }
     }
     

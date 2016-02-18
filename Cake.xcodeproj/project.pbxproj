@@ -10,6 +10,7 @@
 		22531BF50906F603211FCF17 /* Pods_CakeKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F784EC50281E10039A806E8A /* Pods_CakeKeyboard.framework */; };
 		7B2441C3FA38A7F3E746B9C9 /* Pods_Cake.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6317CD457A943ADA64327D72 /* Pods_Cake.framework */; };
 		E601E21F1C7539F100F37C41 /* UIColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = E601E21E1C7539F100F37C41 /* UIColorHex.swift */; };
+		E657B9541C7689E300B680E7 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E657B9531C7689E300B680E7 /* UIImageExtension.swift */; };
 		E66D61B31C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66D61B11C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.swift */; };
 		E66D61B41C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E66D61B21C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.xib */; };
 		E66D61B71C73B9860013CB6E /* CKAddEffectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66D61B51C73B9860013CB6E /* CKAddEffectTableViewCell.swift */; };
@@ -98,6 +99,7 @@
 		65DBFFBCF3A6A36BFA21509F /* Pods-Cake.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cake.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cake/Pods-Cake.release.xcconfig"; sourceTree = "<group>"; };
 		7F398A49C6C09186E3DBACB8 /* Pods-CakeKeyboard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CakeKeyboard.release.xcconfig"; path = "Pods/Target Support Files/Pods-CakeKeyboard/Pods-CakeKeyboard.release.xcconfig"; sourceTree = "<group>"; };
 		E601E21E1C7539F100F37C41 /* UIColorHex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorHex.swift; sourceTree = "<group>"; };
+		E657B9531C7689E300B680E7 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		E66D61B11C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKTextEffectAuxiliaryTableViewCell.swift; sourceTree = "<group>"; };
 		E66D61B21C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CKTextEffectAuxiliaryTableViewCell.xib; sourceTree = "<group>"; };
 		E66D61B51C73B9860013CB6E /* CKAddEffectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKAddEffectTableViewCell.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 				E6BA12161C6FFA520075F98D /* AppDelegate.swift */,
 				E6BA12441C6FFD0E0075F98D /* Constants.swift */,
 				E601E21E1C7539F100F37C41 /* UIColorHex.swift */,
+				E657B9531C7689E300B680E7 /* UIImageExtension.swift */,
 				E68F555C1C73ED710029A086 /* Data */,
 				E6BA125B1C7003570075F98D /* Camera */,
 				E6B3F1281C70289200031B87 /* Edit */,
@@ -661,6 +664,7 @@
 				E6BA12581C6FFE1E0075F98D /* CKGifCameraController.swift in Sources */,
 				E6BA12601C7007720075F98D /* CKRecordGestureRecognizer.swift in Sources */,
 				E68F55601C73EEC30029A086 /* NSDateISO8601.swift in Sources */,
+				E657B9541C7689E300B680E7 /* UIImageExtension.swift in Sources */,
 				E66D61BA1C73EBB90013CB6E /* CKBackendManager.swift in Sources */,
 				E6B597381C7533B20034EDE5 /* PocketSVG.m in Sources */,
 				E6B597361C7533B20034EDE5 /* LTColorPanningButton.swift in Sources */,
@@ -910,7 +914,7 @@
 				CODE_SIGN_ENTITLEMENTS = CakeKeyboard/CakeKeyboard.entitlements;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = CakeKeyboard/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cakegifs.Cake.CakeKeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -924,7 +928,7 @@
 				CODE_SIGN_ENTITLEMENTS = CakeKeyboard/CakeKeyboard.entitlements;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = CakeKeyboard/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cakegifs.Cake.CakeKeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

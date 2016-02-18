@@ -220,6 +220,19 @@ class CKEditViewController: UIViewController {
         }
     }
     
+    private func removeEffect(effectIndex: Int) {
+        // remove frames for index
+        for (index, _) in self.frames.enumerate() {
+            self.frames[index].removeAtIndex(effectIndex + 1)
+        }
+        
+        // remove view controller in effect chain
+        self.textEffects.removeAtIndex(effectIndex)
+        
+        self.effectsTableView.reloadData()
+        self.carousel.reloadData()
+    }
+    
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowAddText" {
@@ -445,6 +458,18 @@ extension CKEditViewController: CKTextEffectAuxiliaryTableViewCellDelegate {
     
     func didPressDeleteButton(cell: CKTextEffectAuxiliaryTableViewCell) {
         
+        let alert = UIAlertController(title: "Remove Effect?", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
+            print("Cancelled Delete")
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Delete", style: .Destructive, handler: { (action) -> Void in
+            
+            let effectIndex = self.getEffectIndexForEffectViewController(cell.viewControllerDataSource)
+            self.removeEffect(effectIndex)
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     private func getEffectIndexForEffectViewController(effectVC: CKTextEffectViewController) -> Int {

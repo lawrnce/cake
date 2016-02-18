@@ -60,6 +60,7 @@ class CKTextEffectViewController: UIViewController {
         self.textView = UITextView(frame: CGRectMake(0, 0, kSCREEN_WIDTH - 8, 100))
         let textViewCenter = CGPointMake(kSCREEN_WIDTH / 2.0, kSCREEN_WIDTH / 2.0)
         self.textView.scrollEnabled = false
+        self.textView.secureTextEntry = true
         
         self.textView.layer.borderWidth = 0.5
         self.textView.layer.borderColor = UIColor.lightGrayColor().CGColor

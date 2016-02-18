@@ -1,3 +1,5 @@
+
+
 //
 //  CKGifCollectionViewCell.swift
 //  Cake
@@ -14,20 +16,42 @@ let gifCellReuseIdentifier = "GifCellReuse"
 class CKGifCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var animatedImageView: FLAnimatedImageView!
-    
-//    var loadingGif: FLAnimatedImage!
+    @IBOutlet weak var copiedLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-//        let dataAsset = NSDataAsset(name: "Loading")
-//        self.loadingGif = FLAnimatedImage(GIFData: dataAsset?.data)
-//        self.animatedImageView.animatedImage = self.loadingGif
+        self.copiedLabel.hidden = true
+        self.copiedLabel.alpha = 0.0
+        
+        self.copiedLabel.layer.cornerRadius = 4.0
+        self.copiedLabel.clipsToBounds = true
     }
 
     override func prepareForReuse() {
         self.animatedImageView.animatedImage = nil
-//        self.animatedImageView.animatedImage = self.loadingGif
         self.backgroundColor = UIColor.clearColor()
+        self.copiedLabel.hidden = true
+        self.copiedLabel.alpha = 0.0
+    }
+    
+    func animateCopyLabel() {
+        self.copiedLabel.adjustsFontSizeToFitWidth = true
+        self.copiedLabel.alpha = 0.0
+        self.copiedLabel.hidden = false
+        
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            self.copiedLabel.alpha = 0.7
+            }) { (done) -> Void in
+                
+                UIView.animateWithDuration(0.2, animations: { () -> Void in
+                    
+                    self.copiedLabel.alpha = 0.0
+                    
+                    }, completion: { (done) -> Void in
+                        self.copiedLabel.hidden = true
+                })
+                
+        }
+        
     }
 }
