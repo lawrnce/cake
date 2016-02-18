@@ -37,6 +37,11 @@ let kDEFAULT_FRAMES_PER_SECOND = 24
 let kDEFAULT_TOTAL_FRAMES = Int(Int(kDEFAULT_CAMERA_DURATION) * Int(kDEFAULT_FRAMES_PER_SECOND))
 let kTimerIncrementWidth = CGFloat(Double(kSCREEN_WIDTH) / Double(kDEFAULT_TOTAL_FRAMES))
 
+// MARK: - Gifs View Controller
+let kDetailButtonSpace = (kSCREEN_WIDTH - 2.0 * 88.0) / 3.0
+let kCopyButtonFrameOriginX = kDetailButtonSpace
+let kDeleteButtonFrameOriginX = kDetailButtonSpace + 88.0 + kDetailButtonSpace
+
 // MARK: - Notification
 let GIF_FINALIZED = "com.cakegifs.GifFinalized"
 

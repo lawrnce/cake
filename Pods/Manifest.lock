@@ -6,6 +6,7 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.6.0)
   - FLAnimatedImage (1.0.10)
+  - GMStepper (1.1.0)
   - Realm (0.98.1):
     - Realm/Headers (= 0.98.1)
   - Realm/Headers (0.98.1)
@@ -16,12 +17,14 @@ PODS:
 DEPENDENCIES:
   - Bolts
   - FLAnimatedImage (~> 1.0)
+  - GMStepper
   - RealmSwift
   - TTRangeSlider
 
 SPEC CHECKSUMS:
   Bolts: f52a250053bb517ca874523c3913776359ab3def
   FLAnimatedImage: e16a1e1cef08e4c509b47e4acbe3923f65c16135
+  GMStepper: 3b7922778a80e0eab89a55003ca36b25fc2393b7
   Realm: ca4a4122e939e228e10694fc49011386cb2ecb07
   RealmSwift: 7d3c7033427816a2c3417ba0d004d694987e503a
   TTRangeSlider: a12d0ac242a785cf96d4c7dacfe07e42a161251e

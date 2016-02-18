@@ -42,7 +42,8 @@ class CKEditViewController: UIViewController {
     @IBOutlet weak var previewGifImageViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var editButton: UIButton!
+
+    var editButton: UIButton!
     
     var state: EditMode = .Preview
     var duration: Double!
@@ -63,6 +64,7 @@ class CKEditViewController: UIViewController {
         setupCarousel()
         setupEffectsTableView()
         setupFramesSlider()
+        setupEditButton()
     }
     
     // MARK: - Setup Methods
@@ -114,9 +116,23 @@ class CKEditViewController: UIViewController {
         self.effectsTableView.registerNib(textAuxiliaryNibName, forCellReuseIdentifier: textEffectAuxiliaryTableViewCellReuse)
     }
     
+    private func setupEditButton() {
+        self.editButton = UIButton(frame: CGRect(x: 0, y: 0, width: kSCREEN_WIDTH - 200, height: kSCREEN_WIDTH - 200))
+        self.editButton.setImage(UIImage(named: "EditButtonNormal"), forState: .Normal)
+        self.editButton.addTarget(self, action: Selector("editButtonPressed:"), forControlEvents: .TouchUpInside)
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         updateState()
+        layoutEditButton()
+    }
+    
+    // MARK: - Layout Subview
+    private func layoutEditButton() {
+        self.editButton.center = CGPoint(x: kSCREEN_WIDTH / 2.0,
+            y: (50 + kSCREEN_WIDTH - 60 + kSCREEN_HEIGHT - 60) / 2.0 )
+        self.previewView.addSubview(self.editButton)
     }
     
     func updateState() {
@@ -140,6 +156,8 @@ class CKEditViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
     // MARK: - Button Actions
     @IBAction func redoButtonPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true) { () -> Void in
@@ -147,7 +165,7 @@ class CKEditViewController: UIViewController {
         }
     }
     
-    @IBAction func editButtonPressed(sender: AnyObject) {
+    func editButtonPressed(sender: AnyObject) {
         self.state = .Edit
         self.previewGifImageView.stopAnimating()
         updateState()

@@ -133,11 +133,55 @@
                     <connections>
                         <outlet property="collectionView" destination="E1T-Sy-W6P" id="Oqh-Bn-isk"/>
                         <outlet property="layout" destination="tgy-b0-OYX" id="wNk-aL-jet"/>
+                        <segue destination="XJS-wa-mux" kind="show" identifier="ShowDetail" id="dgb-Vd-cYa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lhf-VM-yn6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="771.5" y="1277.5"/>
+        </scene>
+        <!--Gifs Detail View Controller-->
+        <scene sceneID="COl-ZM-vmR">
+            <objects>
+                <viewController id="XJS-wa-mux" customClass="CKGifsDetailViewController" customModule="Cake" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3Yx-hE-AYO"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xou-qa-Zvx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oYP-XU-48v">
+                        <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gkx-bs-92E" customClass="FLAnimatedImageView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="335"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="335" id="K4f-KR-GfS"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="gkx-bs-92E" secondAttribute="trailing" id="ET6-b7-FLJ"/>
+                            <constraint firstItem="gkx-bs-92E" firstAttribute="leading" secondItem="oYP-XU-48v" secondAttribute="leading" id="MRI-QQ-yRE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gkx-bs-92E" secondAttribute="trailing" constant="48" id="UeG-nr-Mfe"/>
+                            <constraint firstItem="gkx-bs-92E" firstAttribute="top" secondItem="3Yx-hE-AYO" secondAttribute="bottom" id="mgf-9L-eYG"/>
+                            <constraint firstItem="gkx-bs-92E" firstAttribute="leading" secondItem="oYP-XU-48v" secondAttribute="leadingMargin" constant="47" id="pMv-LI-i3f"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="UeG-nr-Mfe"/>
+                                <exclude reference="pMv-LI-i3f"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="animatedImageView" destination="gkx-bs-92E" id="6YF-0S-EZs"/>
+                        <outlet property="animatedImageViewHeightConstraint" destination="K4f-KR-GfS" id="8LD-cm-01f"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c9U-rg-Lmu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1244.5" y="1277.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="m6Q-Au-94r">
@@ -331,6 +375,32 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gSU-c1-IBB">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1aW-BP-naX" userLabel="Save">
+                                        <rect key="frame" x="311" y="603" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="Ef3-2r-qao"/>
+                                            <constraint firstAttribute="height" constant="44" id="bdy-r2-2H3"/>
+                                        </constraints>
+                                        <state key="normal" image="SaveButtonNormal">
+                                            <color key="titleColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="saveButtonPressed:" destination="8fG-yi-vsg" eventType="touchUpInside" id="yLE-QH-0Zj"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LQm-Vb-km4">
+                                        <rect key="frame" x="20" y="603" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="35c-R0-Jf4"/>
+                                            <constraint firstAttribute="width" constant="44" id="nWU-gm-0O4"/>
+                                        </constraints>
+                                        <state key="normal" image="CancelButtonNormal">
+                                            <color key="titleColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="redoButtonPressed:" destination="8fG-yi-vsg" eventType="touchUpInside" id="MTT-16-HGb"/>
+                                        </connections>
+                                    </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hhd-lQ-yCJ">
                                         <rect key="frame" x="30" y="30" width="315" height="240"/>
                                         <constraints>
@@ -347,60 +417,17 @@
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1aW-BP-naX" userLabel="Save">
-                                        <rect key="frame" x="267" y="615" width="100" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="Ef3-2r-qao"/>
-                                            <constraint firstAttribute="height" constant="44" id="bdy-r2-2H3"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" title="Save">
-                                            <color key="titleColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="saveButtonPressed:" destination="8fG-yi-vsg" eventType="touchUpInside" id="yLE-QH-0Zj"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LQm-Vb-km4">
-                                        <rect key="frame" x="8" y="615" width="100" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="35c-R0-Jf4"/>
-                                            <constraint firstAttribute="width" constant="100" id="nWU-gm-0O4"/>
-                                        </constraints>
-                                        <state key="normal" title="Close">
-                                            <color key="titleColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="redoButtonPressed:" destination="8fG-yi-vsg" eventType="touchUpInside" id="MTT-16-HGb"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VsJ-pg-ipP">
-                                        <rect key="frame" x="137" y="295" width="100" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="Isu-n6-eZN"/>
-                                            <constraint firstAttribute="height" constant="44" id="QiY-K0-jTZ"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" title="Edit">
-                                            <color key="titleColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="editButtonPressed:" destination="8fG-yi-vsg" eventType="touchUpInside" id="5OP-gP-ZlG"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="VsJ-pg-ipP" firstAttribute="top" secondItem="hhd-lQ-yCJ" secondAttribute="bottom" constant="25" id="2ru-m0-5vl"/>
-                                    <constraint firstAttribute="trailing" secondItem="1aW-BP-naX" secondAttribute="trailing" constant="8" id="AY2-n5-ucs"/>
+                                    <constraint firstAttribute="trailing" secondItem="1aW-BP-naX" secondAttribute="trailing" constant="20" id="AY2-n5-ucs"/>
                                     <constraint firstItem="hhd-lQ-yCJ" firstAttribute="centerX" secondItem="gSU-c1-IBB" secondAttribute="centerX" id="LTN-dX-nj0"/>
-                                    <constraint firstAttribute="bottom" secondItem="1aW-BP-naX" secondAttribute="bottom" constant="8" id="NB5-vy-L1c"/>
+                                    <constraint firstAttribute="bottom" secondItem="1aW-BP-naX" secondAttribute="bottom" constant="20" id="NB5-vy-L1c"/>
                                     <constraint firstAttribute="trailing" secondItem="hhd-lQ-yCJ" secondAttribute="trailing" constant="30" id="Vaw-QC-hY6"/>
-                                    <constraint firstItem="LQm-Vb-km4" firstAttribute="leading" secondItem="gSU-c1-IBB" secondAttribute="leading" constant="8" id="ZEi-eU-CZp"/>
-                                    <constraint firstAttribute="bottom" secondItem="LQm-Vb-km4" secondAttribute="bottom" constant="8" id="mrF-A6-lsr"/>
+                                    <constraint firstItem="LQm-Vb-km4" firstAttribute="leading" secondItem="gSU-c1-IBB" secondAttribute="leading" constant="20" id="ZEi-eU-CZp"/>
+                                    <constraint firstAttribute="bottom" secondItem="LQm-Vb-km4" secondAttribute="bottom" constant="20" id="mrF-A6-lsr"/>
                                     <constraint firstItem="hhd-lQ-yCJ" firstAttribute="top" secondItem="gSU-c1-IBB" secondAttribute="top" constant="30" id="nH5-zd-oe3"/>
                                     <constraint firstItem="hhd-lQ-yCJ" firstAttribute="leading" secondItem="gSU-c1-IBB" secondAttribute="leading" constant="30" id="tzO-7C-9oA"/>
-                                    <constraint firstItem="VsJ-pg-ipP" firstAttribute="centerX" secondItem="gSU-c1-IBB" secondAttribute="centerX" id="wVu-OQ-7zg"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -419,7 +446,6 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="carousel" destination="7F3-Ac-pEJ" id="wNU-J8-eBx"/>
-                        <outlet property="editButton" destination="VsJ-pg-ipP" id="hbb-UO-0JB"/>
                         <outlet property="editView" destination="ILP-Zk-1yd" id="OOD-UC-WaQ"/>
                         <outlet property="effectsTableView" destination="QMa-5p-tbh" id="k4U-J1-TI9"/>
                         <outlet property="frameSlider" destination="L62-UJ-ShU" id="Y6r-BY-Dg0"/>
@@ -436,4 +462,8 @@
             <point key="canvasLocation" x="771.5" y="483.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CancelButtonNormal" width="33" height="32"/>
+        <image name="SaveButtonNormal" width="40" height="32"/>
+    </resources>
 </document>

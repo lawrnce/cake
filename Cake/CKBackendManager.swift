@@ -76,7 +76,9 @@ class CKBackendManager: NSObject {
     // Removes gif from disk
     private func deleteGifFromDisk(_gif: ThreadableGIF) -> BFTask {
         let task = BFTaskCompletionSource()
-        let gifURL = kSHARED_GIF_DIRECTORY?.URLByAppendingPathComponent(_gif.id)
+        
+        let gifName = _gif.id + ".gif"
+        let gifURL = kSHARED_GIF_DIRECTORY?.URLByAppendingPathComponent(gifName)
         
         do {
             try NSFileManager.defaultManager().removeItemAtURL(gifURL!)
@@ -95,6 +97,20 @@ class CKBackendManager: NSObject {
     }
     
     // MARK: - Realm
+    // Get Latest Gif{
+    func getLatestGif() -> GIF? {
+        let realm = try! Realm()
+        if let user = realm.objects(User).first {
+            if user.gifs.isEmpty {
+                return nil
+            } else {
+                let gifs = user.gifs.map { $0 }
+                return gifs.last
+            }
+        }
+        return nil
+    }
+    
     // Get User Gifs
     func getUserGifs() -> [GIF]? {
         let realm = try! Realm()

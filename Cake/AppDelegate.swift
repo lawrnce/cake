@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        var config = Realm.Configuration()
+        
+        // Use the shared container
+        config.path = kSHARED_CONTAINER?.URLByAppendingPathComponent("default.realm").path
+        // Set this as the configuration used for the default Realm
+        Realm.Configuration.defaultConfiguration = config
         return true
     }
 

@@ -16,6 +16,8 @@ class CKGifsViewController: UIViewController {
     @IBOutlet weak var layout: UICollectionViewFlowLayout!
     
     private var gifs: [GIF]!
+    private var gifToDisplayURL: NSURL!
+    private var gifToDisplayId: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +26,6 @@ class CKGifsViewController: UIViewController {
         let viewNib = UINib(nibName: "CKGifCollectionViewCell", bundle: nil)
         self.collectionView.registerNib(viewNib, forCellWithReuseIdentifier: gifCellReuseIdentifier)
     
-        
         layout.itemSize = CGSizeMake(kSCREEN_WIDTH / 2.0, kSCREEN_WIDTH / 2.0)
         layout.minimumInteritemSpacing = 0.0
         layout.minimumLineSpacing = 0.0
@@ -43,7 +44,6 @@ class CKGifsViewController: UIViewController {
     
     private func loadGifs() {
         
-        //        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
         var localGifs: [GIF]?
         
         let realm = try! Realm()
@@ -58,15 +58,15 @@ class CKGifsViewController: UIViewController {
         })
     }
 
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+        if segue.identifier == "ShowDetail" {
+            let detailVC = segue.destinationViewController as! CKGifsDetailViewController
+            detailVC.gifURL = self.gifToDisplayURL
+            detailVC.gifId = self.gifToDisplayId
+        }
     }
-    */
 
     
     @IBAction func doneButtonPressed(sender: AnyObject) {
@@ -104,22 +104,23 @@ extension CKGifsViewController: UICollectionViewDataSource {
 extension CKGifsViewController: UICollectionViewDelegate {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        
         let gif: GIF = self.gifs[indexPath.row] as GIF
-        
         let gifFileName = gif.id + ".gif"
-        
         let gifURL = kSHARED_GIF_DIRECTORY!.URLByAppendingPathComponent(gifFileName)
-        let gifData = NSData(contentsOfURL: gifURL)!
         
-        UIPasteboard.generalPasteboard().setData(gifData, forPasteboardType: "com.compuserve.gif")
+        self.gifToDisplayId = gif.id
+        self.gifToDisplayURL = gifURL
+        self.performSegueWithIdentifier("ShowDetail", sender: self)
         
-        print("COPIED: Collection View: ", collectionView.tag, "Index: ", indexPath.row)
+//        let gifData = NSData(contentsOfURL: gifURL)!
+//        UIPasteboard.generalPasteboard().setData(gifData, forPasteboardType: "com.compuserve.gif")
+        
+//        print("COPIED: Collection View: ", collectionView.tag, "Index: ", indexPath.row)
         
 //        let index: Int = indexPath.row
 //        let gif: GIF = self.gifs[index] as GIF
 //        self.gifToDisplayId = gif.id
-//        self.performSegueWithIdentifier("ShowDetail", sender: self)
+
     }
 }
 

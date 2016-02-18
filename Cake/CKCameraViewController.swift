@@ -45,9 +45,6 @@ class CKCameraViewController: UIViewController {
         let recordButtonCenter = CGPointMake(kSCREEN_WIDTH / 2.0, ((64.0 + kSCREEN_WIDTH ) + kSCREEN_HEIGHT) / 2.0)
         self.recordButtonImageView.center = recordButtonCenter
         
-        let gifsButtonCenter = CGPointMake(((kSCREEN_WIDTH / 2.0 + self.recordButtonImageView.frame.width / 2.0) + kSCREEN_WIDTH) / 2.0, recordButtonCenter.y)
-        self.gifsButton.center = gifsButtonCenter
-        
         if self.timeViewWidthConstraint.constant != CGFloat(0.0) {
             self.timeViewWidthConstraint.constant = CGFloat(0.0)
             setNeedsFocusUpdate()
@@ -66,10 +63,11 @@ class CKCameraViewController: UIViewController {
         
         self.view.addSubview(previewView)
         self.view.addSubview(self.recordButtonImageView)
-        self.view.addSubview(self.gifsButton)
         updateStateLayout(false)
         
         self.cameraController.startSession()
+        
+        layoutGifsButton()
     }
 
     override func didReceiveMemoryWarning() {
@@ -236,15 +234,26 @@ class CKCameraViewController: UIViewController {
         self.timerView.backgroundColor = kRecordingTint
     }
     
+    // MARK: - Layout Subviews
+    private func layoutGifsButton() {
+        if let latestGif = CKBackendManager.sharedInstance.getLatestGif() {
+            let gifsButtonCenter = CGPointMake(((kSCREEN_WIDTH / 2.0 + self.recordButtonImageView.frame.width / 2.0) + kSCREEN_WIDTH) / 2.0, self.recordButtonImageView.center.y)
+            self.gifsButton.center = gifsButtonCenter
+
+            let gifName = latestGif.id + ".gif"
+            let gifURL = kSHARED_GIF_DIRECTORY!.URLByAppendingPathComponent(gifName)
+            let image = UIImage(data: NSData(contentsOfURL: gifURL)!)
+            self.gifsButton.setImage(image, forState: .Normal)
+            self.view.addSubview(self.gifsButton)
+        } else {
+            self.gifsButton.removeFromSuperview()
+        }
+    }
+    
     // MARK: - Button Actions
     func recordPressed(gestureRecognizer: CKRecordGestureRecognizer) {
         
         if gestureRecognizer.state == .Began {
-            
-            if self.state == .Idle {
-                self.state = .Recording
-                updateStateLayout(true)
-            }
             
             self.cameraController.startRecording()
             print("Begin Recording")
@@ -314,6 +323,7 @@ class CKCameraViewController: UIViewController {
 extension CKCameraViewController: CKGifCameraControllerDelegate {
     
     func controller(cameraController: CKGifCameraController, didAppendFrameNumber index: Int) {
+        
         if index == kDEFAULT_TOTAL_FRAMES + 1 {
             self.cancelRecordingButton.userInteractionEnabled = false
             self.finishRecordingButton.userInteractionEnabled = false
@@ -322,6 +332,13 @@ extension CKCameraViewController: CKGifCameraControllerDelegate {
         let xOffset = kTimerIncrementWidth * CGFloat(index)
         
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            
+            if self.state == .Idle {
+                self.state = .Recording
+                self.updateStateLayout(true)
+            }
+            
+            
             UIView.animateWithDuration(Double(kDEFAULT_CAMERA_DURATION / Double(kDEFAULT_TOTAL_FRAMES))) { () -> Void in
                 self.timeViewWidthConstraint.constant = xOffset
                 

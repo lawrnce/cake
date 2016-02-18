@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22531BF50906F603211FCF17 /* Pods_CakeKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F784EC50281E10039A806E8A /* Pods_CakeKeyboard.framework */; };
 		7B2441C3FA38A7F3E746B9C9 /* Pods_Cake.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6317CD457A943ADA64327D72 /* Pods_Cake.framework */; };
 		E601E21F1C7539F100F37C41 /* UIColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = E601E21E1C7539F100F37C41 /* UIColorHex.swift */; };
 		E66D61B31C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66D61B11C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.swift */; };
@@ -14,10 +15,16 @@
 		E66D61B71C73B9860013CB6E /* CKAddEffectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66D61B51C73B9860013CB6E /* CKAddEffectTableViewCell.swift */; };
 		E66D61B81C73B9860013CB6E /* CKAddEffectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E66D61B61C73B9860013CB6E /* CKAddEffectTableViewCell.xib */; };
 		E66D61BA1C73EBB90013CB6E /* CKBackendManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66D61B91C73EBB90013CB6E /* CKBackendManager.swift */; };
+		E684914B1C758E2900BDB711 /* CakeKeyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = E684914A1C758E2900BDB711 /* CakeKeyboard.xib */; };
+		E684914C1C758E6C00BDB711 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68F555D1C73ED860029A086 /* Models.swift */; };
+		E684914D1C758E6F00BDB711 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BA12441C6FFD0E0075F98D /* Constants.swift */; };
+		E684914E1C758E8300BDB711 /* CKGifCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68F55611C73F07F0029A086 /* CKGifCollectionViewCell.swift */; };
+		E684914F1C758E8600BDB711 /* CKGifCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68F55621C73F07F0029A086 /* CKGifCollectionViewCell.xib */; };
 		E68F555E1C73ED860029A086 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68F555D1C73ED860029A086 /* Models.swift */; };
 		E68F55601C73EEC30029A086 /* NSDateISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68F555F1C73EEC30029A086 /* NSDateISO8601.swift */; };
 		E68F55631C73F07F0029A086 /* CKGifCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68F55611C73F07F0029A086 /* CKGifCollectionViewCell.swift */; };
 		E68F55641C73F07F0029A086 /* CKGifCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68F55621C73F07F0029A086 /* CKGifCollectionViewCell.xib */; };
+		E6A363391C75698800986712 /* CKGifsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A363381C75698800986712 /* CKGifsDetailViewController.swift */; };
 		E6B3F1271C70285000031B87 /* CKEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B3F1261C70285000031B87 /* CKEditViewController.swift */; };
 		E6B597361C7533B20034EDE5 /* LTColorPanningButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B597321C7533B20034EDE5 /* LTColorPanningButton.swift */; };
 		E6B597371C7533B20034EDE5 /* LTMaskedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B597331C7533B20034EDE5 /* LTMaskedView.swift */; };
@@ -43,6 +50,8 @@
 		E6CCD1E91C754F850007893F /* Check.svg in Resources */ = {isa = PBXBuildFile; fileRef = E6CCD1E81C754F850007893F /* Check.svg */; };
 		E6CCD1ED1C754FF80007893F /* Close.svg in Resources */ = {isa = PBXBuildFile; fileRef = E6CCD1EC1C754FF80007893F /* Close.svg */; };
 		E6CCD1F11C75514B0007893F /* Torch.svg in Resources */ = {isa = PBXBuildFile; fileRef = E6CCD1F01C75514B0007893F /* Torch.svg */; };
+		E6F24D091C758FB800FDAD3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6BA121D1C6FFA520075F98D /* Assets.xcassets */; };
+		E6F24D0A1C75911600FDAD3E /* UIColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = E601E21E1C7539F100F37C41 /* UIColorHex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,18 +93,23 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		45626D6C9DB427DE86F82331 /* Pods-CakeKeyboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CakeKeyboard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CakeKeyboard/Pods-CakeKeyboard.debug.xcconfig"; sourceTree = "<group>"; };
 		6317CD457A943ADA64327D72 /* Pods_Cake.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cake.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65DBFFBCF3A6A36BFA21509F /* Pods-Cake.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cake.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cake/Pods-Cake.release.xcconfig"; sourceTree = "<group>"; };
+		7F398A49C6C09186E3DBACB8 /* Pods-CakeKeyboard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CakeKeyboard.release.xcconfig"; path = "Pods/Target Support Files/Pods-CakeKeyboard/Pods-CakeKeyboard.release.xcconfig"; sourceTree = "<group>"; };
 		E601E21E1C7539F100F37C41 /* UIColorHex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorHex.swift; sourceTree = "<group>"; };
 		E66D61B11C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKTextEffectAuxiliaryTableViewCell.swift; sourceTree = "<group>"; };
 		E66D61B21C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CKTextEffectAuxiliaryTableViewCell.xib; sourceTree = "<group>"; };
 		E66D61B51C73B9860013CB6E /* CKAddEffectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKAddEffectTableViewCell.swift; sourceTree = "<group>"; };
 		E66D61B61C73B9860013CB6E /* CKAddEffectTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CKAddEffectTableViewCell.xib; sourceTree = "<group>"; };
 		E66D61B91C73EBB90013CB6E /* CKBackendManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKBackendManager.swift; sourceTree = "<group>"; };
+		E684914A1C758E2900BDB711 /* CakeKeyboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CakeKeyboard.xib; sourceTree = "<group>"; };
+		E68491501C758ED600BDB711 /* CakeKeyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CakeKeyboard.entitlements; sourceTree = "<group>"; };
 		E68F555D1C73ED860029A086 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		E68F555F1C73EEC30029A086 /* NSDateISO8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateISO8601.swift; sourceTree = "<group>"; };
 		E68F55611C73F07F0029A086 /* CKGifCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKGifCollectionViewCell.swift; sourceTree = "<group>"; };
 		E68F55621C73F07F0029A086 /* CKGifCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CKGifCollectionViewCell.xib; sourceTree = "<group>"; };
+		E6A363381C75698800986712 /* CKGifsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKGifsDetailViewController.swift; sourceTree = "<group>"; };
 		E6B3F1261C70285000031B87 /* CKEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKEditViewController.swift; sourceTree = "<group>"; };
 		E6B597321C7533B20034EDE5 /* LTColorPanningButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTColorPanningButton.swift; sourceTree = "<group>"; };
 		E6B597331C7533B20034EDE5 /* LTMaskedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTMaskedView.swift; sourceTree = "<group>"; };
@@ -133,6 +147,7 @@
 		E6CCD1EC1C754FF80007893F /* Close.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Close.svg; sourceTree = "<group>"; };
 		E6CCD1F01C75514B0007893F /* Torch.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Torch.svg; sourceTree = "<group>"; };
 		F1F4D3BBE70B940B708211FC /* Pods-Cake.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cake.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cake/Pods-Cake.debug.xcconfig"; sourceTree = "<group>"; };
+		F784EC50281E10039A806E8A /* Pods_CakeKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CakeKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +178,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22531BF50906F603211FCF17 /* Pods_CakeKeyboard.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +190,8 @@
 			children = (
 				F1F4D3BBE70B940B708211FC /* Pods-Cake.debug.xcconfig */,
 				65DBFFBCF3A6A36BFA21509F /* Pods-Cake.release.xcconfig */,
+				45626D6C9DB427DE86F82331 /* Pods-CakeKeyboard.debug.xcconfig */,
+				7F398A49C6C09186E3DBACB8 /* Pods-CakeKeyboard.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -183,6 +201,7 @@
 			children = (
 				E6C034281C724B5E00A61141 /* QuartzCore.framework */,
 				6317CD457A943ADA64327D72 /* Pods_Cake.framework */,
+				F784EC50281E10039A806E8A /* Pods_CakeKeyboard.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -301,6 +320,8 @@
 		E6BA124C1C6FFD440075F98D /* CakeKeyboard */ = {
 			isa = PBXGroup;
 			children = (
+				E68491501C758ED600BDB711 /* CakeKeyboard.entitlements */,
+				E684914A1C758E2900BDB711 /* CakeKeyboard.xib */,
 				E6BA124D1C6FFD440075F98D /* KeyboardViewController.swift */,
 				E6BA124F1C6FFD440075F98D /* Info.plist */,
 			);
@@ -322,6 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				E6BA125C1C7003710075F98D /* CKGifsViewController.swift */,
+				E6A363381C75698800986712 /* CKGifsDetailViewController.swift */,
 				E68F55611C73F07F0029A086 /* CKGifCollectionViewCell.swift */,
 				E68F55621C73F07F0029A086 /* CKGifCollectionViewCell.xib */,
 			);
@@ -393,9 +415,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E6BA12531C6FFD440075F98D /* Build configuration list for PBXNativeTarget "CakeKeyboard" */;
 			buildPhases = (
+				8D1E09EC354B5BCBAE8114C3 /* Check Pods Manifest.lock */,
 				E6BA12471C6FFD440075F98D /* Sources */,
 				E6BA12481C6FFD440075F98D /* Frameworks */,
 				E6BA12491C6FFD440075F98D /* Resources */,
+				69B519F2516DE8529ED6A6B5 /* Embed Pods Frameworks */,
+				79F8E13EECFBB69BDC4B34E9 /* Copy Pods Resources */,
+				E63A22741C75AFD800A482CB /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -436,6 +462,11 @@
 					E6BA124A1C6FFD440075F98D = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 4Q46H2YFBV;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -496,13 +527,61 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E684914B1C758E2900BDB711 /* CakeKeyboard.xib in Resources */,
+				E6F24D091C758FB800FDAD3E /* Assets.xcassets in Resources */,
+				E684914F1C758E8600BDB711 /* CKGifCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		69B519F2516DE8529ED6A6B5 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CakeKeyboard/Pods-CakeKeyboard-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		79F8E13EECFBB69BDC4B34E9 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CakeKeyboard/Pods-CakeKeyboard-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		7A2F07DB670E263B0FC2AB67 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8D1E09EC354B5BCBAE8114C3 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -532,6 +611,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cake/Pods-Cake-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E63A22741C75AFD800A482CB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/\"\nif [[ -d \"Frameworks\" ]]; then\nrm -fr Frameworks\nfi";
+		};
 		FDA5A875CAD7F307AA06DB02 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -557,6 +649,7 @@
 				E6C0342F1C724BAC00A61141 /* iCarousel.m in Sources */,
 				E66D61B71C73B9860013CB6E /* CKAddEffectTableViewCell.swift in Sources */,
 				E6B3F1271C70285000031B87 /* CKEditViewController.swift in Sources */,
+				E6A363391C75698800986712 /* CKGifsDetailViewController.swift in Sources */,
 				E68F55631C73F07F0029A086 /* CKGifCollectionViewCell.swift in Sources */,
 				E6BA12191C6FFA520075F98D /* CKCameraViewController.swift in Sources */,
 				E6BA12171C6FFA520075F98D /* AppDelegate.swift in Sources */,
@@ -598,6 +691,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6BA124E1C6FFD440075F98D /* KeyboardViewController.swift in Sources */,
+				E684914C1C758E6C00BDB711 /* Models.swift in Sources */,
+				E6F24D0A1C75911600FDAD3E /* UIColorHex.swift in Sources */,
+				E684914D1C758E6F00BDB711 /* Constants.swift in Sources */,
+				E684914E1C758E8300BDB711 /* CKGifCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,6 +845,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Cake/Cake.entitlements;
+				"CODE_SIGN_ENTITLEMENTS[sdk=iphoneos*]" = Cake/Cake.entitlements;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Cake/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -807,9 +905,12 @@
 		};
 		E6BA12541C6FFD440075F98D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45626D6C9DB427DE86F82331 /* Pods-CakeKeyboard.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = CakeKeyboard/CakeKeyboard.entitlements;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = CakeKeyboard/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cakegifs.Cake.CakeKeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -818,9 +919,12 @@
 		};
 		E6BA12551C6FFD440075F98D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F398A49C6C09186E3DBACB8 /* Pods-CakeKeyboard.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = CakeKeyboard/CakeKeyboard.entitlements;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = CakeKeyboard/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cakegifs.Cake.CakeKeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
