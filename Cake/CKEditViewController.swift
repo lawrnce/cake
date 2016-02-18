@@ -85,6 +85,9 @@ class CKEditViewController: UIViewController {
         self.previewGifImageView.image = gif
         self.previewGifImageView.startAnimating()
         
+        
+        print(self.frames.count, duration)
+        
     }
     
     private func setupFramesLabel() {
@@ -338,24 +341,7 @@ extension CKEditViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let index = indexPath.row
-        
-        let height: CGFloat
-        
-        if self.textEffects == nil {
-            height = CGFloat(44.0)
-            
-        } else {
-            if index < (self.textEffects.count) {
-                height = self.effectsTableView.frame.height / 4.0
-                
-            } else {
-                height = CGFloat(44.0)
-                
-            }
-        }
-        
-        return height
+        return self.effectsTableView.frame.height / 4.0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

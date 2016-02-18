@@ -10,15 +10,16 @@ import UIKit
 
 class CKCameraViewController: UIViewController {
 
-    @IBOutlet weak var toolBar: UIToolbar!
-
     @IBOutlet weak var recordingView: UIView!
     @IBOutlet weak var timerView: UIView!
     @IBOutlet weak var timeViewWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var cancelRecordingButton: UIButton!
-    @IBOutlet weak var finishRecordingButton: UIButton!
     
     var cameraController: CKGifCameraController!
+    
+    private var cancelRecordingButton: LTColorPanningButton!
+    private var cameraToggleButton: LTColorPanningButton!
+    private var torchButton: LTColorPanningButton!
+    private var finishRecordingButton: LTColorPanningButton!
     
     private var previewView: CKPreviewView!
     private var recordButtonImageView: UIImageView!
@@ -32,6 +33,10 @@ class CKCameraViewController: UIViewController {
         setupPreviewView()
         setupRecordButtonImageView()
         setupGifsButton()
+        setupCancelButton()
+        setupFinishButton()
+        setupCameraToggleButton()
+        setupTorchButton()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -48,10 +53,21 @@ class CKCameraViewController: UIViewController {
             setNeedsFocusUpdate()
         }
         
+        self.recordingView.addSubview(self.cancelRecordingButton)
+        self.recordingView.addSubview(self.finishRecordingButton)
+        self.recordingView.addSubview(self.torchButton)
+        self.recordingView.addSubview(self.cameraToggleButton)
+        self.recordingView.layoutIfNeeded()
+        
+        self.cancelRecordingButton.resetColor()
+        self.finishRecordingButton.resetColor()
+        self.cameraToggleButton.resetColor()
+        self.torchButton.resetColor()
+        
         self.view.addSubview(previewView)
         self.view.addSubview(self.recordButtonImageView)
         self.view.addSubview(self.gifsButton)
-        updateStateLayout()
+        updateStateLayout(false)
         
         self.cameraController.startSession()
     }
@@ -70,14 +86,59 @@ class CKCameraViewController: UIViewController {
     }
 
     // MARK: - State Managerment
-    private func updateStateLayout() {
+    private func updateStateLayout(animated: Bool) {
         if self.state == .Idle {
-            self.toolBar.hidden = false
-            self.recordingView.hidden = true
+            
+            if animated {
+                UIView.animateWithDuration(0.2, animations: { () -> Void in
+                    self.cancelRecordingButton.alpha = 0.0
+                    self.finishRecordingButton.alpha = 0.0
+                    self.cameraToggleButton.center.x = kSCREEN_WIDTH * (1.0/3.0)
+                    self.torchButton.center.x = kSCREEN_WIDTH * (2.0/3.0)
+                    
+                    }, completion: { (done) -> Void in
+                        
+                        self.cancelRecordingButton.hidden = true
+                        self.finishRecordingButton.hidden = true
+                })
+            } else {
+                self.cancelRecordingButton.alpha = 0.0
+                self.finishRecordingButton.alpha = 0.0
+                self.cameraToggleButton.center.x = kSCREEN_WIDTH * (1.0/3.0)
+                self.torchButton.center.x = kSCREEN_WIDTH * (2.0/3.0)
+                self.cancelRecordingButton.hidden = true
+                self.finishRecordingButton.hidden = true
+            }
+            
             self.gifsButton.hidden = false
         } else if self.state == .Recording {
-            self.toolBar.hidden = true
-            self.recordingView.hidden = false
+            
+            
+            if animated {
+                self.cancelRecordingButton.hidden = false
+                self.finishRecordingButton.hidden = false
+                self.cancelRecordingButton.alpha = 0.0
+                self.finishRecordingButton.alpha = 0.0
+                
+                UIView.animateWithDuration(0.2, animations: { () -> Void in
+                    self.cancelRecordingButton.alpha = 1.0
+                    self.finishRecordingButton.alpha = 1.0
+                    self.cameraToggleButton.frame.origin.x = kToggleButtonFrameOriginX
+                    self.torchButton.frame.origin.x = kTorchButtonFrameOriginX
+                    
+                    }, completion: { (done) -> Void in
+                        
+                })
+                
+            } else {
+                self.cancelRecordingButton.hidden = false
+                self.finishRecordingButton.hidden = false
+                self.cancelRecordingButton.alpha = 1.0
+                self.finishRecordingButton.alpha = 1.0
+                self.cameraToggleButton.frame.origin.x = kToggleButtonFrameOriginX
+                self.torchButton.frame.origin.x = kTorchButtonFrameOriginX
+            }
+        
             self.gifsButton.hidden = true
         }
         self.view.insertSubview(self.timerView, belowSubview: self.recordingView)
@@ -132,13 +193,57 @@ class CKCameraViewController: UIViewController {
         self.gifsButton.addTarget(self, action: Selector("showGifs:"), forControlEvents: .TouchUpInside)
     }
     
+    private func setupCancelButton() {
+        self.cancelRecordingButton = LTColorPanningButton(frame: CGRectMake(0, 0, 64, 64),
+            withSVG: "Close",
+            withForegroundColor: kRecordingTint,
+            withBackgroundColor: UIColor.whiteColor())
+        self.cancelRecordingButton.addTarget(self, action: Selector("cancelRecordingPressed:"), forControlEvents: .TouchUpInside)
+        self.cancelRecordingButton.alpha = 0.0
+        self.cancelRecordingButton.hidden = true
+    }
+    
+    private func setupFinishButton() {
+        self.finishRecordingButton = LTColorPanningButton(frame: CGRectMake(kSCREEN_WIDTH - 64.0, 0, 64, 64),
+            withSVG: "Check",
+            withForegroundColor: kRecordingTint,
+            withBackgroundColor: UIColor.whiteColor())
+        self.finishRecordingButton.addTarget(self, action: Selector("finishRecordingPressed:"), forControlEvents: .TouchUpInside)
+        self.finishRecordingButton.alpha = 0.0
+        self.finishRecordingButton.hidden = true
+    }
+    
+    private func setupCameraToggleButton() {
+        self.cameraToggleButton = LTColorPanningButton(frame: CGRectMake(0, 0, 64, 64),
+            withSVG: "Flip",
+            withForegroundColor: kRecordingTint,
+            withBackgroundColor: UIColor.whiteColor())
+        self.cameraToggleButton.addTarget(self, action: Selector("cameraToggleButtonPressed:"), forControlEvents: .TouchUpInside)
+        self.cameraToggleButton.center.x = kSCREEN_WIDTH * (1.0/3.0)
+        
+    }
+    
+    private func setupTorchButton() {
+        self.torchButton = LTColorPanningButton(frame: CGRectMake(0, 0, 64, 64),
+            withSVG: "Torch",
+            withForegroundColor: kRecordingTint,
+            withBackgroundColor: UIColor.whiteColor())
+        self.torchButton.addTarget(self, action: Selector("torchButtonPressed:"), forControlEvents: .TouchUpInside)
+        self.torchButton.center.x = kSCREEN_WIDTH * (2.0/3.0)
+    }
+    
+    private func setupTimerView() {
+        self.timerView.backgroundColor = kRecordingTint
+    }
+    
     // MARK: - Button Actions
     func recordPressed(gestureRecognizer: CKRecordGestureRecognizer) {
+        
         if gestureRecognizer.state == .Began {
             
             if self.state == .Idle {
                 self.state = .Recording
-                updateStateLayout()
+                updateStateLayout(true)
             }
             
             self.cameraController.startRecording()
@@ -152,15 +257,35 @@ class CKCameraViewController: UIViewController {
         }
     }
     
-    @IBAction func cancelRecordingPressed(sender: AnyObject) {
+    func cancelRecordingPressed(sender: AnyObject) {
         self.cameraController.cancelRecording()
         self.state = .Idle
         self.timeViewWidthConstraint.constant = 0
-        updateStateLayout()
+        self.cancelRecordingButton.resetColor()
+        self.finishRecordingButton.resetColor()
+        self.torchButton.resetColor()
+        self.cameraToggleButton.resetColor()
+        updateStateLayout(true)
     }
     
-    @IBAction func finishRecordingPressed(sender: AnyObject) {
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+    func cameraToggleButtonPressed(sender: AnyObject) {
+        self.cameraController.toggleCamera()
+        print("Toggle Camera")
+        
+    }
+    
+    func torchButtonPressed(sender: AnyObject) {
+        
+        if self.cameraController.toggleTorch(forceKill: false) == true {
+            self.torchButton.change(kRecordingTint, andBackgroundColor: UIColor.whiteColor())
+        } else {
+            self.torchButton.change(kRecordingTint, andBackgroundColor: UIColor.whiteColor())
+        }
+       
+        print("Toggle Torch")
+    }
+    
+    func finishRecordingPressed(sender: AnyObject) {
         self.cameraController.stopRecording()
     }
     
@@ -172,8 +297,9 @@ class CKCameraViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowEdit" {
             self.state = .Idle
-            self.cancelRecordingButton.enabled = true
-            self.finishRecordingButton.enabled = true
+            
+            self.cancelRecordingButton.userInteractionEnabled = true
+            self.finishRecordingButton.userInteractionEnabled = true
             
             let frames = ((sender as! NSArray) as Array)[0]
             let duration = ((sender as! NSArray) as Array)[1]
@@ -188,17 +314,23 @@ class CKCameraViewController: UIViewController {
 extension CKCameraViewController: CKGifCameraControllerDelegate {
     
     func controller(cameraController: CKGifCameraController, didAppendFrameNumber index: Int) {
-        if index == kDEFAULT_TOTAL_FRAMES - 1 {
-            self.cancelRecordingButton.enabled = false
-            self.finishRecordingButton.enabled = false
+        if index == kDEFAULT_TOTAL_FRAMES + 1 {
+            self.cancelRecordingButton.userInteractionEnabled = false
+            self.finishRecordingButton.userInteractionEnabled = false
         }
         
-        let incrementWidth = Double(kSCREEN_WIDTH) / Double(kDEFAULT_TOTAL_FRAMES)
-        let xOffset = incrementWidth * Double(index)
+        let xOffset = kTimerIncrementWidth * CGFloat(index)
         
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             UIView.animateWithDuration(Double(kDEFAULT_CAMERA_DURATION / Double(kDEFAULT_TOTAL_FRAMES))) { () -> Void in
-                self.timeViewWidthConstraint.constant = CGFloat(xOffset)
+                self.timeViewWidthConstraint.constant = xOffset
+                
+                // Update button colors
+                self.cancelRecordingButton.updateColorOffest(xOffset)
+                self.finishRecordingButton.updateColorOffest(xOffset)
+                self.cameraToggleButton.updateColorOffest(xOffset)
+                self.torchButton.updateColorOffest(xOffset)
+                
                 self.view.insertSubview(self.timerView, belowSubview: self.recordingView)
                 self.setNeedsFocusUpdate()
             }

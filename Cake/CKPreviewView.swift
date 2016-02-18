@@ -6,6 +6,8 @@
 //  Copyright © 2015 Cake. All rights reserved.
 //
 
+import Foundation
+import Darwin
 import UIKit
 import GLKit
 import AVFoundation
@@ -22,8 +24,6 @@ class CKPreviewView: GLKView, ImageTarget {
         self.enableSetNeedsDisplay = false
         self.backgroundColor = UIColor.blackColor()
         self.opaque = true
-        
-        self.transform = CGAffineTransformMakeScale(-1.0, 1.0)
         self.frame = frame
         
         self.bindDrawable()

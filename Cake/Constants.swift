@@ -10,6 +10,10 @@ import Foundation
 import AVFoundation
 import UIKit
 
+// MARK: - Color
+let kRecordingTint = UIColor(rgba: "#FF6699")
+let kTorchSelectedTint = UIColor(rgba: "#FF0099")
+
 // MARK: - File Management
 let kSHARED_CONTAINER = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.cake.CakeExtensionSharedContainer")
 let kSHARED_GIF_DIRECTORY = kSHARED_CONTAINER?.URLByAppendingPathComponent("Gifs")
@@ -17,6 +21,10 @@ let kSHARED_GIF_DIRECTORY = kSHARED_CONTAINER?.URLByAppendingPathComponent("Gifs
 // MARK: - General UI Constants
 let kSCREEN_WIDTH = UIScreen.mainScreen().bounds.width
 let kSCREEN_HEIGHT = UIScreen.mainScreen().bounds.height
+
+let kCameraButtonSpace = (kSCREEN_WIDTH - 4.0 * 64.0) / 3.0
+let kToggleButtonFrameOriginX = 64.0 + kCameraButtonSpace
+let kTorchButtonFrameOriginX = 64.0 + kCameraButtonSpace + 64.0 + kCameraButtonSpace
 
 // MARK: - Camera Constants
 enum CameraState {
@@ -27,6 +35,7 @@ enum CameraState {
 let kDEFAULT_CAMERA_DURATION = 4.0
 let kDEFAULT_FRAMES_PER_SECOND = 24
 let kDEFAULT_TOTAL_FRAMES = Int(Int(kDEFAULT_CAMERA_DURATION) * Int(kDEFAULT_FRAMES_PER_SECOND))
+let kTimerIncrementWidth = CGFloat(Double(kSCREEN_WIDTH) / Double(kDEFAULT_TOTAL_FRAMES))
 
 // MARK: - Notification
 let GIF_FINALIZED = "com.cakegifs.GifFinalized"

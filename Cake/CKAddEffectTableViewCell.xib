@@ -15,9 +15,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c1T-1f-K3q">
-                        <rect key="frame" x="44" y="0.0" width="232" height="43"/>
+                        <rect key="frame" x="44" y="-1" width="232" height="45"/>
                         <color key="backgroundColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="height" constant="44" id="QEc-JR-GEM"/>
                             <constraint firstAttribute="height" constant="44" id="aM0-yA-kuv"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
@@ -37,9 +38,16 @@
                 <constraints>
                     <constraint firstItem="c1T-1f-K3q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="44" id="0sF-WL-hIB"/>
                     <constraint firstAttribute="trailing" secondItem="c1T-1f-K3q" secondAttribute="trailing" constant="44" id="CDe-Dj-1wf"/>
+                    <constraint firstItem="c1T-1f-K3q" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="YNe-KN-h3N"/>
                     <constraint firstAttribute="bottom" secondItem="c1T-1f-K3q" secondAttribute="bottom" id="iGJ-Is-q66"/>
                     <constraint firstItem="c1T-1f-K3q" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="wY9-VP-hkV"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="iGJ-Is-q66"/>
+                        <exclude reference="wY9-VP-hkV"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="addEffectButton" destination="c1T-1f-K3q" id="8nj-en-MKC"/>

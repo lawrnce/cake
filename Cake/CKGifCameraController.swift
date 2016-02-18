@@ -24,6 +24,7 @@ class CKGifCameraController: NSObject {
     
     private var recording: Bool = false
     private var paused: Bool = false
+    private var shouldTorch: Bool = false
     
     private var differenceDuration: CMTime!
     private var pausedDuration: CMTime = CMTime(seconds: 0, preferredTimescale: 600)
@@ -37,6 +38,9 @@ class CKGifCameraController: NSObject {
     private var frontCameraDevice: AVCaptureDevice!
     private var backCameraDevice: AVCaptureDevice!
     private var activeVideoInput: AVCaptureDeviceInput!
+    
+    private var frontVideoInput: AVCaptureDeviceInput!
+    private var backVideoInput: AVCaptureDeviceInput!
     
     private var videoDataOutput: AVCaptureVideoDataOutput!
     private var sessionQueue: dispatch_queue_t!
@@ -97,12 +101,18 @@ class CKGifCameraController: NSObject {
         }
         
         do {
-            self.activeVideoInput = try AVCaptureDeviceInput(device: self.frontCameraDevice)
-            if self.captureSession.canAddInput(self.activeVideoInput) {
-                self.captureSession.addInput(self.activeVideoInput)
+        
+            self.frontVideoInput = try AVCaptureDeviceInput(device: self.frontCameraDevice)
+            
+            if self.captureSession.canAddInput(self.frontVideoInput) {
+                self.captureSession.addInput(self.frontVideoInput)
             } else {
                 throw CKCameraError.FailedToAddInput
             }
+            
+            self.activeVideoInput = self.frontVideoInput
+            
+            
         } catch let error as NSError {
             print(error.localizedDescription)
         }
@@ -151,8 +161,61 @@ class CKGifCameraController: NSObject {
     }
     
     // MARK: - Device Configuration
+    func toggleTorch(forceKill forceKill: Bool) -> Bool {
+        
+        var isOn = Bool()
+        
+        let device = self.activeVideoInput.device
+        
+        if device.hasTorch {
+            do {
+                try device.lockForConfiguration()
+                if device.torchMode == .On || forceKill {
+                    device.torchMode = AVCaptureTorchMode.Off
+                    shouldTorch = false
+                    isOn = false
+                } else {
+                    try device.setTorchModeOnWithLevel(1.0)
+                    shouldTorch = true
+                    isOn = true
+                }
+                device.unlockForConfiguration()
+                
+            } catch {
+                print(error)
+            }
+        }
+        
+        return isOn
+    }
+
     func activeCamera() -> AVCaptureDevice {
         return self.activeVideoInput.device
+    }
+    
+    func toggleCamera() {
+        self.captureSession.removeInput(self.activeVideoInput)
+        
+        do {
+            if self.activeVideoInput.device == self.frontCameraDevice {
+                self.activeVideoInput = nil
+                self.activeVideoInput = try AVCaptureDeviceInput(device: self.backCameraDevice)
+                
+            } else if self.activeVideoInput.device == self.backCameraDevice {
+                self.activeVideoInput = nil
+                self.activeVideoInput = try AVCaptureDeviceInput(device: self.frontCameraDevice)
+            }
+            
+            if self.captureSession.canAddInput(self.activeVideoInput) {
+                self.captureSession.addInput(self.activeVideoInput)
+            } else {
+                throw CKCameraError.FailedToAddInput
+            }
+            
+            self.videoDataOutput.connectionWithMediaType(AVMediaTypeVideo).videoOrientation = .Portrait
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
     }
     
     // MARK: - Capture Methods
@@ -175,6 +238,7 @@ class CKGifCameraController: NSObject {
     }
     
     func cancelRecording() {
+        toggleTorch(forceKill: true)
         self.totalRecordedDuration = nil
         self.differenceDuration = nil
         self.pausedDuration = CMTime(seconds: 0, preferredTimescale: 600)
@@ -185,6 +249,10 @@ class CKGifCameraController: NSObject {
     }
     
     func stopRecording() {
+        toggleTorch(forceKill: true)
+        
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+        
         self.delegate?.controller(self, didFinishRecordingWithFrames: self.frames!, withTotalDuration: self.totalRecordedDuration!.seconds)
         self.frames = nil
         self.totalRecordedDuration = nil
@@ -263,7 +331,16 @@ extension CKGifCameraController : AVCaptureVideoDataOutputSampleBufferDelegate {
                 }
             } else if self.paused {
                 
-                self.pausedDuration = CMSampleBufferGetPresentationTimeStamp(sampleBuffer) - self.totalRecordedDuration - self.differenceDuration
+                if self.totalRecordedDuration != nil && self.differenceDuration != nil {
+                    self.pausedDuration = CMSampleBufferGetPresentationTimeStamp(sampleBuffer) - self.totalRecordedDuration - self.differenceDuration
+                    
+                }
+                
+            }
+            
+            if self.activeCamera() == self.frontCameraDevice {
+                
+            } else {
                 
             }
             
@@ -272,59 +349,27 @@ extension CKGifCameraController : AVCaptureVideoDataOutputSampleBufferDelegate {
     }
     
     // MARK: - Gif Helper Methods
-    private func getUIImageForCGImage(ciimage: CIImage) -> UIImage {
-        return UIImage(CIImage: ciimage, scale: 0.5, orientation: .Up)
-    }
-    
-    func createGif() {
-        if self.frames == nil {
-            return
-        }
-        let temporaryFile = (NSTemporaryDirectory() as NSString).stringByAppendingPathComponent("temp")
-        let fileOutputURL = NSURL(fileURLWithPath: temporaryFile)
-        let destination = CGImageDestinationCreateWithURL(fileOutputURL, kUTTypeGIF, self.frames!.count, nil)
-        let fileProperties = [kCGImagePropertyGIFDictionary as String:
-            [
-                kCGImagePropertyGIFLoopCount as String: 0
-            ],
-            kCGImageDestinationLossyCompressionQuality as String: 1.0]
-        let frameProperties = [kCGImagePropertyGIFDictionary as String:
-            [
-                kCGImagePropertyGIFDelayTime as String: getDelayTime()
-            ]]
-        CGImageDestinationSetProperties(destination!, fileProperties as CFDictionaryRef)
-        
-        for frame in self.frames! {
-            CGImageDestinationAddImage(destination!, frame, frameProperties as CFDictionaryRef)
-        }
-        
-        self.frames = nil
-        self.frames = [CGImage]()
-        
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-        dispatch_async(dispatch_get_global_queue(priority, 0)) {
-            // do some task
-            CGImageDestinationSetProperties(destination!, fileProperties as CFDictionaryRef)
-            if CGImageDestinationFinalize(destination!) {
-                NSNotificationCenter.defaultCenter().postNotificationName(GIF_FINALIZED, object: fileOutputURL)
-            }
-            dispatch_async(dispatch_get_main_queue()) {
-                // update some UI
-            }
-        }
-    }
-
     private func getCroppedPreviewImageFromBuffer(buffer: CMSampleBuffer) -> CIImage {
         let imageBuffer: CVPixelBufferRef = CMSampleBufferGetImageBuffer(buffer)!
         let sourceImage: CIImage = CIImage(CVPixelBuffer: imageBuffer)
         let croppedSourceImage = sourceImage.imageByCroppingToRect(CGRectMake(0, 0, 720, 720))
-        return croppedSourceImage
+        
+        let transform: CGAffineTransform!
+        
+        if self.activeCamera() == self.frontCameraDevice {
+            transform = CGAffineTransformMakeScale(-1.0, 1.0)
+        } else {
+            transform = CGAffineTransformMakeScale(1.0, 1.0)
+        }
+        
+        let correctedImage = croppedSourceImage.imageByApplyingTransform(transform)
+        
+        return correctedImage
     }
     
     private func getDownscaleImageMirrored(sourceImage: CIImage) -> CGImage? {
         let filteredImage = sourceImage.imageByApplyingFilter("CIUnsharpMask", withInputParameters: ["inputImage" : sourceImage])
-        let mirroredSourceImage = filteredImage.imageByApplyingTransform(CGAffineTransformMakeScale(-1.0, 1.0))
-        let frame: CGImage = CKContextManager.sharedInstance.ciContext.createCGImage(mirroredSourceImage, fromRect: mirroredSourceImage.extent)
+        let frame: CGImage = CKContextManager.sharedInstance.ciContext.createCGImage(filteredImage, fromRect: filteredImage.extent)
         let width = 360
         let height = 360
         let bitsPerComponent = CGImageGetBitsPerComponent(frame)
