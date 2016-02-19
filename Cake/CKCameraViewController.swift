@@ -24,6 +24,7 @@ class CKCameraViewController: UIViewController {
     private var previewView: CKPreviewView!
     private var recordButtonImageView: UIImageView!
     private var gifsButton: UIButton!
+    private var notificationButton: UIButton!
     private var state: CameraState = .Idle
     private var gifToDisplay: NSURL!
     
@@ -37,6 +38,7 @@ class CKCameraViewController: UIViewController {
         setupFinishButton()
         setupCameraToggleButton()
         setupTorchButton()
+        setupNotifications()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -63,13 +65,26 @@ class CKCameraViewController: UIViewController {
         
         self.view.addSubview(previewView)
         self.view.addSubview(self.recordButtonImageView)
-        updateStateLayout(false)
-        
         self.cameraController.startSession()
-        
         layoutGifsButton()
+        
+        showNotificationIfNeeded()
+        updateStateLayout(false)
+    }
+    
+    deinit{
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
+    // MARK: - Notification Center
+    func setupNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("willEnterForeground:"), name: UIApplicationWillEnterForegroundNotification, object: nil)
+    }
+    
+    func willEnterForeground(notification: NSNotification) {
+        showNotificationIfNeeded()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -145,6 +160,21 @@ class CKCameraViewController: UIViewController {
         setNeedsFocusUpdate()
     }
     
+    func showNotificationIfNeeded() {
+        if let installedKeyboard = NSUserDefaults.standardUserDefaults().objectForKey("AppleKeyboards") as? [String]{
+            if installedKeyboard.contains("com.cakegifs.Cake.CakeKeyboard"){
+                
+                if self.notificationButton != nil {
+                    self.notificationButton.removeFromSuperview()
+                }
+                
+            }else{
+                self.setupNotificationButton()
+                self.layoutNotificationsButton()
+            }
+        }
+    }
+    
     
     // MARK: - Init Subviews
     private func setupCameraController() {
@@ -182,6 +212,13 @@ class CKCameraViewController: UIViewController {
         recordButtonImageView.addGestureRecognizer(recordGestureRecognizer)
         self.recordButtonImageView.image = UIImage(named: "RecordButtonNormal")
         self.recordButtonImageView.sizeToFit()
+    }
+    
+    private func setupNotificationButton() {
+        self.notificationButton = UIButton()
+        self.notificationButton.frame = CGRectMake(0, 0, 50, 50)
+        self.notificationButton.setImage(UIImage(named: "NotificationButton"), forState: .Normal)
+        self.notificationButton.addTarget(self, action: Selector("showNotification:"), forControlEvents: .TouchUpInside)
     }
     
     private func setupGifsButton() {
@@ -241,7 +278,6 @@ class CKCameraViewController: UIViewController {
         if let latestGif = CKBackendManager.sharedInstance.getLatestGif() {
             let gifsButtonCenter = CGPointMake(((kSCREEN_WIDTH / 2.0 + self.recordButtonImageView.frame.width / 2.0) + kSCREEN_WIDTH) / 2.0, self.recordButtonImageView.center.y)
             self.gifsButton.center = gifsButtonCenter
-
             let gifName = latestGif.id + ".gif"
             let gifURL = kSHARED_GIF_DIRECTORY!.URLByAppendingPathComponent(gifName)
             let image = UIImage(data: NSData(contentsOfURL: gifURL)!)
@@ -251,6 +287,12 @@ class CKCameraViewController: UIViewController {
         } else {
             self.gifsButton.removeFromSuperview()
         }
+    }
+    
+    private func layoutNotificationsButton() {
+        let notificationButtonCenter = CGPointMake(kSCREEN_WIDTH - ((kSCREEN_WIDTH / 2.0 + self.recordButtonImageView.frame.width / 2.0) + kSCREEN_WIDTH) / 2.0, self.recordButtonImageView.center.y + 2)
+        self.notificationButton.center = notificationButtonCenter
+        self.view.addSubview(self.notificationButton)
     }
     
     // MARK: - Button Actions
@@ -302,6 +344,21 @@ class CKCameraViewController: UIViewController {
     
     func showGifs(sender: AnyObject) {
         self.performSegueWithIdentifier("ShowGifs", sender: nil)
+    }
+    
+    func showNotification(sender: AnyObject) {
+        let alert = UIAlertController(title: "Install Keyboard", message: "Use your Cake Gifs everywhere! \n\n Settings > General > Keyboard > Keyboards > Add New Keyboard > Cake \n\n Allow Full Access is required", preferredStyle: UIAlertControllerStyle.Alert)
+        
+
+//        alert.addAction(UIAlertAction(title: "Open Settings", style: .Default, handler: { (action) -> Void in
+//            UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+//        }))
+//        
+        alert.addAction(UIAlertAction(title: "Sweet", style: .Cancel, handler: { (action) -> Void in
+        }))
+        
+        
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     // MARK: - Navigation

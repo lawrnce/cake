@@ -123,6 +123,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Myi-xh-oy1">
+                        <barButtonItem key="leftBarButtonItem" title="More" id="Z4B-Rs-9Xl"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="8b3-OX-kz4">
                             <connections>
                                 <action selector="doneButtonPressed:" destination="oFa-z2-DOZ" id="3UH-Ul-tYY"/>
@@ -192,7 +193,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="CJe-da-rbu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="1" green="0.40000000000000002" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
