@@ -16,8 +16,8 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qtF-xh-GLh" customClass="TTRangeSlider">
-                        <rect key="frame" x="28" y="25" width="264" height="65"/>
-                        <color key="tintColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <rect key="frame" x="44" y="25" width="232" height="65"/>
+                        <color key="tintColor" red="1" green="0.40000000000000002" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="'Hello'" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aM6-Q9-MfC">
                         <rect key="frame" x="140" y="8" width="41" height="17"/>
@@ -25,16 +25,15 @@
                         <color key="textColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oVc-EI-G3h">
-                        <rect key="frame" x="276" y="36" width="44" height="44"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oVc-EI-G3h">
+                        <rect key="frame" x="266" y="36" width="54" height="44"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="Os9-bz-oNy"/>
                             <constraint firstAttribute="height" constant="44" id="fMZ-oN-2I8"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="gEb-6H-b4z"/>
-                            <constraint firstAttribute="width" constant="44" id="ktf-JJ-dib"/>
+                            <constraint firstAttribute="width" constant="54" id="ktf-JJ-dib"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                        <state key="normal" title="^">
+                        <state key="normal" image="OpenEffectButton">
                             <color key="titleColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                         <variation key="default">
@@ -47,13 +46,13 @@
                             <action selector="openButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bOV-v9-KJ6"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="swa-Y8-DVm">
-                        <rect key="frame" x="0.0" y="36" width="44" height="44"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="swa-Y8-DVm">
+                        <rect key="frame" x="0.0" y="36" width="54" height="44"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="44" id="HXt-LJ-UuH"/>
+                            <constraint firstAttribute="width" constant="54" id="HXt-LJ-UuH"/>
                             <constraint firstAttribute="height" constant="44" id="NNs-pb-JCC"/>
                         </constraints>
-                        <state key="normal" title="X">
+                        <state key="normal" image="DeleteEffectButton">
                             <color key="titleColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                         <connections>
@@ -66,14 +65,14 @@
                     <constraint firstItem="swa-Y8-DVm" firstAttribute="centerY" secondItem="qtF-xh-GLh" secondAttribute="centerY" id="0cR-El-j9T"/>
                     <constraint firstItem="qtF-xh-GLh" firstAttribute="top" secondItem="aM6-Q9-MfC" secondAttribute="bottom" id="2ge-Sn-jnT"/>
                     <constraint firstItem="aM6-Q9-MfC" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="7cu-Fk-tF6"/>
-                    <constraint firstItem="qtF-xh-GLh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="28" id="FMb-Ie-of8"/>
+                    <constraint firstItem="qtF-xh-GLh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="44" id="FMb-Ie-of8"/>
                     <constraint firstAttribute="trailing" secondItem="oVc-EI-G3h" secondAttribute="trailing" id="Lky-XS-E4e"/>
                     <constraint firstAttribute="bottom" secondItem="qtF-xh-GLh" secondAttribute="bottom" id="O6G-7i-x1m"/>
                     <constraint firstItem="oVc-EI-G3h" firstAttribute="centerY" secondItem="qtF-xh-GLh" secondAttribute="centerY" id="Qgf-hp-eqU"/>
                     <constraint firstItem="aM6-Q9-MfC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="TMC-xz-F99"/>
                     <constraint firstAttribute="trailingMargin" secondItem="oVc-EI-G3h" secondAttribute="trailing" id="WY8-UK-qbg"/>
                     <constraint firstItem="swa-Y8-DVm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ejw-4K-lJr"/>
-                    <constraint firstAttribute="trailing" secondItem="qtF-xh-GLh" secondAttribute="trailing" constant="28" id="fow-0e-Sdz"/>
+                    <constraint firstAttribute="trailing" secondItem="qtF-xh-GLh" secondAttribute="trailing" constant="44" id="fow-0e-Sdz"/>
                     <constraint firstAttribute="trailingMargin" secondItem="qtF-xh-GLh" secondAttribute="trailing" constant="20" id="niD-eY-TW2"/>
                     <constraint firstItem="qtF-xh-GLh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="20" id="pee-Mh-jsw"/>
                 </constraints>
@@ -96,4 +95,8 @@
             <point key="canvasLocation" x="-75" y="319"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="DeleteEffectButton" width="12" height="12"/>
+        <image name="OpenEffectButton" width="14" height="9"/>
+    </resources>
 </document>

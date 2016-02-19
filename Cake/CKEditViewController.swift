@@ -7,91 +7,37 @@
 //
 
 import UIKit
-import ImageIO
-import MobileCoreServices
-//import FLAnimatedImage
-
-struct EditableGIF {
-    var gifURL: NSURL!
-    var duration: Double!
-    var fps: Int!
-    
-    init(url: NSURL, duration: Double, fps: Int) {
-        self.gifURL = url
-        self.duration = duration
-        self.fps = fps
-    }
-}
-
-enum EditMode {
-    case Preview
-    case Edit
-}
 
 class CKEditViewController: UIViewController {
     
-    @IBOutlet weak var editView: UIView!
     @IBOutlet weak var carousel: iCarousel!
-    
     @IBOutlet weak var frameSlider: UISlider!
     @IBOutlet weak var framesLabel: UILabel!
     @IBOutlet weak var effectsTableView: UITableView!
     
-    @IBOutlet weak var previewView: UIView!
-    @IBOutlet weak var previewGifImageView: UIImageView!
-    @IBOutlet weak var previewGifImageViewHeightConstraint: NSLayoutConstraint!
-    
-    @IBOutlet weak var saveButton: UIButton!
-
-    var editButton: UIButton!
-    
-    var state: EditMode = .Preview
-    var duration: Double!
-    var framesPerSecond: Int!
-    var gifURL: NSURL!
-    
-    var rawFrames: [CGImage]!
+    var delegate: CKEditViewControllerDelegate?
+    var frames: [[UIImage?]]!
     var cleanFrames: [UIImage]!
-    var frames: [[UIImage?]] = [[UIImage?]]()
-    var flattenFrames : [UIImage]!
-    
     var textEffects: [CKTextEffectViewController]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupGif()
         setupFramesLabel()
         setupCarousel()
-        setupEffectsTableView()
         setupFramesSlider()
-        setupEditButton()
+        setupEffectsTableView()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.effectsTableView.reloadData()
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
     
     // MARK: - Setup Methods
-    private func setupGif() {
-        for frame in rawFrames {
-            var frameImages = [UIImage?]()
-            frameImages.append(UIImage(CGImage: frame))
-            self.frames.append(frameImages)
-        }
-        
-        self.cleanFrames = [UIImage]()
-        
-        for frameSet in self.frames {
-            cleanFrames.append(frameSet.first!!)
-        }
-        
-        self.previewGifImageViewHeightConstraint.constant = kSCREEN_WIDTH - 60
-        setNeedsFocusUpdate()
-        let gif = UIImage.animatedImageWithImages(cleanFrames, duration: NSTimeInterval(self.duration))
-        self.previewGifImageView.image = gif
-        self.previewGifImageView.startAnimating()
-        
-        
-        print(self.frames.count, duration)
-        
-    }
-    
     private func setupFramesLabel() {
         self.framesLabel.text = "1 of \(self.frames.count)"
     }
@@ -116,66 +62,13 @@ class CKEditViewController: UIViewController {
         self.effectsTableView.registerNib(textAuxiliaryNibName, forCellReuseIdentifier: textEffectAuxiliaryTableViewCellReuse)
     }
     
-    private func setupEditButton() {
-        self.editButton = UIButton(frame: CGRect(x: 0, y: 0, width: kSCREEN_WIDTH - 200, height: kSCREEN_WIDTH - 200))
-        self.editButton.setImage(UIImage(named: "EditButtonNormal"), forState: .Normal)
-        self.editButton.addTarget(self, action: Selector("editButtonPressed:"), forControlEvents: .TouchUpInside)
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        updateState()
-        layoutEditButton()
-    }
-    
     // MARK: - Layout Subview
-    private func layoutEditButton() {
-        self.editButton.center = CGPoint(x: kSCREEN_WIDTH / 2.0,
-            y: (50 + kSCREEN_WIDTH - 60 + kSCREEN_HEIGHT - 60) / 2.0 )
-        self.previewView.addSubview(self.editButton)
-    }
-    
-    func updateState() {
-        if self.state == .Preview {
-            self.previewView.hidden = false
-            self.editView.hidden = true
-        } else if self.state == .Edit {
-            self.previewView.hidden = true
-            self.editView.hidden = false
-            self.effectsTableView.reloadData()
-        }
-    }
-
-    func setAnimatedImage(notification: NSNotification) {
-        let imageSize: Int = NSData(contentsOfURL: gifURL)!.length
-        print("size of image in MB: ", Float(imageSize) / 1024.0 / 1000.0)
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    
-    
     // MARK: - Button Actions
-    @IBAction func redoButtonPressed(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true) { () -> Void in
-            
-        }
-    }
-    
-    func editButtonPressed(sender: AnyObject) {
-        self.state = .Edit
-        self.previewGifImageView.stopAnimating()
-        updateState()
-        setNeedsFocusUpdate()
-    }
-    
-    @IBAction func saveButtonPressed(sender: AnyObject) {
-        createGif()
-    }
-    
     @IBAction func frameSliderValueChanged(sender: AnyObject) {
         let frameIndex = Int(self.frameSlider.value * Float(self.frames.count-1))
         if frameIndex != self.carousel.currentItemIndex {
@@ -188,21 +81,13 @@ class CKEditViewController: UIViewController {
         self.framesLabel.text = "\(index + 1) of \(self.frames.count)"
     }
     
-    @IBAction func playButtonPressed(sender: AnyObject) {
-        self.state = .Preview
-        
-        flattenPreviewFrames()
-        let gif = UIImage.animatedImageWithImages(self.flattenFrames, duration: NSTimeInterval(self.duration))
-        self.previewGifImageView.image = gif
-        
-        self.previewGifImageView.startAnimating()
-        updateState()
-        setNeedsFocusUpdate()
-    }
-    
     private func addEffect() {
         if self.textEffects == nil {
             self.textEffects = [CKTextEffectViewController]()
+            self.cleanFrames = [UIImage]()
+            for frameArray in self.frames {
+                self.cleanFrames.append(frameArray.first!!)
+            }
         }
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let textEffectVC = storyboard.instantiateViewControllerWithIdentifier("AddTextVC") as! CKTextEffectViewController
@@ -233,91 +118,12 @@ class CKEditViewController: UIViewController {
         self.carousel.reloadData()
     }
     
-    // MARK: - Navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "ShowAddText" {
-            let addTextVC = segue.destinationViewController as! CKTextEffectViewController
-            addTextVC.frames = self.cleanFrames
-        }
-    }
-    
-    // MARK: - Gif Methods
-    private func flattenPreviewFrames() {
-        if self.flattenFrames != nil {
-            self.flattenFrames = nil
-        }
-        self.flattenFrames = [UIImage]()
-        for frameSet in self.frames {
-            if frameSet.count > 1 {
-                let image = mergeImages(frameSet)
-                self.flattenFrames.append(image)
-            } else {
-                self.flattenFrames.append(frameSet.first!!)
-            }
-        }
-    }
-    
-    private func mergeImages(images: [UIImage?]) -> UIImage {
-        let size = images.first!!.size
-        UIGraphicsBeginImageContext(size)
-        let areaSize = CGRectMake(0, 0, size.width, size.height)
-        for image in images {
-            if image != nil {
-                image!.drawInRect(areaSize)
-            }
-        }
-        let flattenedFrame: UIImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return flattenedFrame
-    }
-    
-    func createGif() {
-        if self.flattenFrames == nil {
-            self.flattenFrames = self.cleanFrames
-        }
-        
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
-        let temporaryFile = (NSTemporaryDirectory() as NSString).stringByAppendingPathComponent("temp")
-        let fileOutputURL = NSURL(fileURLWithPath: temporaryFile)
-        let destination = CGImageDestinationCreateWithURL(fileOutputURL, kUTTypeGIF, self.flattenFrames!.count, nil)
-        let fileProperties = [kCGImagePropertyGIFDictionary as String:
-            [
-                kCGImagePropertyGIFLoopCount as String: 0
-            ],
-            kCGImageDestinationLossyCompressionQuality as String: 1.0]
-        let frameProperties = [kCGImagePropertyGIFDictionary as String:
-            [
-                kCGImagePropertyGIFDelayTime as String: self.duration / Double(self.flattenFrames.count)
-            ]]
-        CGImageDestinationSetProperties(destination!, fileProperties as CFDictionaryRef)
-        
-        for frame in self.flattenFrames! {
-            CGImageDestinationAddImage(destination!, frame.CGImage!, frameProperties as CFDictionaryRef)
-        }
-        
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-        dispatch_async(dispatch_get_global_queue(priority, 0)) {
-            // do some task
-            CGImageDestinationSetProperties(destination!, fileProperties as CFDictionaryRef)
-            if CGImageDestinationFinalize(destination!) {
-                
-                CKBackendManager.sharedInstance.saveGif(fileOutputURL, withDuration: self.duration, completionBlock: { (taks) -> AnyObject? in
-                    
-                    NSNotificationCenter.defaultCenter().postNotificationName(GIF_FINALIZED, object: fileOutputURL)
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                            UIApplication.sharedApplication().endIgnoringInteractionEvents()
-                        })
-                    }
-                    
-                    return nil
-                })
-            }
+    @IBAction func playButtonPressed(sender: AnyObject) {
+        self.delegate?.willPresentNewFrames(self.frames)
+        self.dismissViewControllerAnimated(true) { () -> Void in
             
         }
     }
-    
 }
 
 // MARK: - Text Effect Delegate
@@ -530,4 +336,7 @@ extension CKEditViewController: iCarouselDataSource, iCarouselDelegate {
     }
 }
 
+protocol CKEditViewControllerDelegate {
+    func willPresentNewFrames(frames: [[UIImage?]])
+}
 

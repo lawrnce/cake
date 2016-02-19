@@ -39,6 +39,7 @@ class CKCameraViewController: UIViewController {
         setupCameraToggleButton()
         setupTorchButton()
         setupNotifications()
+        setupTimerView()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -363,7 +364,7 @@ class CKCameraViewController: UIViewController {
     
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "ShowEdit" {
+        if segue.identifier == "ShowPreview" {
             self.state = .Idle
             
             self.cancelRecordingButton.userInteractionEnabled = true
@@ -371,10 +372,14 @@ class CKCameraViewController: UIViewController {
             
             let frames = ((sender as! NSArray) as Array)[0]
             let duration = ((sender as! NSArray) as Array)[1]
+
+            let previewVC = segue.destinationViewController as! CKPreviewViewController
+            previewVC.bitmaps = frames as! [CGImage]
+            previewVC.duration = duration as! Double
             
-            let editVC = segue.destinationViewController as! CKEditViewController
-            editVC.rawFrames = frames as! [CGImage]
-            editVC.duration = duration as! Double
+//            let editVC = segue.destinationViewController as! CKEditViewController
+//            editVC.rawFrames = frames as! [CGImage]
+//            editVC.duration = duration as! Double
         }
     }
 }
@@ -416,7 +421,7 @@ extension CKCameraViewController: CKGifCameraControllerDelegate {
     func controller(cameraController: CKGifCameraController, didFinishRecordingWithFrames frames: [CGImage], withTotalDuration duration: Double) {
         print("Finished Gif")
         UIApplication.sharedApplication().endIgnoringInteractionEvents()
-        self.performSegueWithIdentifier("ShowEdit", sender: [frames, duration])
+        self.performSegueWithIdentifier("ShowPreview", sender: [frames, duration])
     }
 }
 

@@ -25,6 +25,7 @@
 		E68F55601C73EEC30029A086 /* NSDateISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68F555F1C73EEC30029A086 /* NSDateISO8601.swift */; };
 		E68F55631C73F07F0029A086 /* CKGifCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68F55611C73F07F0029A086 /* CKGifCollectionViewCell.swift */; };
 		E68F55641C73F07F0029A086 /* CKGifCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68F55621C73F07F0029A086 /* CKGifCollectionViewCell.xib */; };
+		E6996BA31C76CB2600AE76EF /* CKPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6996BA21C76CB2600AE76EF /* CKPreviewViewController.swift */; };
 		E6A363391C75698800986712 /* CKGifsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A363381C75698800986712 /* CKGifsDetailViewController.swift */; };
 		E6B3F1271C70285000031B87 /* CKEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B3F1261C70285000031B87 /* CKEditViewController.swift */; };
 		E6B597361C7533B20034EDE5 /* LTColorPanningButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B597321C7533B20034EDE5 /* LTColorPanningButton.swift */; };
@@ -111,6 +112,7 @@
 		E68F555F1C73EEC30029A086 /* NSDateISO8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateISO8601.swift; sourceTree = "<group>"; };
 		E68F55611C73F07F0029A086 /* CKGifCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKGifCollectionViewCell.swift; sourceTree = "<group>"; };
 		E68F55621C73F07F0029A086 /* CKGifCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CKGifCollectionViewCell.xib; sourceTree = "<group>"; };
+		E6996BA21C76CB2600AE76EF /* CKPreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKPreviewViewController.swift; sourceTree = "<group>"; };
 		E6A363381C75698800986712 /* CKGifsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKGifsDetailViewController.swift; sourceTree = "<group>"; };
 		E6B3F1261C70285000031B87 /* CKEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKEditViewController.swift; sourceTree = "<group>"; };
 		E6B597321C7533B20034EDE5 /* LTColorPanningButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTColorPanningButton.swift; sourceTree = "<group>"; };
@@ -246,6 +248,14 @@
 			name = Data;
 			sourceTree = "<group>";
 		};
+		E6996BA41C76CCB600AE76EF /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				E6996BA21C76CB2600AE76EF /* CKPreviewViewController.swift */,
+			);
+			name = Preview;
+			sourceTree = "<group>";
+		};
 		E6B3F1281C70289200031B87 /* Edit */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,6 +301,7 @@
 				E657B9531C7689E300B680E7 /* UIImageExtension.swift */,
 				E68F555C1C73ED710029A086 /* Data */,
 				E6BA125B1C7003570075F98D /* Camera */,
+				E6996BA41C76CCB600AE76EF /* Preview */,
 				E6B3F1281C70289200031B87 /* Edit */,
 				E6BA125E1C7003760075F98D /* Gifs */,
 				E6BA121A1C6FFA520075F98D /* Main.storyboard */,
@@ -667,6 +678,7 @@
 				E657B9541C7689E300B680E7 /* UIImageExtension.swift in Sources */,
 				E66D61BA1C73EBB90013CB6E /* CKBackendManager.swift in Sources */,
 				E6B597381C7533B20034EDE5 /* PocketSVG.m in Sources */,
+				E6996BA31C76CB2600AE76EF /* CKPreviewViewController.swift in Sources */,
 				E6B597361C7533B20034EDE5 /* LTColorPanningButton.swift in Sources */,
 				E601E21F1C7539F100F37C41 /* UIColorHex.swift in Sources */,
 				E6BA125D1C7003710075F98D /* CKGifsViewController.swift in Sources */,

@@ -30,21 +30,26 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings &gt; General &gt; Keyboard &gt; Keyboards &gt; Cake &gt; Allow Full Access" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PG8-7L-Mow">
-                            <rect key="frame" x="48" y="33" width="224" height="40"/>
+                            <rect key="frame" x="48" y="30" width="224" height="36"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="fGh-70-MiO"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="fGh-70-MiO"/>
+                                </mask>
+                            </variation>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cake will never record what you type. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDa-ak-XGc">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Cake will never record your text. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDa-ak-XGc">
                             <rect key="frame" x="35" y="70" width="251" height="17"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cake only records how often you copy a gif." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xk7-0X-tfi">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Cake only records how often you use a gif." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xk7-0X-tfi">
                             <rect key="frame" x="16" y="91" width="288" height="17"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -55,25 +60,30 @@
                     <constraints>
                         <constraint firstItem="zs6-la-HAJ" firstAttribute="centerX" secondItem="ibh-da-Cgo" secondAttribute="centerX" id="0jI-YA-kgm"/>
                         <constraint firstAttribute="trailingMargin" secondItem="PG8-7L-Mow" secondAttribute="trailing" constant="40" id="6FP-ub-Bmg"/>
+                        <constraint firstAttribute="bottom" secondItem="PG8-7L-Mow" secondAttribute="bottom" constant="50" id="BqP-mV-uEw"/>
                         <constraint firstItem="kDa-ak-XGc" firstAttribute="centerX" secondItem="ibh-da-Cgo" secondAttribute="centerX" id="FKh-nI-ue4"/>
                         <constraint firstItem="kDa-ak-XGc" firstAttribute="top" secondItem="PG8-7L-Mow" secondAttribute="bottom" constant="8" id="OJj-DX-pjM"/>
                         <constraint firstItem="PG8-7L-Mow" firstAttribute="leading" secondItem="ibh-da-Cgo" secondAttribute="leading" constant="8" id="OYr-cX-sTq"/>
                         <constraint firstItem="PG8-7L-Mow" firstAttribute="centerX" secondItem="ibh-da-Cgo" secondAttribute="centerX" id="QwT-16-hdO"/>
-                        <constraint firstItem="PG8-7L-Mow" firstAttribute="top" secondItem="zs6-la-HAJ" secondAttribute="bottom" constant="4" id="S80-OS-LBA"/>
-                        <constraint firstItem="Xk7-0X-tfi" firstAttribute="top" secondItem="kDa-ak-XGc" secondAttribute="bottom" priority="252" constant="4" id="VIg-Qb-LtV"/>
+                        <constraint firstItem="PG8-7L-Mow" firstAttribute="top" secondItem="zs6-la-HAJ" secondAttribute="bottom" priority="250" constant="4" id="S80-OS-LBA"/>
+                        <constraint firstItem="Xk7-0X-tfi" firstAttribute="top" secondItem="kDa-ak-XGc" secondAttribute="bottom" constant="4" id="VIg-Qb-LtV"/>
                         <constraint firstAttribute="trailing" secondItem="PG8-7L-Mow" secondAttribute="trailing" constant="8" id="gsH-Dx-ivf"/>
                         <constraint firstItem="PG8-7L-Mow" firstAttribute="leading" secondItem="ibh-da-Cgo" secondAttribute="leadingMargin" constant="40" id="iO0-Uu-jqK"/>
                         <constraint firstItem="zs6-la-HAJ" firstAttribute="top" secondItem="ibh-da-Cgo" secondAttribute="top" constant="8" id="imh-zc-UrK"/>
+                        <constraint firstItem="PG8-7L-Mow" firstAttribute="top" secondItem="ibh-da-Cgo" secondAttribute="top" constant="30" id="o8n-zG-4rM"/>
                         <constraint firstAttribute="bottom" secondItem="Xk7-0X-tfi" secondAttribute="bottom" constant="8" id="pup-yR-l4F"/>
+                        <constraint firstItem="kDa-ak-XGc" firstAttribute="top" secondItem="PG8-7L-Mow" secondAttribute="bottom" priority="250" constant="4" id="u9I-bc-sMd"/>
                         <constraint firstItem="Xk7-0X-tfi" firstAttribute="centerX" secondItem="ibh-da-Cgo" secondAttribute="centerX" id="ujI-nd-oMt"/>
                         <constraint firstItem="PG8-7L-Mow" firstAttribute="top" secondItem="zs6-la-HAJ" secondAttribute="bottom" priority="751" constant="8" id="xa3-f8-DVP"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="OYr-cX-sTq"/>
+                            <exclude reference="S80-OS-LBA"/>
                             <exclude reference="gsH-Dx-ivf"/>
                             <exclude reference="xa3-f8-DVP"/>
                             <exclude reference="OJj-DX-pjM"/>
+                            <exclude reference="u9I-bc-sMd"/>
                         </mask>
                     </variation>
                 </view>
@@ -170,7 +180,7 @@
         </view>
     </objects>
     <resources>
-        <image name="BackspaceButtonNormal" width="32" height="22"/>
+        <image name="BackspaceButtonNormal" width="34" height="24"/>
         <image name="KeyboardInfoButtonNormal" width="31" height="32"/>
         <image name="NextKeyboardButton" width="36" height="36"/>
     </resources>

@@ -32,7 +32,7 @@ class CKTextEffectAuxiliaryTableViewCell: UITableViewCell {
         self.rangeSlider.selectedMinimum = self.viewControllerDataSource.rangeSlider.selectedMinimum
         self.rangeSlider.selectedMaximum = self.viewControllerDataSource.rangeSlider.selectedMaximum
         
-        self.titleLabel.text = "'\(self.viewControllerDataSource.textView.text)'"
+        self.titleLabel.text = "\(self.viewControllerDataSource.textView.text)"
         self.titleLabel.sizeToFit()
     }
     
