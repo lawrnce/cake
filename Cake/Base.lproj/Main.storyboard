@@ -314,10 +314,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7F3-Ac-pEJ" customClass="iCarousel">
-                                <rect key="frame" x="0.0" y="84" width="375" height="240"/>
+                                <rect key="frame" x="0.0" y="84" width="375" height="200"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="0dN-bI-39I"/>
+                                    <constraint firstAttribute="height" constant="200" id="0dN-bI-39I"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="8fG-yi-vsg" id="0ci-kc-qRu"/>
@@ -325,14 +325,14 @@
                                 </connections>
                             </view>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="L62-UJ-ShU">
-                                <rect key="frame" x="42" y="338" width="291" height="31"/>
+                                <rect key="frame" x="42" y="298" width="291" height="31"/>
                                 <color key="tintColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="frameSliderValueChanged:" destination="8fG-yi-vsg" eventType="valueChanged" id="kVS-sZ-kug"/>
                                 </connections>
                             </slider>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QMa-5p-tbh">
-                                <rect key="frame" x="0.0" y="376" width="375" height="213"/>
+                                <rect key="frame" x="0.0" y="336" width="375" height="253"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="8fG-yi-vsg" id="nau-38-kbh"/>

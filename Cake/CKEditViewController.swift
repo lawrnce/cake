@@ -299,10 +299,12 @@ extension CKEditViewController: iCarouselDataSource, iCarouselDelegate {
     
     func carousel(carousel: iCarousel, viewForItemAtIndex index: Int, reusingView view: UIView?) -> UIView {
         
+        let carouselHeight = carousel.frame.height
+        
         var frameView: UIView
         
         if (view == nil) {
-            frameView = UIView(frame: CGRectMake(0, 0, 240, 240))
+            frameView = UIView(frame: CGRectMake(0, 0, carouselHeight, carouselHeight))
         } else {
             frameView = view!
             for subview in frameView.subviews {
@@ -311,7 +313,7 @@ extension CKEditViewController: iCarouselDataSource, iCarouselDelegate {
         }
         
         for frame in self.frames[index] {
-            let imageView = UIImageView(frame: CGRectMake(0, 0, 240, 240))
+            let imageView = UIImageView(frame: CGRectMake(0, 0, carouselHeight, carouselHeight))
             imageView.image = frame
             frameView.addSubview(imageView)
         }
