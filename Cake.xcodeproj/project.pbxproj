@@ -27,6 +27,7 @@
 		E684914D1C758E6F00BDB711 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BA12441C6FFD0E0075F98D /* Constants.swift */; };
 		E684914E1C758E8300BDB711 /* CKGifCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68F55611C73F07F0029A086 /* CKGifCollectionViewCell.swift */; };
 		E684914F1C758E8600BDB711 /* CKGifCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68F55621C73F07F0029A086 /* CKGifCollectionViewCell.xib */; };
+		E68ABC0B1C78F884003BB269 /* CKGifWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68ABC0A1C78F884003BB269 /* CKGifWriter.swift */; };
 		E68F555E1C73ED860029A086 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68F555D1C73ED860029A086 /* Models.swift */; };
 		E68F55601C73EEC30029A086 /* NSDateISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68F555F1C73EEC30029A086 /* NSDateISO8601.swift */; };
 		E68F55631C73F07F0029A086 /* CKGifCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68F55611C73F07F0029A086 /* CKGifCollectionViewCell.swift */; };
@@ -41,7 +42,6 @@
 		E6BA12191C6FFA520075F98D /* CKCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BA12181C6FFA520075F98D /* CKCameraViewController.swift */; };
 		E6BA121C1C6FFA520075F98D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6BA121A1C6FFA520075F98D /* Main.storyboard */; };
 		E6BA121E1C6FFA520075F98D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6BA121D1C6FFA520075F98D /* Assets.xcassets */; };
-		E6BA12211C6FFA520075F98D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6BA121F1C6FFA520075F98D /* LaunchScreen.storyboard */; };
 		E6BA122C1C6FFA520075F98D /* CakeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BA122B1C6FFA520075F98D /* CakeTests.swift */; };
 		E6BA12371C6FFA520075F98D /* CakeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BA12361C6FFA520075F98D /* CakeUITests.swift */; };
 		E6BA12451C6FFD0E0075F98D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BA12441C6FFD0E0075F98D /* Constants.swift */; };
@@ -117,6 +117,7 @@
 		E66D61B91C73EBB90013CB6E /* CKBackendManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKBackendManager.swift; sourceTree = "<group>"; };
 		E684914A1C758E2900BDB711 /* CakeKeyboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CakeKeyboard.xib; sourceTree = "<group>"; };
 		E68491501C758ED600BDB711 /* CakeKeyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CakeKeyboard.entitlements; sourceTree = "<group>"; };
+		E68ABC0A1C78F884003BB269 /* CKGifWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKGifWriter.swift; sourceTree = "<group>"; };
 		E68F555D1C73ED860029A086 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		E68F555F1C73EEC30029A086 /* NSDateISO8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateISO8601.swift; sourceTree = "<group>"; };
 		E68F55611C73F07F0029A086 /* CKGifCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKGifCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -133,7 +134,6 @@
 		E6BA12181C6FFA520075F98D /* CKCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKCameraViewController.swift; sourceTree = "<group>"; };
 		E6BA121B1C6FFA520075F98D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E6BA121D1C6FFA520075F98D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E6BA12201C6FFA520075F98D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E6BA12221C6FFA520075F98D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6BA12271C6FFA520075F98D /* CakeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CakeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6BA122B1C6FFA520075F98D /* CakeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CakeTests.swift; sourceTree = "<group>"; };
@@ -315,7 +315,6 @@
 				E6BA125E1C7003760075F98D /* Gifs */,
 				E6BA121A1C6FFA520075F98D /* Main.storyboard */,
 				E6BA121D1C6FFA520075F98D /* Assets.xcassets */,
-				E6BA121F1C6FFA520075F98D /* LaunchScreen.storyboard */,
 				E6BA12221C6FFA520075F98D /* Info.plist */,
 				E68F555B1C73EC950029A086 /* Support */,
 			);
@@ -356,6 +355,7 @@
 			children = (
 				E6BA12181C6FFA520075F98D /* CKCameraViewController.swift */,
 				E6BA12571C6FFE1E0075F98D /* CKGifCameraController.swift */,
+				E68ABC0A1C78F884003BB269 /* CKGifWriter.swift */,
 				E6BA12591C6FFE7D0075F98D /* CKPreviewView.swift */,
 				E6BA125F1C7007720075F98D /* CKRecordGestureRecognizer.swift */,
 			);
@@ -521,7 +521,6 @@
 			files = (
 				E66D61B81C73B9860013CB6E /* CKAddEffectTableViewCell.xib in Resources */,
 				E6366CC41C78184E00A04C8C /* TorchOff.svg in Resources */,
-				E6BA12211C6FFA520075F98D /* LaunchScreen.storyboard in Resources */,
 				E6366CCB1C781C4200A04C8C /* Flip.svg in Resources */,
 				E6BA121E1C6FFA520075F98D /* Assets.xcassets in Resources */,
 				E68F55641C73F07F0029A086 /* CKGifCollectionViewCell.xib in Resources */,
@@ -685,6 +684,7 @@
 				E6B597371C7533B20034EDE5 /* LTMaskedView.swift in Sources */,
 				E6BA125A1C6FFE7D0075F98D /* CKPreviewView.swift in Sources */,
 				E6BA12581C6FFE1E0075F98D /* CKGifCameraController.swift in Sources */,
+				E68ABC0B1C78F884003BB269 /* CKGifWriter.swift in Sources */,
 				E6BA12601C7007720075F98D /* CKRecordGestureRecognizer.swift in Sources */,
 				E68F55601C73EEC30029A086 /* NSDateISO8601.swift in Sources */,
 				E657B9541C7689E300B680E7 /* UIImageExtension.swift in Sources */,
@@ -753,14 +753,6 @@
 				E6BA121B1C6FFA520075F98D /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		E6BA121F1C6FFA520075F98D /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E6BA12201C6FFA520075F98D /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -858,11 +850,13 @@
 				CODE_SIGN_ENTITLEMENTS = Cake/Cake.entitlements;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Cake/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cakegifs.Cake;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Cake/Cake-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -876,10 +870,12 @@
 				"CODE_SIGN_ENTITLEMENTS[sdk=iphoneos*]" = Cake/Cake.entitlements;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Cake/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cakegifs.Cake;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Cake/Cake-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -935,9 +931,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 45626D6C9DB427DE86F82331 /* Pods-CakeKeyboard.debug.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = CakeKeyboard/CakeKeyboard.entitlements;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = CakeKeyboard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cakegifs.Cake.CakeKeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -949,9 +948,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7F398A49C6C09186E3DBACB8 /* Pods-CakeKeyboard.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = CakeKeyboard/CakeKeyboard.entitlements;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = CakeKeyboard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cakegifs.Cake.CakeKeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";

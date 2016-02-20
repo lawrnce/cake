@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Camera View Controller-->
@@ -158,14 +158,23 @@
                                     <constraint firstAttribute="height" constant="335" id="K4f-KR-GfS"/>
                                 </constraints>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CopiedLarge" translatesAutoresizingMaskIntoConstraints="NO" id="wkl-B3-Xfw">
+                                <rect key="frame" x="112" y="93" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="IJs-lL-IFh"/>
+                                    <constraint firstAttribute="width" constant="150" id="pye-sg-4Hh"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="gkx-bs-92E" secondAttribute="trailing" id="ET6-b7-FLJ"/>
                             <constraint firstItem="gkx-bs-92E" firstAttribute="leading" secondItem="oYP-XU-48v" secondAttribute="leading" id="MRI-QQ-yRE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gkx-bs-92E" secondAttribute="trailing" constant="48" id="UeG-nr-Mfe"/>
+                            <constraint firstItem="wkl-B3-Xfw" firstAttribute="centerY" secondItem="gkx-bs-92E" secondAttribute="centerY" id="enk-GB-CKI"/>
                             <constraint firstItem="gkx-bs-92E" firstAttribute="top" secondItem="3Yx-hE-AYO" secondAttribute="bottom" id="mgf-9L-eYG"/>
                             <constraint firstItem="gkx-bs-92E" firstAttribute="leading" secondItem="oYP-XU-48v" secondAttribute="leadingMargin" constant="47" id="pMv-LI-i3f"/>
+                            <constraint firstItem="wkl-B3-Xfw" firstAttribute="centerX" secondItem="gkx-bs-92E" secondAttribute="centerX" id="t66-0I-hf6"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -177,6 +186,7 @@
                     <connections>
                         <outlet property="animatedImageView" destination="gkx-bs-92E" id="6YF-0S-EZs"/>
                         <outlet property="animatedImageViewHeightConstraint" destination="K4f-KR-GfS" id="8LD-cm-01f"/>
+                        <outlet property="copiedImageView" destination="wkl-B3-Xfw" id="swX-S2-d8W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c9U-rg-Lmu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -236,7 +246,7 @@
                                 <rect key="frame" x="0.0" y="344" width="375" height="263"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UZk-eU-5AZ" customClass="TTRangeSlider">
-                                        <rect key="frame" x="12" y="8" width="351" height="64"/>
+                                        <rect key="frame" x="20" y="8" width="335" height="64"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" red="1" green="0.40000000000000002" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -244,14 +254,14 @@
                                         </constraints>
                                     </view>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="GWR-1E-hHd">
-                                        <rect key="frame" x="24" y="116" width="327" height="31"/>
+                                        <rect key="frame" x="30" y="116" width="315" height="31"/>
                                         <color key="tintColor" red="1" green="0.40000000000000002" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="fontSizeSliderValueChanged:" destination="ngH-lX-AxE" eventType="valueChanged" id="PIU-ye-V9e"/>
                                         </connections>
                                     </slider>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAp-aJ-hpE">
-                                        <rect key="frame" x="20" y="212" width="335" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAp-aJ-hpE">
+                                        <rect key="frame" x="28" y="219" width="319" height="44"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="5T4-qZ-MRo"/>
@@ -263,16 +273,16 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="GWR-1E-hHd" firstAttribute="leading" secondItem="AIN-zn-9EP" secondAttribute="leading" constant="26" id="0qZ-7g-Tpf"/>
-                                    <constraint firstAttribute="trailing" secondItem="HAp-aJ-hpE" secondAttribute="trailing" constant="20" id="1J7-6T-h9D"/>
-                                    <constraint firstItem="HAp-aJ-hpE" firstAttribute="leading" secondItem="AIN-zn-9EP" secondAttribute="leading" constant="20" id="IKo-Z8-FRM"/>
+                                    <constraint firstItem="GWR-1E-hHd" firstAttribute="leading" secondItem="AIN-zn-9EP" secondAttribute="leading" constant="32" id="0qZ-7g-Tpf"/>
+                                    <constraint firstAttribute="trailing" secondItem="HAp-aJ-hpE" secondAttribute="trailing" constant="28" id="1J7-6T-h9D"/>
+                                    <constraint firstItem="HAp-aJ-hpE" firstAttribute="leading" secondItem="AIN-zn-9EP" secondAttribute="leading" constant="28" id="IKo-Z8-FRM"/>
                                     <constraint firstItem="UZk-eU-5AZ" firstAttribute="top" secondItem="AIN-zn-9EP" secondAttribute="top" constant="8" id="OGn-xN-Bad"/>
-                                    <constraint firstAttribute="trailing" secondItem="UZk-eU-5AZ" secondAttribute="trailing" constant="12" id="Rjq-cF-v3x"/>
+                                    <constraint firstAttribute="trailing" secondItem="UZk-eU-5AZ" secondAttribute="trailing" constant="20" id="Rjq-cF-v3x"/>
                                     <constraint firstItem="GWR-1E-hHd" firstAttribute="centerX" secondItem="AIN-zn-9EP" secondAttribute="centerX" id="gxc-Rf-xdh"/>
-                                    <constraint firstAttribute="trailing" secondItem="GWR-1E-hHd" secondAttribute="trailing" constant="26" id="mxn-Hi-ZUT"/>
-                                    <constraint firstAttribute="bottom" secondItem="HAp-aJ-hpE" secondAttribute="bottom" constant="21" id="rQg-oY-m4B"/>
+                                    <constraint firstAttribute="trailing" secondItem="GWR-1E-hHd" secondAttribute="trailing" constant="32" id="mxn-Hi-ZUT"/>
+                                    <constraint firstAttribute="bottom" secondItem="HAp-aJ-hpE" secondAttribute="bottom" id="rQg-oY-m4B"/>
                                     <constraint firstItem="GWR-1E-hHd" firstAttribute="centerY" secondItem="AIN-zn-9EP" secondAttribute="centerY" id="tjP-Do-IfL"/>
-                                    <constraint firstItem="UZk-eU-5AZ" firstAttribute="leading" secondItem="AIN-zn-9EP" secondAttribute="leading" constant="12" id="v0s-wf-njR"/>
+                                    <constraint firstItem="UZk-eU-5AZ" firstAttribute="leading" secondItem="AIN-zn-9EP" secondAttribute="leading" constant="20" id="v0s-wf-njR"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="axisValue">
@@ -358,19 +368,8 @@
                                 <color key="textColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7F3-Ac-pEJ" customClass="iCarousel">
-                                <rect key="frame" x="0.0" y="84" width="375" height="200"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="0dN-bI-39I"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="dataSource" destination="8fG-yi-vsg" id="0ci-kc-qRu"/>
-                                    <outlet property="delegate" destination="8fG-yi-vsg" id="XQ7-y5-2vc"/>
-                                </connections>
-                            </view>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="L62-UJ-ShU">
-                                <rect key="frame" x="42" y="298" width="291" height="31"/>
+                                <rect key="frame" x="42" y="265" width="291" height="31"/>
                                 <color key="tintColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="frameSliderValueChanged:" destination="8fG-yi-vsg" eventType="valueChanged" id="kVS-sZ-kug"/>
@@ -384,10 +383,10 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EOW-7l-sNt" customClass="CKDashedBorder" customModule="Cake" customModuleProvider="target">
-                                <rect key="frame" x="10" y="336" width="355" height="253"/>
+                                <rect key="frame" x="10" y="303" width="355" height="286"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QMa-5p-tbh">
-                                        <rect key="frame" x="0.0" y="0.0" width="355" height="253"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="355" height="286"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="dataSource" destination="8fG-yi-vsg" id="8Pg-Xr-cH0"/>
@@ -403,6 +402,22 @@
                                     <constraint firstItem="QMa-5p-tbh" firstAttribute="top" secondItem="EOW-7l-sNt" secondAttribute="top" id="qcp-f7-aXo"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7F3-Ac-pEJ" customClass="iCarousel">
+                                <rect key="frame" x="0.0" y="84" width="375" height="167"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="0dN-bI-39I"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="0dN-bI-39I"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="dataSource" destination="8fG-yi-vsg" id="0ci-kc-qRu"/>
+                                    <outlet property="delegate" destination="8fG-yi-vsg" id="XQ7-y5-2vc"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -414,6 +429,7 @@
                             <constraint firstItem="m9q-4d-Ymg" firstAttribute="top" secondItem="Hcr-0H-yrN" secondAttribute="bottom" constant="8" id="V5f-Md-u8o"/>
                             <constraint firstItem="Hcr-0H-yrN" firstAttribute="top" secondItem="EOW-7l-sNt" secondAttribute="bottom" constant="8" id="YZh-O7-JQ9"/>
                             <constraint firstItem="L62-UJ-ShU" firstAttribute="leading" secondItem="AL6-aU-IAO" secondAttribute="leading" constant="44" id="b0S-Jq-rp0"/>
+                            <constraint firstItem="7F3-Ac-pEJ" firstAttribute="height" secondItem="AL6-aU-IAO" secondAttribute="height" multiplier="1/4" id="dDj-TL-GYS"/>
                             <constraint firstItem="7F3-Ac-pEJ" firstAttribute="leading" secondItem="AL6-aU-IAO" secondAttribute="leadingMargin" constant="-20" id="e9A-RP-spX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7F3-Ac-pEJ" secondAttribute="trailing" id="gvn-zd-S3C"/>
                             <constraint firstItem="EOW-7l-sNt" firstAttribute="top" secondItem="L62-UJ-ShU" secondAttribute="bottom" constant="8" id="kIn-ft-gNw"/>
@@ -564,6 +580,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="CopiedLarge" width="150" height="150"/>
         <image name="DoneButton" width="24" height="20"/>
         <image name="PlayButtonNormal" width="62" height="62"/>
     </resources>

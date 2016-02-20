@@ -20,12 +20,15 @@ class CKEditViewController: UIViewController {
     var cleanFrames: [UIImage]!
     var textEffects: [CKTextEffectViewController]!
     
+    private var frameQueue: dispatch_queue_t!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupFramesLabel()
         setupCarousel()
         setupFramesSlider()
         setupEffectsTableView()
+        self.frameQueue = dispatch_queue_create("com.cakegifs.FrameQueue", nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -120,10 +123,14 @@ class CKEditViewController: UIViewController {
     }
     
     @IBAction func playButtonPressed(sender: AnyObject) {
-        self.delegate?.willPresentNewFrames(self.frames)
+        
+        
         self.dismissViewControllerAnimated(true) { () -> Void in
             
         }
+        
+        self.delegate?.willPresentNewFrames(self.frames)
+        
     }
 }
 
@@ -183,7 +190,13 @@ extension CKEditViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return self.effectsTableView.frame.height / 4.0
+        
+        // 4 inch retina
+        if kSCREEN_HEIGHT < 569.0 {
+            return self.effectsTableView.frame.height / 3.0
+        } else {
+            return self.effectsTableView.frame.height / 4.0
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

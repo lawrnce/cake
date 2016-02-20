@@ -45,8 +45,15 @@ class CKCameraViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        
+        // 4 inch retina
+        if kSCREEN_HEIGHT < 569.0 {
+            self.recordButtonImageView.frame.size = CGSize(width: 88.0, height: 88.0)
+        }
+        
         let recordButtonCenter = CGPointMake(kSCREEN_WIDTH / 2.0, ((64.0 + kSCREEN_WIDTH ) + kSCREEN_HEIGHT) / 2.0)
         self.recordButtonImageView.center = recordButtonCenter
+        
         
         if self.timeViewWidthConstraint.constant != CGFloat(0.0) {
             self.timeViewWidthConstraint.constant = CGFloat(0.0)
@@ -66,10 +73,10 @@ class CKCameraViewController: UIViewController {
         
         self.view.addSubview(previewView)
         self.view.addSubview(self.recordButtonImageView)
-        self.cameraController.startSession()
-        layoutGifsButton()
+        // self.cameraController.startSession()
+        // layoutGifsButton()
         
-        showNotificationIfNeeded()
+        // showNotificationIfNeeded()
         updateStateLayout(false)
     }
     
@@ -163,6 +170,9 @@ class CKCameraViewController: UIViewController {
     
     func showNotificationIfNeeded() {
         if let installedKeyboard = NSUserDefaults.standardUserDefaults().objectForKey("AppleKeyboards") as? [String]{
+            
+            print(installedKeyboard)
+            
             if installedKeyboard.contains("com.cakegifs.Cake.CakeKeyboard"){
                 
                 if self.notificationButton != nil {

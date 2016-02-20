@@ -14,6 +14,7 @@ class CKGifsDetailViewController: UIViewController {
 
     @IBOutlet weak var animatedImageView: FLAnimatedImageView!
     @IBOutlet weak var animatedImageViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var copiedImageView: UIImageView!
     
     var gifURL: NSURL!
     var gifId: String!
@@ -26,6 +27,7 @@ class CKGifsDetailViewController: UIViewController {
         setupAnimatedImageView()
         setupCopyButton()
         setupDeleteButton()
+        setupCopiedImageView()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -58,6 +60,11 @@ class CKGifsDetailViewController: UIViewController {
         self.deleteButton.setImage(UIImage(named: "DeleteButtonNormal"), forState: .Normal)
     }
     
+    private func setupCopiedImageView() {
+        self.copiedImageView.hidden = true
+        self.copiedImageView.alpha = 0.0
+    }
+    
     // MARK: - Layout
     private func layoutAnimatedImageView() {
         animatedImageViewHeightConstraint.constant = kSCREEN_WIDTH
@@ -76,10 +83,30 @@ class CKGifsDetailViewController: UIViewController {
         self.view.addSubview(self.deleteButton)
     }
 
+    private func animateCopyImageView() {
+        self.copiedImageView.alpha = 0.0
+        self.copiedImageView.hidden = false
+        
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            self.copiedImageView.alpha = 0.7
+            }) { (done) -> Void in
+                
+                UIView.animateWithDuration(0.3, animations: { () -> Void in
+                    
+                    self.copiedImageView.alpha = 0.0
+                    
+                    }, completion: { (done) -> Void in
+                        self.copiedImageView.hidden = true
+                })
+                
+        }
+    }
+    
     // MARK: - Button Actions
     func copyButtonPressed(sender: UIButton) {
         let gifData = NSData(contentsOfURL: gifURL)!
         UIPasteboard.generalPasteboard().setData(gifData, forPasteboardType: "com.compuserve.gif")
+        animateCopyImageView()
     }
     
     func deleteButtonPressed(sender: UIButton) {

@@ -206,7 +206,7 @@ extension KeyboardViewController: UICollectionViewDataSource {
         UIPasteboard.generalPasteboard().setData(gifData, forPasteboardType: "com.compuserve.gif")
         
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CKGifCollectionViewCell
-        cell.animateCopyLabel()
+        cell.animateCopiedImageView()
         
 //        let center = cell.center
 //        let transform = CGAffineTransformMakeScale(1.0, 1.0)

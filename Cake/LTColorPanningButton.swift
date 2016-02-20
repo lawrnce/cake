@@ -37,12 +37,14 @@ class LTColorPanningButton: UIView {
     }
     
     func setMaskWithSVGName(name: String) {
+        let animatedViewFrame = self.maskedView.animatedView.frame
         let backgroundColor = self.maskedView.backgroundColor
         let foregroundColor = self.maskedView.animatedView.backgroundColor
         self.maskedView.removeFromSuperview()
         self.maskedView = LTMaskedView(SVGname: name)
         self.maskedView.backgroundColor = backgroundColor
         self.maskedView.animatedView.backgroundColor = foregroundColor
+        self.maskedView.animatedView.frame = animatedViewFrame
         layoutSubviews()
     }
     

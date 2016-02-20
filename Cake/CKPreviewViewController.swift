@@ -115,8 +115,12 @@ class CKPreviewViewController: UIViewController {
         self.frames = [[UIImage?]]()
         for cgImage in self.bitmaps {
             var frameArray = [UIImage?]()
-            frameArray.append(UIImage(CGImage: cgImage))
+            let image = UIImage(CGImage: cgImage, scale: 2.0, orientation: .Up)
+            
+            frameArray.append(image)
             self.frames.append(frameArray)
+            
+            print(image.size)
         }
     }
     

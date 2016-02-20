@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -14,10 +14,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c1T-1f-K3q">
-                        <rect key="frame" x="24" y="-1" width="272" height="45"/>
+                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c1T-1f-K3q">
+                        <rect key="frame" x="24" y="5" width="272" height="33"/>
                         <color key="backgroundColor" red="0.80000000000000004" green="0.0" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="height" constant="44" id="FPh-Sf-HQ7"/>
                             <constraint firstAttribute="height" constant="44" id="QEc-JR-GEM"/>
                             <constraint firstAttribute="height" constant="44" id="aM0-yA-kuv"/>
                         </constraints>
@@ -27,6 +28,7 @@
                         </state>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="QEc-JR-GEM"/>
                                 <exclude reference="aM0-yA-kuv"/>
                             </mask>
                         </variation>
@@ -37,6 +39,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="c1T-1f-K3q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="0sF-WL-hIB"/>
+                    <constraint firstItem="c1T-1f-K3q" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="3/4" id="7VK-xI-ZQZ"/>
                     <constraint firstAttribute="trailing" secondItem="c1T-1f-K3q" secondAttribute="trailing" constant="24" id="CDe-Dj-1wf"/>
                     <constraint firstItem="c1T-1f-K3q" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="YNe-KN-h3N"/>
                     <constraint firstAttribute="bottom" secondItem="c1T-1f-K3q" secondAttribute="bottom" id="iGJ-Is-q66"/>
@@ -44,6 +47,7 @@
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
+                        <exclude reference="7VK-xI-ZQZ"/>
                         <exclude reference="iGJ-Is-q66"/>
                         <exclude reference="wY9-VP-hkV"/>
                     </mask>

@@ -16,7 +16,7 @@ class CKTextEffectViewController: UIViewController {
     
     @IBOutlet weak var previewFrame: UIImageView!
     @IBOutlet weak var previewFrameHeightConstant: NSLayoutConstraint!
-    @IBOutlet weak var settingsView: UIView!
+    @IBOutlet weak var settingsView: UIStackView!
     @IBOutlet weak var rangeSlider: TTRangeSlider!
     @IBOutlet weak var fontSizeSlider: UISlider!
     @IBOutlet weak var textColorButton: UIButton!

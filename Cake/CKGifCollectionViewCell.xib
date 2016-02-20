@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
@@ -16,35 +15,31 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oq2-ZX-GPS" customClass="FLAnimatedImageView">
                         <rect key="frame" x="0.0" y="0.0" width="185" height="174"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copied" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5e-VK-2wb">
-                        <rect key="frame" x="20" y="69" width="145" height="36"/>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="36" id="Rce-G3-Vkn"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Copied" translatesAutoresizingMaskIntoConstraints="NO" id="cLH-md-6OS">
+                        <rect key="frame" x="30" y="30" width="125" height="114"/>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
                 <constraint firstItem="oq2-ZX-GPS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="359-dJ-Dg5"/>
-                <constraint firstAttribute="trailing" secondItem="s5e-VK-2wb" secondAttribute="trailing" constant="20" id="DOD-V6-th3"/>
+                <constraint firstItem="cLH-md-6OS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="30" id="F9x-vf-rm2"/>
                 <constraint firstItem="oq2-ZX-GPS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="b8t-5k-A3l"/>
+                <constraint firstAttribute="bottom" secondItem="cLH-md-6OS" secondAttribute="bottom" constant="30" id="bma-Nc-VCt"/>
+                <constraint firstItem="cLH-md-6OS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="30" id="clA-TX-cAX"/>
+                <constraint firstAttribute="trailing" secondItem="cLH-md-6OS" secondAttribute="trailing" constant="30" id="dhP-tD-JAd"/>
                 <constraint firstAttribute="trailing" secondItem="oq2-ZX-GPS" secondAttribute="trailing" id="hSE-Ip-4lX"/>
-                <constraint firstItem="s5e-VK-2wb" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="m8h-aD-WNJ"/>
-                <constraint firstItem="s5e-VK-2wb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="snD-cr-6ne"/>
                 <constraint firstAttribute="bottom" secondItem="oq2-ZX-GPS" secondAttribute="bottom" id="vhP-pO-Uik"/>
-                <constraint firstItem="s5e-VK-2wb" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="zgh-yW-eIh"/>
             </constraints>
             <size key="customSize" width="185" height="174"/>
             <connections>
                 <outlet property="animatedImageView" destination="oq2-ZX-GPS" id="Eli-y3-3te"/>
-                <outlet property="copiedLabel" destination="s5e-VK-2wb" id="9Oa-LK-I4F"/>
+                <outlet property="copiedImageView" destination="cLH-md-6OS" id="u3F-GX-5O8"/>
             </connections>
             <point key="canvasLocation" x="340.5" y="407"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="Copied" width="88" height="88"/>
+    </resources>
 </document>

@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import ImageIO
 import MobileCoreServices
+import CoreFoundation
 //import Bolts
 
 class CKGifCameraController: NSObject {
@@ -23,7 +24,8 @@ class CKGifCameraController: NSObject {
     var isFrontCamera: Bool = true
     var shouldTorch: Bool = false
     
-    private var frames: [CGImage]?
+    
+    private var gifWriter: CKGifWriter!
     
     private var recording: Bool = false
     private var paused: Bool = false
@@ -34,7 +36,6 @@ class CKGifCameraController: NSObject {
     
     private var timePoints: [CMTime]!
     private var currentFrame: Int!
-    private var frameCount: Int!
     
     private var captureSession: AVCaptureSession!
     private var frontCameraDevice: AVCaptureDevice!
@@ -54,17 +55,20 @@ class CKGifCameraController: NSObject {
         self.captureSession = AVCaptureSession()
         self.captureSession.sessionPreset = sessionPreset()
         
+        self.videoQueue = dispatch_queue_create("com.cakegifs.VideoQueue", nil)
+        self.gifQueue = dispatch_queue_create("com.cakegifs.GifQueue", nil)
+        
         do {
             try setupSessionInputs()
             try setupSessionOutputs()
             
-            self.frames = [CGImage]()
-            self.currentFrame = 0
-            self.frameCount = self.getTotalFrames()
-            self.timePoints = [CMTime]()
-            let increment = self.duration / Double(frameCount)
             
-            for frameNumber in 0 ..< self.frameCount {
+            self.gifWriter = CKGifWriter()
+            self.currentFrame = 0
+            self.timePoints = [CMTime]()
+            let increment = self.duration / Double(self.getTotalFrames())
+            
+            for frameNumber in 0 ..< self.getTotalFrames() {
                 let seconds: Float64 = Float64(increment) * Float64(frameNumber)
                 let time = CMTimeMakeWithSeconds(seconds, 600)
                 timePoints.append(time)
@@ -80,14 +84,13 @@ class CKGifCameraController: NSObject {
             return false
         }
         
-        self.videoQueue = dispatch_queue_create("com.cakegifs.VideoQueue", nil)
-        self.gifQueue = dispatch_queue_create("com.cakegifs.GifQueue", nil)
+
         
         return true
     }
     
     private func sessionPreset() -> String {
-        return AVCaptureSessionPresetPhoto
+        return AVCaptureSessionPresetiFrame1280x720
     }
     
     private func setupSessionInputs() throws {
@@ -124,7 +127,7 @@ class CKGifCameraController: NSObject {
         
         self.videoDataOutput = AVCaptureVideoDataOutput()
         
-        self.videoDataOutput.setSampleBufferDelegate(self, queue: self.sessionQueue)
+        self.videoDataOutput.setSampleBufferDelegate(self, queue: self.videoQueue)
         
         self.videoDataOutput.alwaysDiscardsLateVideoFrames = true
         
@@ -221,6 +224,26 @@ class CKGifCameraController: NSObject {
             print(error.localizedDescription)
         }
         
+//        if let device = self.activeVideoInput.device {
+//            do {
+//                try! device.lockForConfiguration()
+//                if device.focusPointOfInterestSupported{
+//                    //Add Focus on Point
+////                    device.focusPointOfInterest = Point
+//                    
+//                    
+//                    device.focusMode = AVCaptureFocusMode.AutoFocus
+//                }
+//                
+//                if device.exposurePointOfInterestSupported{
+//                    //Add Exposure on Point
+////                    device.exposurePointOfInterest = Point
+//                    device.exposureMode = AVCaptureExposureMode.AutoExpose
+//                }
+//                device.unlockForConfiguration()
+//            }
+//        }
+        
         if self.shouldTorch {
             
             let seconds = 0.5
@@ -260,7 +283,8 @@ class CKGifCameraController: NSObject {
         self.recording = false
         self.paused = false
         self.currentFrame = 0
-        self.frames = [CGImage]()
+        self.gifWriter = nil
+        self.gifWriter = CKGifWriter()
     }
     
     func stopRecording() {
@@ -268,15 +292,17 @@ class CKGifCameraController: NSObject {
         
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         
-        self.delegate?.controller(self, didFinishRecordingWithFrames: self.frames!, withTotalDuration: self.totalRecordedDuration!.seconds)
-        self.frames = nil
+        self.delegate?.controller(self, didFinishRecordingWithFrames: self.gifWriter.bitmaps, withTotalDuration: self.totalRecordedDuration!.seconds)
         self.totalRecordedDuration = nil
         self.differenceDuration = nil
         self.pausedDuration = CMTime(seconds: 0, preferredTimescale: 600)
         self.recording = false
         self.paused = false
         self.currentFrame = 0
-        self.frames = [CGImage]()
+        
+        
+        self.gifWriter = nil
+        self.gifWriter = CKGifWriter()
     }
     
     func returnedOrientation() -> AVCaptureVideoOrientation {
@@ -311,10 +337,11 @@ class CKGifCameraController: NSObject {
 extension CKGifCameraController : AVCaptureVideoDataOutputSampleBufferDelegate {
 
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!) {
-       
+        
         if (captureOutput == self.videoDataOutput) {
             
             let previewImage = getCroppedPreviewImageFromBuffer(sampleBuffer)
+            self.imageTarget?.setImage(previewImage)
             
             if self.recording {
                 
@@ -330,13 +357,9 @@ extension CKGifCameraController : AVCaptureVideoDataOutputSampleBufferDelegate {
                 print(self.totalRecordedDuration.seconds)
                 
                 if self.totalRecordedDuration >= self.timePoints[self.currentFrame] {
-                 
-                    if let frame = getDownscaleImageMirrored(previewImage) {
-                        self.frames?.append(frame)
-//                        CGImageDestinationAddImage(self.gifDestination, frame, frameProperties as CFDictionaryRef)
-                        print("FRAME: ", self.frames?.count, CMTimeGetSeconds(self.totalRecordedDuration))
-                        delegate?.controller(self, didAppendFrameNumber: (self.frames?.count)!)
-                    }
+            
+                    self.gifWriter.appendFrame(previewImage)
+                    delegate?.controller(self, didAppendFrameNumber: self.gifWriter.frameCount)
                     
                     if (self.timePoints.count - 1) == self.currentFrame {
                         self.stopRecording()
@@ -344,6 +367,7 @@ extension CKGifCameraController : AVCaptureVideoDataOutputSampleBufferDelegate {
                         self.currentFrame = self.currentFrame + 1
                     }
                 }
+                
             } else if self.paused {
                 
                 if self.totalRecordedDuration != nil && self.differenceDuration != nil {
@@ -352,21 +376,13 @@ extension CKGifCameraController : AVCaptureVideoDataOutputSampleBufferDelegate {
                 }
                 
             }
-            
-            if self.activeCamera() == self.frontCameraDevice {
-                
-            } else {
-                
-            }
-            
-            self.imageTarget?.setImage(previewImage)
         }
     }
     
-    // MARK: - Gif Helper Methods
+    // MARK: - Preview Image Methods
     private func getCroppedPreviewImageFromBuffer(buffer: CMSampleBuffer) -> CIImage {
         let imageBuffer: CVPixelBufferRef = CMSampleBufferGetImageBuffer(buffer)!
-        let sourceImage: CIImage = CIImage(CVPixelBuffer: imageBuffer)
+        let sourceImage: CIImage = CIImage(CVPixelBuffer: imageBuffer).copy() as! CIImage
         let croppedSourceImage = sourceImage.imageByCroppingToRect(CGRectMake(0, 0, 720, 720))
         
         let transform: CGAffineTransform!
@@ -380,26 +396,6 @@ extension CKGifCameraController : AVCaptureVideoDataOutputSampleBufferDelegate {
         let correctedImage = croppedSourceImage.imageByApplyingTransform(transform)
         
         return correctedImage
-    }
-    
-    private func getDownscaleImageMirrored(sourceImage: CIImage) -> CGImage? {
-        let filteredImage = sourceImage.imageByApplyingFilter("CIUnsharpMask", withInputParameters: ["inputImage" : sourceImage])
-        let frame: CGImage = CKContextManager.sharedInstance.ciContext.createCGImage(filteredImage, fromRect: filteredImage.extent)
-        let width = 360
-        let height = 360
-        let bitsPerComponent = CGImageGetBitsPerComponent(frame)
-        let bytesPerRow = CGImageGetBytesPerRow(frame)
-        let colorSpace = CGImageGetColorSpace(frame)
-        let bitmapInfo = CGImageGetBitmapInfo(frame)
-        let context = CGBitmapContextCreate(nil, width, height, bitsPerComponent, bytesPerRow, colorSpace, bitmapInfo.rawValue)
-        CGContextSetInterpolationQuality(context, .High)
-        CGContextDrawImage(context, CGRect(origin: CGPointZero, size: CGSize(width: CGFloat(width), height: CGFloat(height))), frame)
-        
-        if let scaledFrame = CGBitmapContextCreateImage(context) {
-            return scaledFrame
-        } else {
-            return nil
-        }
     }
 }
 
