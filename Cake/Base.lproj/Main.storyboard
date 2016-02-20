@@ -340,8 +340,23 @@
                     <view key="view" contentMode="scaleToFill" id="zqU-Ds-JkN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="38c-Py-m9k">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="38c-Py-m9k" firstAttribute="top" secondItem="clS-S9-68e" secondAttribute="bottom" id="9BF-y5-X5A"/>
+                            <constraint firstItem="wBX-U7-F9c" firstAttribute="top" secondItem="38c-Py-m9k" secondAttribute="bottom" id="Or8-6i-Rvn"/>
+                            <constraint firstItem="38c-Py-m9k" firstAttribute="leading" secondItem="zqU-Ds-JkN" secondAttribute="leading" id="X9S-fP-VlV"/>
+                            <constraint firstAttribute="trailing" secondItem="38c-Py-m9k" secondAttribute="trailing" id="nif-rs-ChE"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="38c-Py-m9k" id="sgT-QB-z8l"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GNp-PH-AMz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -418,6 +433,10 @@
                                     <outlet property="delegate" destination="8fG-yi-vsg" id="XQ7-y5-2vc"/>
                                 </connections>
                             </view>
+                            <activityIndicatorView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="i0S-DY-MPm">
+                                <rect key="frame" x="-1" y="0.0" width="376" height="667"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -425,14 +444,18 @@
                             <constraint firstAttribute="trailing" secondItem="7F3-Ac-pEJ" secondAttribute="trailing" id="2QT-Bg-mic"/>
                             <constraint firstItem="7F3-Ac-pEJ" firstAttribute="top" secondItem="gOe-e6-Pzs" secondAttribute="bottom" id="AK3-X9-CGI"/>
                             <constraint firstItem="gOe-e6-Pzs" firstAttribute="top" secondItem="bTG-CF-e8h" secondAttribute="bottom" id="B3G-eg-vZG"/>
+                            <constraint firstItem="i0S-DY-MPm" firstAttribute="centerX" secondItem="AL6-aU-IAO" secondAttribute="centerX" id="HBL-yT-w2G"/>
                             <constraint firstAttribute="trailing" secondItem="EOW-7l-sNt" secondAttribute="trailing" constant="10" id="Jdd-bt-DzB"/>
+                            <constraint firstItem="i0S-DY-MPm" firstAttribute="centerY" secondItem="AL6-aU-IAO" secondAttribute="centerY" id="K3D-02-XBD"/>
                             <constraint firstItem="m9q-4d-Ymg" firstAttribute="top" secondItem="Hcr-0H-yrN" secondAttribute="bottom" constant="8" id="V5f-Md-u8o"/>
                             <constraint firstItem="Hcr-0H-yrN" firstAttribute="top" secondItem="EOW-7l-sNt" secondAttribute="bottom" constant="8" id="YZh-O7-JQ9"/>
                             <constraint firstItem="L62-UJ-ShU" firstAttribute="leading" secondItem="AL6-aU-IAO" secondAttribute="leading" constant="44" id="b0S-Jq-rp0"/>
                             <constraint firstItem="7F3-Ac-pEJ" firstAttribute="height" secondItem="AL6-aU-IAO" secondAttribute="height" multiplier="1/4" id="dDj-TL-GYS"/>
                             <constraint firstItem="7F3-Ac-pEJ" firstAttribute="leading" secondItem="AL6-aU-IAO" secondAttribute="leadingMargin" constant="-20" id="e9A-RP-spX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7F3-Ac-pEJ" secondAttribute="trailing" id="gvn-zd-S3C"/>
+                            <constraint firstItem="i0S-DY-MPm" firstAttribute="height" secondItem="AL6-aU-IAO" secondAttribute="height" id="jib-yw-eUm"/>
                             <constraint firstItem="EOW-7l-sNt" firstAttribute="top" secondItem="L62-UJ-ShU" secondAttribute="bottom" constant="8" id="kIn-ft-gNw"/>
+                            <constraint firstItem="i0S-DY-MPm" firstAttribute="width" secondItem="AL6-aU-IAO" secondAttribute="width" id="lPb-Wf-JYR"/>
                             <constraint firstItem="Hcr-0H-yrN" firstAttribute="centerX" secondItem="AL6-aU-IAO" secondAttribute="centerX" id="lth-C5-vaw"/>
                             <constraint firstItem="7F3-Ac-pEJ" firstAttribute="leading" secondItem="AL6-aU-IAO" secondAttribute="leading" id="lyb-3D-cKK"/>
                             <constraint firstAttribute="trailing" secondItem="L62-UJ-ShU" secondAttribute="trailing" constant="44" id="m0G-E2-IXz"/>
@@ -450,6 +473,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="i0S-DY-MPm" id="tPT-In-Be5"/>
                         <outlet property="carousel" destination="7F3-Ac-pEJ" id="wNU-J8-eBx"/>
                         <outlet property="effectsTableView" destination="QMa-5p-tbh" id="k4U-J1-TI9"/>
                         <outlet property="frameSlider" destination="L62-UJ-ShU" id="Y6r-BY-Dg0"/>

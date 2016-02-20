@@ -12,6 +12,8 @@ import MobileCoreServices
 
 class CKPreviewViewController: UIViewController {
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     var duration: Double!
     var bitmaps: [CGImage]!
     var frames: [[UIImage?]]!
@@ -40,6 +42,7 @@ class CKPreviewViewController: UIViewController {
         layoutCancelButton()
         layoutSaveButton()
         setAnimatedImage()
+        self.activityIndicator.hidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -156,6 +159,10 @@ class CKPreviewViewController: UIViewController {
     }
     
     func createGif() {
+        self.view.addSubview(self.activityIndicator)
+        self.activityIndicator.hidden = false
+        self.activityIndicator.startAnimating()
+        
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         let temporaryFile = (NSTemporaryDirectory() as NSString).stringByAppendingPathComponent("temp")
         let fileOutputURL = NSURL(fileURLWithPath: temporaryFile)
@@ -187,6 +194,8 @@ class CKPreviewViewController: UIViewController {
                     dispatch_async(dispatch_get_main_queue()) {
                         self.dismissViewControllerAnimated(true, completion: { () -> Void in
                             UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                            self.activityIndicator.hidden = true
+                            self.activityIndicator.stopAnimating()
                         })
                     }
                     

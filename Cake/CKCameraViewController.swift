@@ -73,10 +73,10 @@ class CKCameraViewController: UIViewController {
         
         self.view.addSubview(previewView)
         self.view.addSubview(self.recordButtonImageView)
-        // self.cameraController.startSession()
-        // layoutGifsButton()
+         self.cameraController.startSession()
+         layoutGifsButton()
         
-        // showNotificationIfNeeded()
+         showNotificationIfNeeded()
         updateStateLayout(false)
     }
     

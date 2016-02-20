@@ -28,6 +28,7 @@
 		E684914E1C758E8300BDB711 /* CKGifCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68F55611C73F07F0029A086 /* CKGifCollectionViewCell.swift */; };
 		E684914F1C758E8600BDB711 /* CKGifCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E68F55621C73F07F0029A086 /* CKGifCollectionViewCell.xib */; };
 		E68ABC0B1C78F884003BB269 /* CKGifWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68ABC0A1C78F884003BB269 /* CKGifWriter.swift */; };
+		E68ABC0D1C7919FA003BB269 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E68ABC0C1C7919FA003BB269 /* LaunchScreen.storyboard */; };
 		E68F555E1C73ED860029A086 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68F555D1C73ED860029A086 /* Models.swift */; };
 		E68F55601C73EEC30029A086 /* NSDateISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68F555F1C73EEC30029A086 /* NSDateISO8601.swift */; };
 		E68F55631C73F07F0029A086 /* CKGifCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68F55611C73F07F0029A086 /* CKGifCollectionViewCell.swift */; };
@@ -118,6 +119,7 @@
 		E684914A1C758E2900BDB711 /* CakeKeyboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CakeKeyboard.xib; sourceTree = "<group>"; };
 		E68491501C758ED600BDB711 /* CakeKeyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CakeKeyboard.entitlements; sourceTree = "<group>"; };
 		E68ABC0A1C78F884003BB269 /* CKGifWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKGifWriter.swift; sourceTree = "<group>"; };
+		E68ABC0C1C7919FA003BB269 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E68F555D1C73ED860029A086 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		E68F555F1C73EEC30029A086 /* NSDateISO8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateISO8601.swift; sourceTree = "<group>"; };
 		E68F55611C73F07F0029A086 /* CKGifCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKGifCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 				E6BA125E1C7003760075F98D /* Gifs */,
 				E6BA121A1C6FFA520075F98D /* Main.storyboard */,
 				E6BA121D1C6FFA520075F98D /* Assets.xcassets */,
+				E68ABC0C1C7919FA003BB269 /* LaunchScreen.storyboard */,
 				E6BA12221C6FFA520075F98D /* Info.plist */,
 				E68F555B1C73EC950029A086 /* Support */,
 			);
@@ -528,6 +531,7 @@
 				E6366CC51C78184E00A04C8C /* TorchOn.svg in Resources */,
 				E6BA121C1C6FFA520075F98D /* Main.storyboard in Resources */,
 				E6366CC91C781C4200A04C8C /* Check.svg in Resources */,
+				E68ABC0D1C7919FA003BB269 /* LaunchScreen.storyboard in Resources */,
 				E66D61B41C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -932,7 +936,6 @@
 			baseConfigurationReference = 45626D6C9DB427DE86F82331 /* Pods-CakeKeyboard.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = CakeKeyboard/CakeKeyboard.entitlements;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = CakeKeyboard/Info.plist;
@@ -949,7 +952,6 @@
 			baseConfigurationReference = 7F398A49C6C09186E3DBACB8 /* Pods-CakeKeyboard.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = CakeKeyboard/CakeKeyboard.entitlements;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = CakeKeyboard/Info.plist;

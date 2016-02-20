@@ -15,6 +15,8 @@ class CKEditViewController: UIViewController {
     @IBOutlet weak var framesLabel: UILabel!
     @IBOutlet weak var effectsTableView: UITableView!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     var delegate: CKEditViewControllerDelegate?
     var frames: [[UIImage?]]!
     var cleanFrames: [UIImage]!
@@ -35,6 +37,8 @@ class CKEditViewController: UIViewController {
         super.viewWillAppear(animated)
         self.effectsTableView.layoutSubviews()
         self.effectsTableView.reloadData()
+        
+        self.activityIndicator.hidden = true
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -124,13 +128,15 @@ class CKEditViewController: UIViewController {
     
     @IBAction func playButtonPressed(sender: AnyObject) {
         
-        
-        self.dismissViewControllerAnimated(true) { () -> Void in
-            
-        }
+        self.activityIndicator.hidden = false
+        self.activityIndicator.startAnimating()
         
         self.delegate?.willPresentNewFrames(self.frames)
         
+        self.dismissViewControllerAnimated(true) { () -> Void in
+            self.activityIndicator.hidden = true
+            self.activityIndicator.stopAnimating()
+        }
     }
 }
 
