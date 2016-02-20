@@ -9,12 +9,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>FLAnimatedImage.xcscheme</key>
+		<key>Color-Picker-for-iOS.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>GMStepper.xcscheme</key>
+		<key>FLAnimatedImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -47,17 +47,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>041E1A314C0B399A2A6A365B503E08AE</key>
+		<key>04E6CE56DE294EAAD5E40E70C44468DB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>29F72D57035F85F202C1414080A27B53</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>55A4221732D1F85FBA70F6AADA537052</key>
+		<key>47C48E4BA10D35E972CD2F0BF1C9AB87</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,17 +62,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8F79BDD12B39DF071D367E61CF56AD06</key>
+		<key>A530D9A127EB6C9C9F2902829BA4EF67</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B88DE54D52C533F25CA8F4ED75C2464C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D5C39A384113396D5D6A52DBD43367E5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>D97D12CAD0B4C25A28E92BFC85CADA05</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F8878A29900A25BDE9E2342E03BC8EAB</key>
 		<dict>
 			<key>primary</key>
 			<true/>

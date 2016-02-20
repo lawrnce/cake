@@ -16,15 +16,20 @@ class CKTextEffectViewController: UIViewController {
     
     @IBOutlet weak var previewFrame: UIImageView!
     @IBOutlet weak var previewFrameHeightConstant: NSLayoutConstraint!
+    @IBOutlet weak var settingsView: UIView!
     @IBOutlet weak var rangeSlider: TTRangeSlider!
+    @IBOutlet weak var fontSizeSlider: UISlider!
+    @IBOutlet weak var textColorButton: UIButton!
     
-    var delegate: CKAddTextViewControllerDelegate?
+    var colorPickerDataSource: CKColorPickerViewController!
+    
+    var delegate: CKTextViewControllerDelegate?
     var frames: [UIImage]!
     var textFrame: UIImage!
     var startFrameIndex: Int!
     var endFrameIndex: Int!
-    
     var textView: UITextView!
+    
     private var isFirstTextInput: Bool = true
     private var textViewLastLocation: CGPoint!
     private var textViewPanGestureRecognizer: UIPanGestureRecognizer!
@@ -35,6 +40,8 @@ class CKTextEffectViewController: UIViewController {
         setupPreviewFrame()
         setupRangeSlider()
         setupTextView()
+        setupTextColorButton()
+        setupFontSizeSlider()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -55,6 +62,20 @@ class CKTextEffectViewController: UIViewController {
     }
     
     // MARK: - Loading Setup
+    private func setupFontSizeSlider() {
+        self.fontSizeSlider.minimumValue = 20
+        self.fontSizeSlider.maximumValue = 160
+        self.fontSizeSlider.value = 72
+    }
+    
+    private func setupTextColorButton() {
+        self.textColorButton.backgroundColor = UIColor.whiteColor()
+        self.textColorButton.layer.borderColor = UIColor.lightGrayColor().CGColor
+        self.textColorButton.layer.borderWidth = 1.0 / UIScreen.mainScreen().scale 
+        self.textColorButton.layer.cornerRadius = 4.0
+        self.textColorButton.clipsToBounds = true
+    }
+    
     private func setupTextView() {
         self.textView = UITextView(frame: CGRectMake(0, 0, kSCREEN_WIDTH - 8, 100))
         let textViewCenter = CGPointMake(kSCREEN_WIDTH / 2.0, kSCREEN_WIDTH / 2.0)
@@ -108,14 +129,17 @@ class CKTextEffectViewController: UIViewController {
         self.endFrameIndex = self.frames.count - 1
     }
     
-    // MARK: - Setup Layouts
+    
+    
+    // MARK: - Layout Subviews
     private func setupTextViewLayout() {
-        self.view.addSubview(self.textView)
+        self.view.insertSubview(self.textView, belowSubview: self.settingsView)
         if self.textView.text == "" {
             self.textView.becomeFirstResponder()
         }
     }
     
+    // MARK: - Processes
     private func allowTextViewGestures(allow: Bool) {
         if allow {
             self.textView.addGestureRecognizer(self.textViewPanGestureRecognizer)
@@ -181,34 +205,57 @@ class CKTextEffectViewController: UIViewController {
     // MARK: - Text View Methods
     func panTextView(sender: UIPanGestureRecognizer) {
         let translation = sender.translationInView(self.view)
+
+        print(translation)
+        
         let topEdgeOffest = sender.view!.center.y + translation.y - sender.view!.frame.height / 2.0
         let bottomEdgeOffset = sender.view!.center.y + translation.y + sender.view!.frame.height / 2.0
         let leftEdgeOffset = sender.view!.center.x + translation.x - sender.view!.frame.width / 2.0
         let rightEdgeOffest = sender.view!.center.x + translation.x + sender.view!.frame.width / 2.0
         
-        if bottomEdgeOffset < kSCREEN_WIDTH && topEdgeOffest > 0 && leftEdgeOffset > 0 && rightEdgeOffest < kSCREEN_WIDTH {
-           sender.view!.center = CGPoint(x: sender.view!.center.x + translation.x, y: sender.view!.center.y + translation.y)
+        
+        if bottomEdgeOffset < kSCREEN_WIDTH + sender.view!.frame.size.height / 2.0 &&
+            topEdgeOffest > -sender.view!.frame.size.height / 2.0 &&
+            leftEdgeOffset > -sender.view!.frame.size.width / 2.0 &&
+            rightEdgeOffest < kSCREEN_WIDTH + sender.view!.frame.size.width / 2.0 {
+                
+                
+            sender.view!.center = CGPoint(x: sender.view!.center.x + translation.x, y: sender.view!.center.y + translation.y)
+                
+                
+        } else if (bottomEdgeOffset >= kSCREEN_WIDTH + sender.view!.frame.size.height / 2.0 && translation.y < 0 ) {
+
+            sender.view!.center = CGPoint(x: sender.view!.center.x + translation.x, y: sender.view!.center.y + translation.y)
+            
+            
+        } else if (rightEdgeOffest >= kSCREEN_WIDTH + sender.view!.frame.size.width / 2.0  && translation.x < 0 ) {
+            
+            sender.view!.center = CGPoint(x: sender.view!.center.x + translation.x, y: sender.view!.center.y + translation.y)
+            
+            
         }
+        
+        
         sender.setTranslation(CGPointZero, inView: self.view)
     }
     
-    func pinchTextView(sender: UIPinchGestureRecognizer) {
-        
-        print(sender.scale)
-        
-        let topEdgeOffest = sender.view!.frame.origin.y
-        let bottomEdgeOffset = sender.view!.frame.height + sender.view!.frame.origin.y
-        let leftEdgeOffset = sender.view!.frame.origin.x
-        let rightEdgeOffest = sender.view!.frame.width + sender.view!.frame.origin.x
-        
-        if topEdgeOffest > 0 && bottomEdgeOffset < kSCREEN_WIDTH && leftEdgeOffset > 0 && rightEdgeOffest < kSCREEN_WIDTH && sender.scale > 1 {
-            self.textView.transform = CGAffineTransformScale(self.textView.transform, sender.scale, sender.scale)
-        } else if sender.scale < 1 && sender.view?.frame.height > 100 {
-            self.textView.transform = CGAffineTransformScale(self.textView.transform, sender.scale, sender.scale)
-        }
-        
-        sender.scale = 1
-    }
+//    func pinchTextView(sender: UIPinchGestureRecognizer) {
+//        
+//        print(sender.scale)
+//        
+//        let topEdgeOffest = sender.view!.frame.origin.y
+//        let bottomEdgeOffset = sender.view!.frame.height + sender.view!.frame.origin.y
+//        let leftEdgeOffset = sender.view!.frame.origin.x
+//        let rightEdgeOffest = sender.view!.frame.width + sender.view!.frame.origin.x
+//        
+//        if topEdgeOffest > 0 && bottomEdgeOffset < kSCREEN_WIDTH && leftEdgeOffset > 0 && rightEdgeOffest < kSCREEN_WIDTH && sender.scale > 1 {
+//            self.textView.transform = CGAffineTransformScale(self.textView.transform, sender.scale, sender.scale)
+//        } else if sender.scale < 1 && sender.view?.frame.height > 100 {
+//            self.textView.transform = CGAffineTransformScale(self.textView.transform, sender.scale, sender.scale)
+//        }
+//        
+//        sender.scale = 1
+//    }
     
     // MARK: - Frame Methods
     private func updateFrame(index: Int) {
@@ -226,10 +273,38 @@ class CKTextEffectViewController: UIViewController {
     }
     
     
-    // MARK: - Button Actions
+    // MARK: - Actions
+    @IBAction func fontSizeSliderValueChanged(sender: UISlider) {
+        self.textView.font = UIFont(name: "Helvetica-Bold", size: CGFloat(sender.value))
+        let string: NSString = self.textView.text as NSString
+        var size = string.sizeWithAttributes([NSFontAttributeName: (self.textView.font)!])
+        size.width = size.width + 20
+        self.textView.frame.size = size
+        self.textView.setNeedsLayout()
+    }
+    
+    @IBAction func colorButtonPressed(sender: AnyObject) {
+        if self.colorPickerDataSource == nil {
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            self.colorPickerDataSource  = storyboard.instantiateViewControllerWithIdentifier("ColorPickerVC") as! CKColorPickerViewController
+            self.colorPickerDataSource.delegate = self
+        }
+        
+        self.presentViewController(self.colorPickerDataSource, animated: true) { () -> Void in
+            
+        }
+    }
+    
     @IBAction func doneButtonPressed(sender: AnyObject) {
-        self.textFrame = createTextFrame()
-        self.delegate?.addTextController(self, addTextFrame: self.textFrame!, fromStartFrameIndex: self.startFrameIndex!, toEndFrame: self.endFrameIndex!)
+        
+        if self.textView.text != "" {
+            self.textFrame = createTextFrame()
+            self.delegate?.updateTextController(self, addTextFrame: self.textFrame!, fromStartFrameIndex: self.startFrameIndex!, toEndFrame: self.endFrameIndex!)
+        } else {
+            self.delegate?.removeTextController(self)
+        }
+        
         self.dismissViewControllerAnimated(true) { () -> Void in
             
         }
@@ -258,12 +333,15 @@ extension CKTextEffectViewController: UITextViewDelegate {
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         
         if(text == "\n") {
-            if textView.text == "" {
+            
+            let whitespaceSet = NSCharacterSet.whitespaceCharacterSet()
+            let trimmedText = textView.text.stringByTrimmingCharactersInSet(whitespaceSet)
+            textView.text = trimmedText
+            if trimmedText == "" {
                 textView.frame.size = CGSizeMake(textView.frame.height, textView.frame.height)
             } else {
                 textView.sizeToFit()
             }
-            
             
             if self.isFirstTextInput {
                 self.isFirstTextInput = false
@@ -288,7 +366,15 @@ extension CKTextEffectViewController: UITextViewDelegate {
     }
 }
 
-protocol CKAddTextViewControllerDelegate {
-    
-    func addTextController(controller: CKTextEffectViewController, addTextFrame textFrame: UIImage, fromStartFrameIndex startFrameIndex: Int, toEndFrame endFrameIndex: Int)
+extension CKTextEffectViewController: CKColorPickerViewDelegate {
+    func updateColor(color: UIColor) {
+        self.textColorButton.backgroundColor = color
+        self.textView.textColor = color
+        setNeedsFocusUpdate()
+    }
+}
+
+protocol CKTextViewControllerDelegate {
+    func removeTextController(controller: CKTextEffectViewController)
+    func updateTextController(controller: CKTextEffectViewController, addTextFrame textFrame: UIImage, fromStartFrameIndex startFrameIndex: Int, toEndFrame endFrameIndex: Int)
 }

@@ -25,14 +25,29 @@
                         <color key="textColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="swa-Y8-DVm">
+                        <rect key="frame" x="0.0" y="36" width="44" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="44" id="HXt-LJ-UuH"/>
+                            <constraint firstAttribute="height" constant="44" id="NNs-pb-JCC"/>
+                        </constraints>
+                        <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="-8" maxY="0.0"/>
+                        <state key="normal" image="DeleteEffectButton">
+                            <color key="titleColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="deleteButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hK4-0z-5Lv"/>
+                        </connections>
+                    </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oVc-EI-G3h">
-                        <rect key="frame" x="266" y="36" width="54" height="44"/>
+                        <rect key="frame" x="276" y="36" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="Os9-bz-oNy"/>
                             <constraint firstAttribute="height" constant="44" id="fMZ-oN-2I8"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="gEb-6H-b4z"/>
-                            <constraint firstAttribute="width" constant="54" id="ktf-JJ-dib"/>
+                            <constraint firstAttribute="width" constant="44" id="ktf-JJ-dib"/>
                         </constraints>
+                        <inset key="imageEdgeInsets" minX="-8" minY="0.0" maxX="8" maxY="0.0"/>
                         <state key="normal" image="OpenEffectButton">
                             <color key="titleColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
@@ -44,19 +59,6 @@
                         </variation>
                         <connections>
                             <action selector="openButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bOV-v9-KJ6"/>
-                        </connections>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="swa-Y8-DVm">
-                        <rect key="frame" x="0.0" y="36" width="54" height="44"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="54" id="HXt-LJ-UuH"/>
-                            <constraint firstAttribute="height" constant="44" id="NNs-pb-JCC"/>
-                        </constraints>
-                        <state key="normal" image="DeleteEffectButton">
-                            <color key="titleColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                        </state>
-                        <connections>
-                            <action selector="deleteButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hK4-0z-5Lv"/>
                         </connections>
                     </button>
                 </subviews>

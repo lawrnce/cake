@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'FF9591DC71A3D25DE2BF6B96'
-               BlueprintName = 'GMStepper'
+               BlueprintIdentifier = 'C9C5AA3903B981AFCBE9077A'
+               BlueprintName = 'Color-Picker-for-iOS'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'GMStepper.framework'>
+               BuildableName = 'Color_Picker_for_iOS.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

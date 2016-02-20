@@ -24,8 +24,6 @@ class LTColorPanningButton: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.maskedView.center = CGPointMake(self.frame.width / 2.0, self.frame.height / 2.0)
-        
-//        self.maskedView.layoutSubviews()
         self.addSubview(self.maskedView)
         self.addSubview(self.button)
     }
@@ -36,6 +34,16 @@ class LTColorPanningButton: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setMaskWithSVGName(name: String) {
+        let backgroundColor = self.maskedView.backgroundColor
+        let foregroundColor = self.maskedView.animatedView.backgroundColor
+        self.maskedView.removeFromSuperview()
+        self.maskedView = LTMaskedView(SVGname: name)
+        self.maskedView.backgroundColor = backgroundColor
+        self.maskedView.animatedView.backgroundColor = foregroundColor
+        layoutSubviews()
     }
     
     func change(foregroundColor: UIColor, andBackgroundColor backgroundColor: UIColor) {

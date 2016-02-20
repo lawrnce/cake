@@ -30,6 +30,7 @@ class CKEditViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.effectsTableView.layoutSubviews()
         self.effectsTableView.reloadData()
     }
     
@@ -95,7 +96,6 @@ class CKEditViewController: UIViewController {
         textEffectVC.delegate = self
         self.textEffects.append(textEffectVC)
         
-        // append row of nils for effect
         for (index, _) in self.frames.enumerate() {
             self.frames[index].append(nil)
         }
@@ -106,6 +106,7 @@ class CKEditViewController: UIViewController {
     }
     
     private func removeEffect(effectIndex: Int) {
+        
         // remove frames for index
         for (index, _) in self.frames.enumerate() {
             self.frames[index].removeAtIndex(effectIndex + 1)
@@ -127,9 +128,13 @@ class CKEditViewController: UIViewController {
 }
 
 // MARK: - Text Effect Delegate
-extension CKEditViewController: CKAddTextViewControllerDelegate {
+extension CKEditViewController: CKTextViewControllerDelegate {
     
-    func addTextController(controller: CKTextEffectViewController, addTextFrame textFrame: UIImage, fromStartFrameIndex startFrameIndex: Int, toEndFrame endFrameIndex: Int) {
+    func removeTextController(controller: CKTextEffectViewController) {
+        self.removeEffect(getEffectIndexForEffectViewController(controller))
+    }
+    
+    func updateTextController(controller: CKTextEffectViewController, addTextFrame textFrame: UIImage, fromStartFrameIndex startFrameIndex: Int, toEndFrame endFrameIndex: Int) {
         
         // Determine text effect index
         var effectIndex: Int?
@@ -138,7 +143,7 @@ extension CKEditViewController: CKAddTextViewControllerDelegate {
                 effectIndex = self.textEffects.indexOf(effectVC)! + 1
             }
         }
-        
+
         // clear old frames
         for (index, _) in self.frames.enumerate() {
             if self.frames[index][effectIndex!] != nil {

@@ -263,7 +263,7 @@ class CKCameraViewController: UIViewController {
     
     private func setupTorchButton() {
         self.torchButton = LTColorPanningButton(frame: CGRectMake(0, 0, 64, 64),
-            withSVG: "Torch",
+            withSVG: "TorchOff",
             withForegroundColor: kRecordingTint,
             withBackgroundColor: UIColor.whiteColor())
         self.torchButton.addTarget(self, action: Selector("torchButtonPressed:"), forControlEvents: .TouchUpInside)
@@ -323,17 +323,24 @@ class CKCameraViewController: UIViewController {
     }
     
     func cameraToggleButtonPressed(sender: AnyObject) {
-        self.cameraController.toggleCamera()
-        print("Toggle Camera")
         
+        if self.cameraController.isFrontCamera == false {
+            self.torchButton.setMaskWithSVGName("TorchOff")
+        } else if self.cameraController.isFrontCamera && self.cameraController.shouldTorch {
+            self.torchButton.setMaskWithSVGName("TorchOn")
+        }
+
+        self.cameraController.toggleCamera()
+    
+        print("Toggle Camera")
     }
     
     func torchButtonPressed(sender: AnyObject) {
         
         if self.cameraController.toggleTorch(forceKill: false) == true {
-            self.torchButton.change(kRecordingTint, andBackgroundColor: UIColor.whiteColor())
+            self.torchButton.setMaskWithSVGName("TorchOn")
         } else {
-            self.torchButton.change(kRecordingTint, andBackgroundColor: UIColor.whiteColor())
+            self.torchButton.setMaskWithSVGName("TorchOff")
         }
        
         print("Toggle Torch")

@@ -9,9 +9,8 @@ target 'Cake' do
 	pod 'FLAnimatedImage', '~> 1.0'
 	pod “TTRangeSlider”
 	pod 'Bolts'
-
-pod "GMStepper"
-
+	pod "Color-Picker-for-iOS", "~> 2.0"
+	
 	#pod 'Alamofire', '~> 3.2'
 	#pod 'AlamofireImage', '~> 2.0'
 

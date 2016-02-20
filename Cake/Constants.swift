@@ -11,7 +11,7 @@ import AVFoundation
 import UIKit
 
 // MARK: - Color
-//let kRecordingTint = UIColor(rgba: "#FF6699")
+let kLightTint = UIColor(rgba: "#FF6699")
 let kRecordingTint = UIColor(rgba: "#CC3366")
 
 let kTorchSelectedTint = UIColor(rgba: "#FF0099")

@@ -20,11 +20,13 @@ class CKGifCameraController: NSObject {
     var duration: Double = kDEFAULT_CAMERA_DURATION
     var framesPerSecond: Int = kDEFAULT_FRAMES_PER_SECOND
     
+    var isFrontCamera: Bool = true
+    var shouldTorch: Bool = false
+    
     private var frames: [CGImage]?
     
     private var recording: Bool = false
     private var paused: Bool = false
-    private var shouldTorch: Bool = false
     
     private var differenceDuration: CMTime!
     private var pausedDuration: CMTime = CMTime(seconds: 0, preferredTimescale: 600)
@@ -200,10 +202,12 @@ class CKGifCameraController: NSObject {
             if self.activeVideoInput.device == self.frontCameraDevice {
                 self.activeVideoInput = nil
                 self.activeVideoInput = try AVCaptureDeviceInput(device: self.backCameraDevice)
+                self.isFrontCamera = false
                 
             } else if self.activeVideoInput.device == self.backCameraDevice {
                 self.activeVideoInput = nil
                 self.activeVideoInput = try AVCaptureDeviceInput(device: self.frontCameraDevice)
+                self.isFrontCamera = true
             }
             
             if self.captureSession.canAddInput(self.activeVideoInput) {
@@ -215,6 +219,17 @@ class CKGifCameraController: NSObject {
             self.videoDataOutput.connectionWithMediaType(AVMediaTypeVideo).videoOrientation = .Portrait
         } catch let error as NSError {
             print(error.localizedDescription)
+        }
+        
+        if self.shouldTorch {
+            
+            let seconds = 0.5
+            let delay = seconds * Double(NSEC_PER_SEC)  // nanoseconds per seconds
+            let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                self.toggleTorch(forceKill: false)
+                
+            })
         }
     }
     
