@@ -70,13 +70,15 @@ class CKCameraViewController: UIViewController {
         self.finishRecordingButton.resetColor()
         self.cameraToggleButton.resetColor()
         self.torchButton.resetColor()
+        self.torchButton.setMaskWithSVGName("TorchOff")
         
         self.view.addSubview(previewView)
         self.view.addSubview(self.recordButtonImageView)
-         self.cameraController.startSession()
-         layoutGifsButton()
         
-         showNotificationIfNeeded()
+        self.cameraController.startSession()
+        layoutGifsButton()
+        showNotificationIfNeeded()
+        
         updateStateLayout(false)
     }
     
@@ -306,7 +308,24 @@ class CKCameraViewController: UIViewController {
         self.view.addSubview(self.notificationButton)
     }
     
-    // MARK: - Button Actions
+    // MARK: - Actions
+    func flashScreen() {
+        
+        UIView.animateWithDuration(0.08, animations: { () -> Void in
+            self.previewView.alpha = 0.5
+            }) { (done) -> Void in
+                
+                UIView.animateWithDuration(0.08, animations: { () -> Void in
+                    
+                    self.previewView.alpha = 1.0
+                    
+                    }, completion: { (done) -> Void in
+                      
+                })
+                
+        }
+    }
+    
     func recordPressed(gestureRecognizer: CKRecordGestureRecognizer) {
         
         if gestureRecognizer.state == .Began {
@@ -419,6 +438,7 @@ extension CKCameraViewController: CKGifCameraControllerDelegate {
                 self.updateStateLayout(true)
             }
             
+            self.flashScreen()
             
             UIView.animateWithDuration(Double(kDEFAULT_CAMERA_DURATION / Double(kDEFAULT_TOTAL_FRAMES))) { () -> Void in
                 self.timeViewWidthConstraint.constant = xOffset

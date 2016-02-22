@@ -109,6 +109,7 @@ class CKPreviewViewController: UIViewController {
     // MARK: - Frame methods
     private func setAnimatedImage() {
         renderFrames()
+        self.duration = 1.0 / Double(kDEFAULT_FRAMES_PER_SECOND) * Double(self.renderedFrames.count)
         let animatedImage = UIImage.animatedImageWithImages(self.renderedFrames, duration: self.duration)
         self.animatedImageView.image = animatedImage
         self.animatedImageView.startAnimating()
@@ -118,12 +119,10 @@ class CKPreviewViewController: UIViewController {
         self.frames = [[UIImage?]]()
         for cgImage in self.bitmaps {
             var frameArray = [UIImage?]()
-            let image = UIImage(CGImage: cgImage, scale: 2.0, orientation: .Up)
+            let image = UIImage(CGImage: cgImage, scale: 1.0, orientation: .Up)
             
             frameArray.append(image)
             self.frames.append(frameArray)
-            
-            print(image.size)
         }
     }
     
@@ -196,6 +195,13 @@ class CKPreviewViewController: UIViewController {
                             UIApplication.sharedApplication().endIgnoringInteractionEvents()
                             self.activityIndicator.hidden = true
                             self.activityIndicator.stopAnimating()
+                            
+                            
+                            // var imgData: NSData = UIImagePNGRepresentation(image)
+                            // you can also replace UIImageJPEGRepresentation with UIImagePNGRepresentation.
+                            
+//                            let data = NSData(contentsOfURL: fileOutputURL)
+//                            print("size of image in KB: %f ", Double((data?.length)!) / 1024.0)
                         })
                     }
                     
