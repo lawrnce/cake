@@ -9,11 +9,14 @@
 import UIKit
 import RealmSwift
 import FLAnimatedImage
+import Mixpanel
 
 let kCollectionViewHeightPotrait = CGFloat(182.0)
 let kCollectionViewHeightLandscape = CGFloat(118.0)
 
 class KeyboardViewController: UIInputViewController {
+    
+    var mixpanel: Mixpanel!
     
     @IBOutlet weak var allowAccessView: UIView!
     @IBOutlet weak var bottomBarView: UIView!
@@ -35,6 +38,13 @@ class KeyboardViewController: UIInputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadInterface()
+        loadMixPanel()
+    }
+    
+    // MARK: - Mix Panel
+    private func loadMixPanel() {
+        self.mixpanel = Mixpanel.sharedInstanceWithToken(MixpanelToken)
+        self.mixpanel.track("Keyboard Opened")
     }
     
     // MARK: - Init Subviews
@@ -207,6 +217,8 @@ extension KeyboardViewController: UICollectionViewDataSource {
         
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CKGifCollectionViewCell
         cell.animateCopiedImageView()
+        
+        self.mixpanel.track("Gif Copied")
         
 //        let center = cell.center
 //        let transform = CGAffineTransformMakeScale(1.0, 1.0)

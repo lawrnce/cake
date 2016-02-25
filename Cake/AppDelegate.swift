@@ -8,12 +8,13 @@
 
 import UIKit
 import RealmSwift
+import Mixpanel
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var mixpanel: Mixpanel!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -24,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         config.path = kSHARED_CONTAINER?.URLByAppendingPathComponent("default.realm").path
         // Set this as the configuration used for the default Realm
         Realm.Configuration.defaultConfiguration = config
+        
+        self.mixpanel = Mixpanel.sharedInstanceWithToken(MixpanelToken)
+        
         return true
     }
 

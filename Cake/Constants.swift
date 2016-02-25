@@ -10,6 +10,9 @@ import Foundation
 import AVFoundation
 import UIKit
 
+// MARK: - Tokens
+let MixpanelToken = "6df839eb7575f19a5f85be73dc0d6a28"
+
 // MARK: - Color
 let kLightTint = UIColor(rgba: "#FF6699")
 let kRecordingTint = UIColor(rgba: "#CC3366")

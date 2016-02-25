@@ -10,7 +10,8 @@ target 'Cake' do
 	pod “TTRangeSlider”
 	pod 'Bolts'
 	pod "Color-Picker-for-iOS", "~> 2.0"
-	
+	pod 'Mixpanel'	
+
 	#pod 'Alamofire', '~> 3.2'
 	#pod 'AlamofireImage', '~> 2.0'
 
@@ -37,6 +38,7 @@ end
 target 'CakeKeyboard' do
 	pod 'RealmSwift'
 	pod 'FLAnimatedImage', '~> 1.0'
+	pod "Mixpanel/AppExtension"
 end
 
 

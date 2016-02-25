@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Mixpanel
 
 class CKCameraViewController: UIViewController {
+    
+    var mixpanel: Mixpanel!
 
     @IBOutlet weak var recordingView: UIView!
     @IBOutlet weak var timerView: UIView!
@@ -40,6 +43,7 @@ class CKCameraViewController: UIViewController {
         setupTorchButton()
         setupNotifications()
         setupTimerView()
+        self.mixpanel = Mixpanel.sharedInstanceWithToken(MixpanelToken)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -381,6 +385,7 @@ class CKCameraViewController: UIViewController {
     
     func showGifs(sender: AnyObject) {
         self.performSegueWithIdentifier("ShowGifs", sender: nil)
+        self.mixpanel.track("Gifs Opened")
     }
     
     func showNotification(sender: AnyObject) {

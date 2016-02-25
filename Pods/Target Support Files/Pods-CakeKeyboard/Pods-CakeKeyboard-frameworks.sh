@@ -85,11 +85,13 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-CakeKeyboard/FLAnimatedImage.framework"
+  install_framework "Pods-CakeKeyboard/Mixpanel.framework"
   install_framework "Pods-CakeKeyboard/Realm.framework"
   install_framework "Pods-CakeKeyboard/RealmSwift.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-CakeKeyboard/FLAnimatedImage.framework"
+  install_framework "Pods-CakeKeyboard/Mixpanel.framework"
   install_framework "Pods-CakeKeyboard/Realm.framework"
   install_framework "Pods-CakeKeyboard/RealmSwift.framework"
 fi

@@ -4,3 +4,4 @@
 
 #import "iCarousel.h"
 #import "PocketSVG.h"
+#import "Mixpanel/Mixpanel.h"

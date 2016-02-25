@@ -19,7 +19,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Cake-Mixpanel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Cake.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-CakeKeyboard-Mixpanel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -47,12 +57,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>04E6CE56DE294EAAD5E40E70C44468DB</key>
+		<key>4FB860BDBFD50B7D6BF08D3D20A06028</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>47C48E4BA10D35E972CD2F0BF1C9AB87</key>
+		<key>55CE0A140FECCB1EA485E908C1A656B8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -62,12 +72,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A530D9A127EB6C9C9F2902829BA4EF67</key>
+		<key>A61CA23C7185D29184912987FCA046DE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B88DE54D52C533F25CA8F4ED75C2464C</key>
+		<key>C72D947311FC6F2F3E115289812AEF99</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,7 +87,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D97D12CAD0B4C25A28E92BFC85CADA05</key>
+		<key>DE0287FFCC98849F3FA5A25B173E8A76</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DF54A231C9984DEC6755BB23FA4D0C24</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E9E6431BE372388E010CB86492100F26</key>
 		<dict>
 			<key>primary</key>
 			<true/>
