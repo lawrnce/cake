@@ -855,7 +855,7 @@
 				CODE_SIGN_ENTITLEMENTS = Cake/Cake.entitlements;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Cake/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cakegifs.Cake;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -876,7 +876,7 @@
 				"CODE_SIGN_ENTITLEMENTS[sdk=iphoneos*]" = Cake/Cake.entitlements;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Cake/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cakegifs.Cake;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -941,7 +941,7 @@
 				CODE_SIGN_ENTITLEMENTS = CakeKeyboard/CakeKeyboard.entitlements;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = CakeKeyboard/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cakegifs.Cake.CakeKeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -957,7 +957,7 @@
 				CODE_SIGN_ENTITLEMENTS = CakeKeyboard/CakeKeyboard.entitlements;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = CakeKeyboard/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cakegifs.Cake.CakeKeyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";

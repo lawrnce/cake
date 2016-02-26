@@ -61,7 +61,7 @@ class CKCameraViewController: UIViewController {
         
         if self.timeViewWidthConstraint.constant != CGFloat(0.0) {
             self.timeViewWidthConstraint.constant = CGFloat(0.0)
-            setNeedsFocusUpdate()
+            self.view.layoutIfNeeded()
         }
         
         self.recordingView.addSubview(self.cancelRecordingButton)
@@ -171,7 +171,7 @@ class CKCameraViewController: UIViewController {
             self.gifsButton.hidden = true
         }
         self.view.insertSubview(self.timerView, belowSubview: self.recordingView)
-        setNeedsFocusUpdate()
+        self.view.layoutIfNeeded()
     }
     
     func showNotificationIfNeeded() {
@@ -455,7 +455,7 @@ extension CKCameraViewController: CKGifCameraControllerDelegate {
                 self.torchButton.updateColorOffest(xOffset)
                 
                 self.view.insertSubview(self.timerView, belowSubview: self.recordingView)
-                self.setNeedsFocusUpdate()
+                self.view.layoutIfNeeded()
             }
         }
     }

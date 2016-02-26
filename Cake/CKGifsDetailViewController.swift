@@ -68,7 +68,7 @@ class CKGifsDetailViewController: UIViewController {
     // MARK: - Layout
     private func layoutAnimatedImageView() {
         animatedImageViewHeightConstraint.constant = kSCREEN_WIDTH
-        setNeedsFocusUpdate()
+        self.view.layoutIfNeeded()
     }
     
     private func layoutCopyButton() {

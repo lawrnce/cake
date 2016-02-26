@@ -104,12 +104,12 @@ class KeyboardViewController: UIInputViewController {
             self.collectionView.frame.size.height = kCollectionViewHeightLandscape
             self.collectionView.reloadData()
             self.allowAccessView.frame.size.height = kCollectionViewHeightLandscape
-            self.allowAccessView.setNeedsFocusUpdate()
+            self.allowAccessView.layoutIfNeeded()
         } else if toInterfaceOrientation == .Portrait || toInterfaceOrientation == .PortraitUpsideDown {
             self.collectionView.frame.size.height = kCollectionViewHeightPotrait
             self.collectionView.reloadData()
             self.allowAccessView.frame.size.height = kCollectionViewHeightPotrait
-            self.allowAccessView.setNeedsFocusUpdate()
+            self.allowAccessView.layoutIfNeeded()
         }
     }
     

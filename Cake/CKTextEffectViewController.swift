@@ -16,7 +16,10 @@ class CKTextEffectViewController: UIViewController {
     
     @IBOutlet weak var previewFrame: UIImageView!
     @IBOutlet weak var previewFrameHeightConstant: NSLayoutConstraint!
-    @IBOutlet weak var settingsView: UIStackView!
+    
+    
+    @IBOutlet weak var settingsView: UIView!
+    
     @IBOutlet weak var rangeSlider: TTRangeSlider!
     @IBOutlet weak var fontSizeSlider: UISlider!
     @IBOutlet weak var textColorButton: UIButton!
@@ -112,9 +115,9 @@ class CKTextEffectViewController: UIViewController {
     }
     private func setupPreviewFrame() {
         self.previewFrameHeightConstant.constant = kSCREEN_WIDTH
-        setNeedsFocusUpdate()
         self.previewFrame.image = self.frames.first
         self.previewFrame.contentMode = .ScaleAspectFit
+        self.previewFrame.layoutIfNeeded()
     }
     private func setupRangeSlider() {
         self.rangeSlider.minValue = 1.0
@@ -152,12 +155,12 @@ class CKTextEffectViewController: UIViewController {
     
     func keyboardWillShow(notification: NSNotification) {
         self.rangeSlider.hidden = true
-        setNeedsFocusUpdate()
+        self.view.layoutIfNeeded()
     }
     
     func keyboardWillHide(notification: NSNotification) {
         self.rangeSlider.hidden = false
-        setNeedsFocusUpdate()
+        self.view.layoutIfNeeded()
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -370,7 +373,7 @@ extension CKTextEffectViewController: CKColorPickerViewDelegate {
     func updateColor(color: UIColor) {
         self.textColorButton.backgroundColor = color
         self.textView.textColor = color
-        setNeedsFocusUpdate()
+        self.view.layoutIfNeeded()
     }
 }
 
