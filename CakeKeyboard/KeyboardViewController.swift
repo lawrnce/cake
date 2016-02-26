@@ -16,29 +16,18 @@ let kCollectionViewHeightLandscape = CGFloat(118.0)
 
 class KeyboardViewController: UIInputViewController {
     
-    var mixpanel: Mixpanel!
-    
     @IBOutlet weak var allowAccessView: UIView!
     @IBOutlet weak var bottomBarView: UIView!
     @IBOutlet var nextKeyboardButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
-    
     @IBOutlet weak var collectionView: UICollectionView!
-    
     @IBOutlet weak var layout: UICollectionViewFlowLayout!
     
-    
+    var mixpanel: Mixpanel!
     var keyboard: UIView!
-    
     var heightConstraint:NSLayoutConstraint!
     
     private var gifs: [GIF]!
-    
-    override func updateViewConstraints() {
-        super.updateViewConstraints()
-        
-        // Add custom view sizing constraints here
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,23 +35,52 @@ class KeyboardViewController: UIInputViewController {
         loadMixPanel()
     }
     
-    // MARK: - Mix Panel
-    private func loadMixPanel() {
-        self.mixpanel = Mixpanel.sharedInstanceWithToken(MixpanelToken)
-        self.mixpanel.track("Keyboard Opened")
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if isOpenAccessGranted() {
+            var config = Realm.Configuration()
+            // Use the shared container
+            config.path = kSHARED_CONTAINER?.URLByAppendingPathComponent("default.realm").path
+            // Set this as the configuration used for the default Realm
+            Realm.Configuration.defaultConfiguration = config
+            loadGifs()
+            self.collectionView.hidden = false
+            self.allowAccessView.hidden = true
+        } else {
+            // Show allow text
+            self.collectionView.hidden = true
+            self.allowAccessView.hidden = false
+        }
+        self.inputView?.layoutIfNeeded()
+        self.keyboard.layoutIfNeeded()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        inputView?.addConstraint(heightConstraint)
     }
     
     // MARK: - Constraints
+    override func updateViewConstraints() {
+        super.updateViewConstraints()
+        // Add custom view sizing constraints here
+        // Add custom view sizing constraints here
+        if (inputView?.frame.size.width == 0 ||
+            inputView?.frame.size.height == 0) {
+                return
+        }
+        setUpHeightConstraint()
+    }
+    
     func setUpHeightConstraint() {
-        
         let customHeight: CGFloat!
-        
-        if self.view.frame.size.width < 420.0 {
+        if self.inputView?.frame.size.width < 420.0 {
+            print("Portrait")
             customHeight = UIScreen.mainScreen().bounds.height / 2.75
         } else {
-            customHeight = UIScreen.mainScreen().bounds.height / 2
+            print("Landscape")
+            customHeight = UIScreen.mainScreen().bounds.height / 2.0
         }
-        
         if heightConstraint == nil {
             heightConstraint = NSLayoutConstraint(
                 item: self.view,
@@ -74,21 +92,24 @@ class KeyboardViewController: UIInputViewController {
                 constant: customHeight
             )
             heightConstraint.priority = UILayoutPriority(999)
-            
-            view.addConstraint(heightConstraint)
         } else {
             heightConstraint.constant = customHeight
         }
+        self.collectionView.reloadData()
     }
     
+    // MARK: - Mix Panel
+    private func loadMixPanel() {
+        self.mixpanel = Mixpanel.sharedInstanceWithToken(MixpanelToken)
+        self.mixpanel.track("Keyboard Opened")
+    }
+
     // MARK: - Init Subviews
     private func loadInterface() {
         let cakeKeyboardNib = UINib(nibName: "CakeKeyboard", bundle: nil)
         self.keyboard = cakeKeyboardNib.instantiateWithOwner(self, options: nil)[0] as! UIView
         self.keyboard.frame = view.frame
-        
-        view.addSubview(self.keyboard)
-        view.backgroundColor = self.keyboard.backgroundColor
+        inputView?.addSubview(self.keyboard)
         nextKeyboardButton.addTarget(self, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
         setupCollectionView()
         setupBottomBarView()
@@ -98,7 +119,6 @@ class KeyboardViewController: UIInputViewController {
         self.bottomBarView.layer.shadowOpacity = 0.6
         self.bottomBarView.layer.shadowRadius = 1.0
         self.bottomBarView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        
         self.keyboard.addSubview(bottomBarView)
     }
     
@@ -110,70 +130,9 @@ class KeyboardViewController: UIInputViewController {
         self.keyboard.addSubview(self.collectionView)
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        if isOpenAccessGranted() {
-            var config = Realm.Configuration()
-            // Use the shared container
-            config.path = kSHARED_CONTAINER?.URLByAppendingPathComponent("default.realm").path
-            // Set this as the configuration used for the default Realm
-            Realm.Configuration.defaultConfiguration = config
-            
-            
-            
-            self.layout.itemSize = CGSize(width: self.collectionView.frame.height, height: self.collectionView.frame.height)
-            loadGifs()
-            self.collectionView.hidden = false
-            self.allowAccessView.hidden = true
-        } else {
-            // Show allow text
-            self.collectionView.hidden = true
-            self.allowAccessView.hidden = false
-        }
-        setUpHeightConstraint()
-        
-        self.view.layoutIfNeeded()
-        self.keyboard.layoutIfNeeded()
-        
-        
-    }
-    
+    // MARK: - State Methods
     private func isOpenAccessGranted() -> Bool {
         return UIPasteboard.generalPasteboard().isKindOfClass(UIPasteboard)
-    }
-    
-    
-    // MARK: - Orientation
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        
-        if size.width < 420.0 {
-            self.heightConstraint.constant = UIScreen.mainScreen().bounds.height / 2.75
-            print("\nCONSTRAINT: ", UIScreen.mainScreen().bounds.height / 2.75 )
-            self.view.updateConstraints()
-            self.view.layoutSubviews()
-//            self.collectionView.layoutSubviews()
-//            self.collectionView.reloadData()
-        } else {
-            self.heightConstraint.constant = UIScreen.mainScreen().bounds.height / 2
-            
-            print("\nCONSTRAINT: ", UIScreen.mainScreen().bounds.height / 2 )
-            
-            self.view.updateConstraints()
-            self.view.layoutSubviews()
-//            self.collectionView.layoutSubviews()
-//            self.collectionView.reloadData()
-        }
-        
-        self.layout.itemSize = CGSize(width: self.collectionView.frame.height, height: self.collectionView.frame.height)
-        
-        print("SIZE: ", size)
-        print("COLLECTION!!!!!: ", self.collectionView.frame)
-        print("COLLECTION SIZEEEEEEE: ", self.layout.itemSize, "\n")
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-
     }
     
     private func loadGifs() {
@@ -190,7 +149,6 @@ class KeyboardViewController: UIInputViewController {
             })
         }
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -291,40 +249,33 @@ extension KeyboardViewController: UICollectionViewDataSource {
     
 }
 
-//extension KeyboardViewController: UICollectionViewDelegateFlowLayout {
-//    
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-//        return UIEdgeInsetsZero
-//    }
-//    
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-//        return 0.0
-//    }
-//    
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-//        return 0.0
-//    }
-//    
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-//        return CGSizeZero
-//    }
-//    
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-//        return CGSizeZero
-//    }
-//    
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-//        
-//        print("View Frame: ", self.view.frame)
-//        print("Keyboard Frame: ", self.keyboard.frame)
-//        print("Collection Frame: ", collectionView.frame)
-//        print("Collection Content Size: ", collectionView.contentSize)
-//        print("Bottom bar: ", self.bottomBarView.frame)
-//
-//        
-//        return CGSize(width: collectionView.frame.height, height: collectionView.frame.height)
-//    }
-//}
+extension KeyboardViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        return UIEdgeInsetsZero
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 0.0
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 0.0
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSizeZero
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSizeZero
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+        return CGSize(width: collectionView.frame.height, height: collectionView.frame.height)
+    }
+}
 
 
 extension KeyboardViewController: UICollectionViewDelegate {
