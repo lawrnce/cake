@@ -178,6 +178,10 @@ class CKPreviewViewController: UIViewController {
         CGImageDestinationSetProperties(destination!, fileProperties as CFDictionaryRef)
         
         for frame in self.renderedFrames! {
+//            if let downscaledFrame = getDownscaledImage(frame) {
+//                 CGImageDestinationAddImage(destination!, downscaledFrame, frameProperties as CFDictionaryRef)
+//            }
+            
             CGImageDestinationAddImage(destination!, frame.CGImage!, frameProperties as CFDictionaryRef)
         }
         
@@ -190,18 +194,13 @@ class CKPreviewViewController: UIViewController {
                 CKBackendManager.sharedInstance.saveGif(fileOutputURL, withDuration: self.duration, completionBlock: { (taks) -> AnyObject? in
                     
                     NSNotificationCenter.defaultCenter().postNotificationName(GIF_FINALIZED, object: fileOutputURL)
+                    
+                    
                     dispatch_async(dispatch_get_main_queue()) {
                         self.dismissViewControllerAnimated(true, completion: { () -> Void in
                             UIApplication.sharedApplication().endIgnoringInteractionEvents()
                             self.activityIndicator.hidden = true
                             self.activityIndicator.stopAnimating()
-                            
-                            
-                            // var imgData: NSData = UIImagePNGRepresentation(image)
-                            // you can also replace UIImageJPEGRepresentation with UIImagePNGRepresentation.
-                            
-//                            let data = NSData(contentsOfURL: fileOutputURL)
-//                            print("size of image in KB: %f ", Double((data?.length)!) / 1024.0)
                         })
                     }
                     
@@ -209,6 +208,24 @@ class CKPreviewViewController: UIViewController {
                 })
             }
             
+        }
+    }
+    
+    func getDownscaledImage(image: UIImage) -> CGImage? {
+        let frame: CGImage = image.CGImage!
+        let width = 360
+        let height = 360
+        let bitsPerComponent = CGImageGetBitsPerComponent(frame)
+        let bytesPerRow = CGImageGetBytesPerRow(frame)
+        let colorSpace = CGImageGetColorSpace(frame)
+        let bitmapInfo = CGImageGetBitmapInfo(frame)
+        let context = CGBitmapContextCreate(nil, width, height, bitsPerComponent, bytesPerRow, colorSpace, bitmapInfo.rawValue)
+        CGContextSetInterpolationQuality(context, .High)
+        CGContextDrawImage(context, CGRect(origin: CGPointZero, size: CGSize(width: CGFloat(width), height: CGFloat(height))), frame)
+        if let scaledFrame = CGBitmapContextCreateImage(context) {
+            return scaledFrame
+        } else {
+            return nil
         }
     }
 

@@ -56,8 +56,8 @@ class CKGifWriter: NSObject {
     private func getDownscaleImage(sourceImage: CIImage) -> CGImage? {
         let filteredImage = sourceImage.imageByApplyingFilter("CIUnsharpMask", withInputParameters: ["inputImage" : sourceImage])
         let frame: CGImage = CKContextManager.sharedInstance.ciContext.createCGImage(filteredImage, fromRect: filteredImage.extent)
-        let width = 360
-        let height = 360
+        let width = 320
+        let height = 320
         let bitsPerComponent = CGImageGetBitsPerComponent(frame)
         let bytesPerRow = CGImageGetBytesPerRow(frame)
         let colorSpace = CGImageGetColorSpace(frame)

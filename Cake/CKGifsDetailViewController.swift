@@ -28,6 +28,9 @@ class CKGifsDetailViewController: UIViewController {
         setupCopyButton()
         setupDeleteButton()
         setupCopiedImageView()
+        let data = NSData(contentsOfURL: gifURL)
+        print("\nImage in MB: ", Double((data?.length)!) / 1024.0 * 0.001)
+        print("Size: ", self.animatedImageView.animatedImage.size)
     }
 
     override func viewWillAppear(animated: Bool) {
