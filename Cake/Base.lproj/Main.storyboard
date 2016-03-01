@@ -124,6 +124,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Myi-xh-oy1">
+                        <barButtonItem key="leftBarButtonItem" title="More" id="Mpd-Re-k6D">
+                            <connections>
+                                <action selector="moreButtonPressed:" destination="oFa-z2-DOZ" id="AhC-eK-htT"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="8b3-OX-kz4">
                             <connections>
                                 <action selector="doneButtonPressed:" destination="oFa-z2-DOZ" id="3UH-Ul-tYY"/>
@@ -392,17 +397,22 @@
                                 </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hcr-0H-yrN">
-                                <rect key="frame" x="157" y="597" width="62" height="62"/>
+                                <rect key="frame" x="158" y="607" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="nzC-nM-sZ4"/>
+                                    <constraint firstAttribute="width" constant="60" id="snF-UI-6RB"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="PlayButtonNormal"/>
                                 <connections>
                                     <action selector="playButtonPressed:" destination="8fG-yi-vsg" eventType="touchUpInside" id="wza-lW-4jY"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EOW-7l-sNt" customClass="CKDashedBorder" customModule="Cake" customModuleProvider="target">
-                                <rect key="frame" x="10" y="303" width="355" height="286"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EOW-7l-sNt" customClass="CKDashedBorder" customModule="Cake" customModuleProvider="target">
+                                <rect key="frame" x="10" y="303" width="355" height="336"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QMa-5p-tbh">
-                                        <rect key="frame" x="0.0" y="0.0" width="355" height="286"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QMa-5p-tbh">
+                                        <rect key="frame" x="0.0" y="0.0" width="355" height="336"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="dataSource" destination="8fG-yi-vsg" id="8Pg-Xr-cH0"/>
@@ -448,8 +458,8 @@
                             <constraint firstItem="i0S-DY-MPm" firstAttribute="centerX" secondItem="AL6-aU-IAO" secondAttribute="centerX" id="HBL-yT-w2G"/>
                             <constraint firstAttribute="trailing" secondItem="EOW-7l-sNt" secondAttribute="trailing" constant="10" id="Jdd-bt-DzB"/>
                             <constraint firstItem="i0S-DY-MPm" firstAttribute="centerY" secondItem="AL6-aU-IAO" secondAttribute="centerY" id="K3D-02-XBD"/>
-                            <constraint firstItem="m9q-4d-Ymg" firstAttribute="top" secondItem="Hcr-0H-yrN" secondAttribute="bottom" constant="8" id="V5f-Md-u8o"/>
-                            <constraint firstItem="Hcr-0H-yrN" firstAttribute="top" secondItem="EOW-7l-sNt" secondAttribute="bottom" constant="8" id="YZh-O7-JQ9"/>
+                            <constraint firstItem="m9q-4d-Ymg" firstAttribute="top" secondItem="Hcr-0H-yrN" secondAttribute="bottom" id="V5f-Md-u8o"/>
+                            <constraint firstItem="Hcr-0H-yrN" firstAttribute="top" secondItem="EOW-7l-sNt" secondAttribute="bottom" id="YZh-O7-JQ9"/>
                             <constraint firstItem="L62-UJ-ShU" firstAttribute="leading" secondItem="AL6-aU-IAO" secondAttribute="leading" constant="44" id="b0S-Jq-rp0"/>
                             <constraint firstItem="7F3-Ac-pEJ" firstAttribute="height" secondItem="AL6-aU-IAO" secondAttribute="height" multiplier="1/4" id="dDj-TL-GYS"/>
                             <constraint firstItem="7F3-Ac-pEJ" firstAttribute="leading" secondItem="AL6-aU-IAO" secondAttribute="leadingMargin" constant="-20" id="e9A-RP-spX"/>
@@ -607,6 +617,6 @@
     <resources>
         <image name="CopiedLarge" width="150" height="150"/>
         <image name="DoneButton" width="24" height="20"/>
-        <image name="PlayButtonNormal" width="62" height="62"/>
+        <image name="PlayButtonNormal" width="33" height="42"/>
     </resources>
 </document>

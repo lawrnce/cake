@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import FLAnimatedImage
+import MessageUI
 
 class CKGifsViewController: UIViewController {
 
@@ -68,6 +69,26 @@ class CKGifsViewController: UIViewController {
         }
     }
 
+    // MARK: - Actions
+    @IBAction func moreButtonPressed(sender: AnyObject) {
+        let moreMenu = UIAlertController(title: nil, message: "More", preferredStyle: .ActionSheet)
+        
+        let feedback = UIAlertAction(title: "Send Feedback", style: .Default, handler:
+            {
+                (alert: UIAlertAction!) -> Void in
+                self.sendEmailButtonTapped()
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler:
+            {
+                (alert: UIAlertAction!) -> Void in
+                print("Cancelled")
+        })
+        
+        moreMenu.addAction(feedback)
+        moreMenu.addAction(cancelAction)
+        self.presentViewController(moreMenu, animated: true, completion: nil)
+    }
     
     @IBAction func doneButtonPressed(sender: AnyObject) {
         
@@ -75,7 +96,39 @@ class CKGifsViewController: UIViewController {
             
         }
     }
+}
+
+extension CKGifsViewController: MFMailComposeViewControllerDelegate {
+    // MARK: - Feedback Methods
+    func sendEmailButtonTapped() {
+        let mailComposeViewController = configuredMailComposeViewController()
+        if MFMailComposeViewController.canSendMail() {
+            self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+        } else {
+            self.showSendMailErrorAlert()
+        }
+    }
     
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
+        
+        mailComposerVC.setToRecipients(["contact@cakegifs.com"])
+        mailComposerVC.setSubject("Feedback")
+        mailComposerVC.setMessageBody("Hello Cake,\n\t", isHTML: false)
+        
+        return mailComposerVC
+    }
+    
+    func showSendMailErrorAlert() {
+        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
+        sendMailErrorAlert.show()
+    }
+    
+    // MARK: MFMailComposeViewControllerDelegate Method
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
 }
 
 extension CKGifsViewController: UICollectionViewDataSource {

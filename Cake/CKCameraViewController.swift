@@ -307,7 +307,7 @@ class CKCameraViewController: UIViewController {
     }
     
     private func layoutNotificationsButton() {
-        let notificationButtonCenter = CGPointMake(kSCREEN_WIDTH - ((kSCREEN_WIDTH / 2.0 + self.recordButtonImageView.frame.width / 2.0) + kSCREEN_WIDTH) / 2.0, self.recordButtonImageView.center.y + 2)
+        let notificationButtonCenter = CGPointMake(kSCREEN_WIDTH - ((kSCREEN_WIDTH / 2.0 + self.recordButtonImageView.frame.width / 2.0) + kSCREEN_WIDTH) / 2.0, self.recordButtonImageView.center.y)
         self.notificationButton.center = notificationButtonCenter
         self.view.addSubview(self.notificationButton)
     }
@@ -385,7 +385,7 @@ class CKCameraViewController: UIViewController {
     
     func showGifs(sender: AnyObject) {
         self.performSegueWithIdentifier("ShowGifs", sender: nil)
-        self.mixpanel.track("Gifs Opened")
+//        self.mixpanel.track("Gifs Opened")
     }
     
     func showNotification(sender: AnyObject) {

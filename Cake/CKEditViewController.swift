@@ -131,11 +131,32 @@ class CKEditViewController: UIViewController {
         self.activityIndicator.hidden = false
         self.activityIndicator.startAnimating()
         
-        self.delegate?.willPresentNewFrames(self.frames)
+        let text = getTextFromFrames()
+        
+        self.delegate?.willPresentNewFrames(self.frames, withText: text)
         
         self.dismissViewControllerAnimated(true) { () -> Void in
             self.activityIndicator.hidden = true
             self.activityIndicator.stopAnimating()
+        }
+    }
+    
+    private func getTextFromFrames() -> String? {
+        var text: String = ""
+        
+        if self.textEffects == nil  ||  self.textEffects.isEmpty  {
+            return nil
+        }
+        
+        for textEffect in self.textEffects {
+            text.appendContentsOf(textEffect.textView.text)
+            text.appendContentsOf(" \\ ")
+        }
+        
+        if text.isEmpty {
+            return nil
+        } else {
+           return text
         }
     }
 }
@@ -363,6 +384,6 @@ extension CKEditViewController: iCarouselDataSource, iCarouselDelegate {
 }
 
 protocol CKEditViewControllerDelegate {
-    func willPresentNewFrames(frames: [[UIImage?]])
+    func willPresentNewFrames(frames: [[UIImage?]], withText text: String?)
 }
 

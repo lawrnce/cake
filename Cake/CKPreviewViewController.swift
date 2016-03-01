@@ -9,9 +9,12 @@
 import UIKit
 import ImageIO
 import MobileCoreServices
+import Mixpanel
 
 class CKPreviewViewController: UIViewController {
 
+    var mixpanel: Mixpanel!
+    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var duration: Double!
@@ -19,6 +22,7 @@ class CKPreviewViewController: UIViewController {
     var frames: [[UIImage?]]!
     
     private var editViewController: CKEditViewController!
+    private var text: String!
     
     private var renderedFrames: [UIImage]!
     private var animatedImageView: UIImageView!
@@ -33,6 +37,8 @@ class CKPreviewViewController: UIViewController {
         setupEditButton()
         setupCancelButton()
         setupSaveButton()
+        self.mixpanel = Mixpanel.sharedInstanceWithToken(MixpanelToken)
+        self.text = ""
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -196,6 +202,17 @@ class CKPreviewViewController: UIViewController {
                     NSNotificationCenter.defaultCenter().postNotificationName(GIF_FINALIZED, object: fileOutputURL)
                     
                     
+                    self.mixpanel.track("Gif Created",
+                        properties: ["Duration": self.duration,
+                                    "Frames": self.frames.count,
+                                    "Text": self.text])
+                    
+                    // Notify Mixpanel
+                    print("Duration: ", self.duration)
+                    print("Frames: ", self.frames.count)
+                    print("Text: ", self.text)
+                    
+                    
                     dispatch_async(dispatch_get_main_queue()) {
                         self.dismissViewControllerAnimated(true, completion: { () -> Void in
                             UIApplication.sharedApplication().endIgnoringInteractionEvents()
@@ -268,8 +285,13 @@ class CKPreviewViewController: UIViewController {
 }
 
 extension CKPreviewViewController: CKEditViewControllerDelegate {
-    func willPresentNewFrames(frames: [[UIImage?]]) {
+    func willPresentNewFrames(frames: [[UIImage?]], withText text: String?) {
         self.frames = frames
+        
+        if text != nil {
+            self.text = text
+        }
+        
         setAnimatedImage()
     }
 }

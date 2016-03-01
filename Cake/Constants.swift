@@ -37,15 +37,18 @@ enum CameraState {
     case Recording
 }
 
-let kDEFAULT_CAMERA_DURATION = 4.0
+let kDEFAULT_CAMERA_DURATION = 3.0
 let kDEFAULT_FRAMES_PER_SECOND = 16
 let kDEFAULT_TOTAL_FRAMES = Int(Int(kDEFAULT_CAMERA_DURATION) * Int(kDEFAULT_FRAMES_PER_SECOND))
 let kTimerIncrementWidth = CGFloat(Double(kSCREEN_WIDTH) / Double(kDEFAULT_TOTAL_FRAMES))
 
-// MARK: - Gifs View Controller
-let kDetailButtonSpace = (kSCREEN_WIDTH - 2.0 * 88.0) / 3.0
+// MARK: - Gifs Detail View Controller
+let kDetailButtonWidth = CGFloat(60.0)
+let kDetailButtonSpace = (kSCREEN_WIDTH - 2.0 * kDetailButtonWidth) / 3.0
+let kDetailButtonCenterY = (kSCREEN_WIDTH + kSCREEN_HEIGHT - 64.0) / 2.0
 let kCopyButtonFrameOriginX = kDetailButtonSpace
-let kDeleteButtonFrameOriginX = kDetailButtonSpace + 88.0 + kDetailButtonSpace
+//let kActionButtonFrameOriginX = kCopyButtonFrameOriginX + kDetailButtonWidth + kDetailButtonSpace
+let kDeleteButtonFrameOriginX = kCopyButtonFrameOriginX + kDetailButtonWidth + kDetailButtonSpace
 
 // MARK: - Notification
 let GIF_FINALIZED = "com.cakegifs.GifFinalized"

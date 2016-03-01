@@ -9,8 +9,11 @@
 import UIKit
 import FLAnimatedImage
 import RealmSwift
+import Mixpanel
 
 class CKGifsDetailViewController: UIViewController {
+    
+    var mixpanel: Mixpanel!
 
     @IBOutlet weak var animatedImageView: FLAnimatedImageView!
     @IBOutlet weak var animatedImageViewHeightConstraint: NSLayoutConstraint!
@@ -20,23 +23,30 @@ class CKGifsDetailViewController: UIViewController {
     var gifId: String!
     
     private var copyButton: UIButton!
+    private var actionButton: UIButton!
     private var deleteButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAnimatedImageView()
         setupCopyButton()
+//        setupActionButton()
         setupDeleteButton()
         setupCopiedImageView()
         let data = NSData(contentsOfURL: gifURL)
+        
+        self.mixpanel = Mixpanel.sharedInstanceWithToken(MixpanelToken)
+        
         print("\nImage in MB: ", Double((data?.length)!) / 1024.0 * 0.001)
         print("Size: ", self.animatedImageView.animatedImage.size)
+        
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         layoutAnimatedImageView()
         layoutCopyButton()
+//        layoutActionButton()
         layoutDeleteButton()
     }
     
@@ -52,13 +62,19 @@ class CKGifsDetailViewController: UIViewController {
     }
     
     private func setupCopyButton() {
-        self.copyButton = UIButton(frame: CGRect(x: 0, y: 0, width: 88, height: 88))
+        self.copyButton = UIButton(frame: CGRect(x: 0, y: 0, width: kDetailButtonWidth, height: kDetailButtonWidth))
         self.copyButton.addTarget(self, action: Selector("copyButtonPressed:"), forControlEvents: .TouchUpInside)
         self.copyButton.setImage(UIImage(named: "CopyButtonNormal"), forState: .Normal)
     }
     
+//    private func setupActionButton() {
+//        self.actionButton = UIButton(frame: CGRect(x: 0, y: 0, width: kDetailButtonWidth, height: kDetailButtonWidth))
+//        self.actionButton.addTarget(self, action: Selector("actionButtonPressed:"), forControlEvents: .TouchUpInside)
+//        self.actionButton.setImage(UIImage(named: "ActionButtonNormal"), forState: .Normal)
+//    }
+    
     private func setupDeleteButton() {
-        self.deleteButton = UIButton(frame: CGRect(x: 0, y: 0, width: 88, height: 88))
+        self.deleteButton = UIButton(frame: CGRect(x: 0, y: 0, width: kDetailButtonWidth, height: kDetailButtonWidth))
         self.deleteButton.addTarget(self, action: Selector("deleteButtonPressed:"), forControlEvents: .TouchUpInside)
         self.deleteButton.setImage(UIImage(named: "DeleteButtonNormal"), forState: .Normal)
     }
@@ -76,13 +92,19 @@ class CKGifsDetailViewController: UIViewController {
     
     private func layoutCopyButton() {
         self.copyButton.frame.origin.x = kCopyButtonFrameOriginX
-        self.copyButton.center.y = (kSCREEN_WIDTH + kSCREEN_HEIGHT - 64.0) / 2.0
+        self.copyButton.center.y = kDetailButtonCenterY
         self.view.addSubview(self.copyButton)
     }
     
+//    private func layoutActionButton() {
+//        self.actionButton.frame.origin.x = kActionButtonFrameOriginX
+//        self.actionButton.center.y = kDetailButtonCenterY
+//        self.view.addSubview(self.actionButton)
+//    }
+    
     private func layoutDeleteButton() {
         self.deleteButton.frame.origin.x = kDeleteButtonFrameOriginX
-        self.deleteButton.center.y = (kSCREEN_WIDTH + kSCREEN_HEIGHT - 64.0) / 2.0
+        self.deleteButton.center.y = kDetailButtonCenterY
         self.view.addSubview(self.deleteButton)
     }
 
@@ -110,7 +132,33 @@ class CKGifsDetailViewController: UIViewController {
         let gifData = NSData(contentsOfURL: gifURL)!
         UIPasteboard.generalPasteboard().setData(gifData, forPasteboardType: "com.compuserve.gif")
         animateCopyImageView()
+        
+        self.mixpanel.track("Gif Copied From App")
     }
+    
+//    func actionButtonPressed(sender: UIButton) {
+//        
+//        let gifData = NSData(contentsOfURL: gifURL)!
+//        UIPasteboard.generalPasteboard().setData(gifData, forPasteboardType: "com.compuserve.gif")
+//        let data = UIPasteboard.generalPasteboard().dataForPasteboardType("com.compuserve.gif")
+//        
+//        
+//        
+//        let activityViewController = UIActivityViewController(activityItems: [gifURL], applicationActivities: nil)
+//
+//        activityViewController.excludedActivityTypes =  [
+//            UIActivityTypePrint,
+//            UIActivityTypeAssignToContact,
+//            UIActivityTypeAddToReadingList,
+//            UIActivityTypePostToVimeo,
+//            UIActivityTypePostToTencentWeibo
+//        ]
+//        
+//        self.presentViewController(activityViewController,
+//            animated: true,
+//            completion: nil)
+//        
+//    }
     
     func deleteButtonPressed(sender: UIButton) {
         let alert = UIAlertController(title: "Garbage", message: "Permanately delete this gif?", preferredStyle: UIAlertControllerStyle.Alert)
