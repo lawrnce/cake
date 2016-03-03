@@ -71,6 +71,7 @@
                         <outlet property="timerView" destination="4uA-2N-wMf" id="09R-U0-cEF"/>
                         <segue destination="5Ug-BE-N4O" kind="show" identifier="ShowGifs" id="9fi-LL-nie"/>
                         <segue destination="IaI-0F-RkQ" kind="show" identifier="ShowPreview" id="QWs-NR-iPV"/>
+                        <segue destination="P1Y-E2-Va1" kind="show" identifier="ShowCloud" id="UcS-m3-iiG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -144,7 +145,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lhf-VM-yn6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="771.5" y="1277.5"/>
+            <point key="canvasLocation" x="2046.5" y="1331.5"/>
         </scene>
         <!--Gifs Detail View Controller-->
         <scene sceneID="COl-ZM-vmR">
@@ -197,7 +198,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c9U-rg-Lmu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1244.5" y="1277.5"/>
+            <point key="canvasLocation" x="2519.5" y="1331.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="m6Q-Au-94r">
@@ -217,7 +218,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WPk-SE-7n5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="308.5" y="1277.5"/>
+            <point key="canvasLocation" x="1583.5" y="1331.5"/>
         </scene>
         <!--Text Effect View Controller-->
         <scene sceneID="78O-ze-O93">
@@ -612,6 +613,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I3e-Jx-0aT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2206.5" y="483.5"/>
+        </scene>
+        <!--Cloud-->
+        <scene sceneID="ceG-eL-m2I">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Cloud" id="P1Y-E2-Va1" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7dF-oh-HDu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="308" y="1053"/>
         </scene>
     </scenes>
     <resources>

@@ -141,6 +141,11 @@ class CKPreviewViewController: UIViewController {
         for frameArray in self.frames {
             if frameArray.count > 1 {
                 let image = combineImages(frameArray)
+                
+                // TESTING
+                let data = UIImagePNGRepresentation(image)
+                print("Frame in MB: ", Double((data?.length)!) / 1024.0 * 0.001)
+                
                 self.renderedFrames.append(image)
             } else {
                 self.renderedFrames.append(frameArray.first!!)

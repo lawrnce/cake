@@ -8,6 +8,7 @@
 
 import UIKit
 import Mixpanel
+import AVFoundation
 
 class CKCameraViewController: UIViewController {
     
@@ -25,6 +26,7 @@ class CKCameraViewController: UIViewController {
     private var finishRecordingButton: LTColorPanningButton!
     
     private var previewView: CKPreviewView!
+    private var openSettingsButton: UIButton!
     private var recordButtonImageView: UIImageView!
     private var gifsButton: UIButton!
     private var notificationButton: UIButton!
@@ -33,7 +35,6 @@ class CKCameraViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupCameraController()
         setupPreviewView()
         setupRecordButtonImageView()
         setupGifsButton()
@@ -79,7 +80,8 @@ class CKCameraViewController: UIViewController {
         self.view.addSubview(previewView)
         self.view.addSubview(self.recordButtonImageView)
         
-        self.cameraController.startSession()
+        checkCameraAuthorizationStatus()
+        
         layoutGifsButton()
         showNotificationIfNeeded()
         
@@ -97,6 +99,7 @@ class CKCameraViewController: UIViewController {
     
     func willEnterForeground(notification: NSNotification) {
         showNotificationIfNeeded()
+        checkCameraAuthorizationStatus()
     }
     
     override func didReceiveMemoryWarning() {
@@ -113,6 +116,77 @@ class CKCameraViewController: UIViewController {
     }
 
     // MARK: - State Managerment
+    private func checkCameraAuthorizationStatus() {
+        
+        let authStatus = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
+        
+        switch authStatus {
+        
+        case .Authorized:
+            setCameraAuthorizedState(true)
+            setupCameraController()
+            self.cameraController.imageTarget = self.previewView
+            self.cameraController.startSession()
+        case .Denied:
+            if self.cameraController != nil {
+                self.cameraController = nil
+            }
+            setCameraAuthorizedState(false)
+        case .NotDetermined:
+            setupCameraController()
+            checkCameraAuthorizationStatus()
+        default:
+            if self.cameraController != nil {
+                self.cameraController = nil
+            }
+            setCameraAuthorizedState(false)
+        }
+    }
+    
+    private func setCameraAuthorizedState(state: Bool) {
+        self.recordButtonImageView.userInteractionEnabled = state
+        self.cameraToggleButton.userInteractionEnabled = state
+        self.torchButton.userInteractionEnabled = state
+        
+        if state == false {
+            self.previewView.backgroundColor = UIColor.redColor()
+            
+            print("Preview Frame: ", self.previewView.frame)
+            
+            if self.openSettingsButton == nil {
+                self.openSettingsButton = UIButton(frame: CGRect(x: 0, y: 0, width: kSCREEN_WIDTH - 80.0, height: 44.0))
+                self.openSettingsButton.backgroundColor = kRecordingTint
+                self.openSettingsButton.layer.cornerRadius = 4.0
+                self.openSettingsButton.clipsToBounds = true
+                self.openSettingsButton.setTitle("Allow Camera Access", forState: .Normal)
+                self.openSettingsButton.addTarget(self, action: Selector("openSettingsButtonPressed:"), forControlEvents: .TouchUpInside)
+//                self.openSettingsButton.titleLabel?.font = UIFont(name: "Helvetica-Bold", size: 24.0)
+                self.openSettingsButton.center = self.previewView.center
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.view.addSubview(self.openSettingsButton)
+                    print("Settings Frame: ", self.openSettingsButton.frame)
+                })
+                
+            }
+        } else if state == true {
+            
+            if self.openSettingsButton != nil {
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.openSettingsButton.removeFromSuperview()
+                })
+                
+                self.openSettingsButton = nil
+            }
+        }
+        
+    }
+    
+    func openSettingsButtonPressed(sender: UIButton) {
+        UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+    }
+    
     private func updateStateLayout(animated: Bool) {
         if self.state == .Idle {
             
@@ -196,6 +270,10 @@ class CKCameraViewController: UIViewController {
     // MARK: - Init Subviews
     private func setupCameraController() {
         // Setup Camera Controller
+        if self.cameraController != nil {
+            return
+        }
+        
         self.cameraController = CKGifCameraController()
         
         do {
@@ -204,12 +282,14 @@ class CKCameraViewController: UIViewController {
             }
         }
         catch CKCameraError.FailedToAddInput {
+            self.cameraController = nil
             
         }
         catch CKCameraError.FailedToAddOutput {
-            
+            self.cameraController = nil
         }
         catch let error as NSError {
+            self.cameraController = nil
             print(error.localizedDescription)
         }
     }
@@ -218,7 +298,7 @@ class CKCameraViewController: UIViewController {
         let eaglContext = CKContextManager.sharedInstance.eaglContext
         self.previewView = CKPreviewView(frame: CGRectMake(0, 64.0, kSCREEN_WIDTH, kSCREEN_WIDTH), context: eaglContext)
         self.previewView.coreImageContext = CKContextManager.sharedInstance.ciContext
-        self.cameraController.imageTarget = self.previewView
+        
     }
     
     private func setupRecordButtonImageView() {
