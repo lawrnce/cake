@@ -52,6 +52,8 @@ let kDeleteButtonFrameOriginX = kCopyButtonFrameOriginX + kDetailButtonWidth + k
 
 // MARK: - Notification
 let GIF_FINALIZED = "com.cakegifs.GifFinalized"
+let ShowOriginalDetail = "com.cakegifs.ShowOriginalDetail"
+let ShowMashUpDetail = "com.cakegifs.ShowMashUpDetail"
 
 // MARK: - Reuse Identifier
 let editCollectionCellIdentifier = "editCollectionCellIdentifier"

@@ -45,6 +45,13 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rym-ct-zSA">
+                                <rect key="frame" x="164" y="617" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="P1Y-E2-Va1" kind="show" id="zVY-hF-g9P"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -53,6 +60,8 @@
                             <constraint firstItem="4uA-2N-wMf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="BLb-HY-hmU"/>
                             <constraint firstAttribute="trailing" secondItem="ajj-O0-HBY" secondAttribute="trailing" id="BhI-Re-qbJ"/>
                             <constraint firstItem="ajj-O0-HBY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="DWh-8O-ENb"/>
+                            <constraint firstItem="Rym-ct-zSA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Vyc-sW-F4f"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Rym-ct-zSA" secondAttribute="bottom" constant="20" id="d6o-GB-Lqd"/>
                             <constraint firstAttribute="trailing" secondItem="ajj-O0-HBY" secondAttribute="trailing" id="mob-fw-pXZ"/>
                             <constraint firstItem="ajj-O0-HBY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="ydP-Wi-0B5"/>
                         </constraints>
@@ -71,7 +80,6 @@
                         <outlet property="timerView" destination="4uA-2N-wMf" id="09R-U0-cEF"/>
                         <segue destination="5Ug-BE-N4O" kind="show" identifier="ShowGifs" id="9fi-LL-nie"/>
                         <segue destination="IaI-0F-RkQ" kind="show" identifier="ShowPreview" id="QWs-NR-iPV"/>
-                        <segue destination="P1Y-E2-Va1" kind="show" identifier="ShowCloud" id="UcS-m3-iiG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -526,7 +534,7 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bfL-Uu-JEu" customClass="HRColorMapView">
                                         <rect key="frame" x="0.0" y="104" width="375" height="439"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="saturationUpperLimit">
                                                 <integer key="value" value="1"/>
@@ -620,7 +628,7 @@
                 <viewControllerPlaceholder storyboardName="Cloud" id="P1Y-E2-Va1" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7dF-oh-HDu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="308" y="1053"/>
+            <point key="canvasLocation" x="282" y="1047"/>
         </scene>
     </scenes>
     <resources>

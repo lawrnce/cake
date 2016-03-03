@@ -11,7 +11,7 @@ import UIKit
 class CKTabBarSegue: UIStoryboardSegue {
     
     override func perform() {
-        let tabBarViewController = self.sourceViewController as! CKTabBarViewController
+        let tabBarViewController = self.sourceViewController as! CKCloudViewController
         let destinationViewController = tabBarViewController.destinationViewController
         
         // remove old view controller
@@ -21,9 +21,9 @@ class CKTabBarSegue: UIStoryboardSegue {
             tabBarViewController.oldViewController.removeFromParentViewController()
         }
         
-        destinationViewController.view.frame = tabBarViewController.container.bounds
+        destinationViewController.view.frame = tabBarViewController.containerView.bounds
         tabBarViewController.addChildViewController(destinationViewController)
-        tabBarViewController.container.addSubview(destinationViewController.view)
+        tabBarViewController.containerView.addSubview(destinationViewController.view)
         destinationViewController.didMoveToParentViewController(tabBarViewController)
         
         //        tabBarViewController.updateViewConstraints()
