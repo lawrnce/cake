@@ -50,6 +50,9 @@ let kCopyButtonFrameOriginX = kDetailButtonSpace
 //let kActionButtonFrameOriginX = kCopyButtonFrameOriginX + kDetailButtonWidth + kDetailButtonSpace
 let kDeleteButtonFrameOriginX = kCopyButtonFrameOriginX + kDetailButtonWidth + kDetailButtonSpace
 
+// MARK: - Build Constants
+let kGIFS_COLLECTION_VIEW_HEIGHT = (kSCREEN_HEIGHT - (44.0 * 2.0)) * 2.0/3.0
+
 // MARK: - Notification
 let GIF_FINALIZED = "com.cakegifs.GifFinalized"
 let ShowOriginalDetail = "com.cakegifs.ShowOriginalDetail"

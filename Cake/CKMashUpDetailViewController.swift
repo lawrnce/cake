@@ -15,6 +15,9 @@ class CKMashUpDetailViewController: UIViewController {
     @IBOutlet weak var animatedImageView: FLAnimatedImageView!
     @IBOutlet weak var animatedImageViewHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var originalsLabel: UILabel!
+    @IBOutlet weak var originalsCollectionView: UICollectionView!
+    @IBOutlet weak var originalsLayout: UICollectionViewFlowLayout!
     var gifURL: NSURL!
     
     override func viewDidLoad() {

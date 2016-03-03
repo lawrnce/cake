@@ -15,6 +15,10 @@ class CKOriginalsDetailViewController: UIViewController {
     @IBOutlet weak var animatedImageView: FLAnimatedImageView!
     @IBOutlet weak var animatedImageViewHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var mashUpsLabel: UILabel!
+    @IBOutlet weak var mashUpsCollectionView: UICollectionView!
+    @IBOutlet weak var mashUpsLayout: UICollectionViewFlowLayout!
+    
     var gifURL: NSURL!
     
     override func viewDidLoad() {

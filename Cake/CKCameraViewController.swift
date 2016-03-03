@@ -20,6 +20,8 @@ class CKCameraViewController: UIViewController {
     
     var cameraController: CKGifCameraController!
     
+    private var cloudNC: UINavigationController!
+    
     private var cancelRecordingButton: LTColorPanningButton!
     private var cameraToggleButton: LTColorPanningButton!
     private var torchButton: LTColorPanningButton!
@@ -466,6 +468,18 @@ class CKCameraViewController: UIViewController {
     func showGifs(sender: AnyObject) {
         self.performSegueWithIdentifier("ShowGifs", sender: nil)
 //        self.mixpanel.track("Gifs Opened")
+    }
+    
+    @IBAction func showCloud(sender: AnyObject) {
+        
+        if self.cloudNC == nil {
+            let storyboard = UIStoryboard(name: "Cloud", bundle: nil)
+            self.cloudNC = storyboard.instantiateViewControllerWithIdentifier("CloudNC") as! UINavigationController
+        }
+        
+        presentViewController(self.cloudNC, animated: true) { () -> Void in
+            
+        }
     }
     
     func showNotification(sender: AnyObject) {

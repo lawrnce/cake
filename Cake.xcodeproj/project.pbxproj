@@ -63,7 +63,7 @@
 		E6C034291C724B5E00A61141 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6C034281C724B5E00A61141 /* QuartzCore.framework */; };
 		E6C0342F1C724BAC00A61141 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = E6C0342E1C724BAC00A61141 /* iCarousel.m */; };
 		E6C034311C727AAA00A61141 /* CKTextEffectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C034301C727AAA00A61141 /* CKTextEffectViewController.swift */; };
-		E6D23D3B1C77AB5600817DF7 /* CKEffectsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D23D3A1C77AB5600817DF7 /* CKEffectsTableView.swift */; };
+		E6D23D3B1C77AB5600817DF7 /* CKDashedBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D23D3A1C77AB5600817DF7 /* CKDashedBorder.swift */; };
 		E6F24D091C758FB800FDAD3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6BA121D1C6FFA520075F98D /* Assets.xcassets */; };
 		E6F24D0A1C75911600FDAD3E /* UIColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = E601E21E1C7539F100F37C41 /* UIColorHex.swift */; };
 /* End PBXBuildFile section */
@@ -173,7 +173,7 @@
 		E6C0342D1C724BAC00A61141 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
 		E6C0342E1C724BAC00A61141 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		E6C034301C727AAA00A61141 /* CKTextEffectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKTextEffectViewController.swift; sourceTree = "<group>"; };
-		E6D23D3A1C77AB5600817DF7 /* CKEffectsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKEffectsTableView.swift; sourceTree = "<group>"; };
+		E6D23D3A1C77AB5600817DF7 /* CKDashedBorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKDashedBorder.swift; sourceTree = "<group>"; };
 		F1F4D3BBE70B940B708211FC /* Pods-Cake.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cake.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cake/Pods-Cake.debug.xcconfig"; sourceTree = "<group>"; };
 		F784EC50281E10039A806E8A /* Pods_CakeKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CakeKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -294,6 +294,7 @@
 		E68F555B1C73EC950029A086 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				E6D23D3A1C77AB5600817DF7 /* CKDashedBorder.swift */,
 				E601E21E1C7539F100F37C41 /* UIColorHex.swift */,
 				E657B9531C7689E300B680E7 /* UIImageExtension.swift */,
 				E6366CCE1C7823EC00A04C8C /* Close.svg */,
@@ -334,7 +335,6 @@
 			isa = PBXGroup;
 			children = (
 				E6B3F1261C70285000031B87 /* CKEditViewController.swift */,
-				E6D23D3A1C77AB5600817DF7 /* CKEffectsTableView.swift */,
 				E66D61B51C73B9860013CB6E /* CKAddEffectTableViewCell.swift */,
 				E66D61B61C73B9860013CB6E /* CKAddEffectTableViewCell.xib */,
 				E62C976C1C72A32C00287F5A /* Text Effect */,
@@ -743,7 +743,7 @@
 				E6B3F1271C70285000031B87 /* CKEditViewController.swift in Sources */,
 				E627F5231C87E12D00961C44 /* CKOriginalsDetailViewController.swift in Sources */,
 				E6A363391C75698800986712 /* CKGifsDetailViewController.swift in Sources */,
-				E6D23D3B1C77AB5600817DF7 /* CKEffectsTableView.swift in Sources */,
+				E6D23D3B1C77AB5600817DF7 /* CKDashedBorder.swift in Sources */,
 				E627F51A1C87D78E00961C44 /* CKTabBarSegue.swift in Sources */,
 				E68F55631C73F07F0029A086 /* CKGifCollectionViewCell.swift in Sources */,
 				E6366CBF1C77D47D00A04C8C /* CKColorPickerViewController.swift in Sources */,
