@@ -292,7 +292,7 @@ class CKGifCameraController: NSObject {
         
         UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         
-        self.delegate?.controller(self, didFinishRecordingWithFrames: self.gifWriter.getBitmaps(), withTotalDuration: self.totalRecordedDuration!.seconds)
+        self.delegate?.controller(self, didFinishRecordingWithFrames: self.gifWriter.bitmaps, withTotalDuration: self.totalRecordedDuration!.seconds)
         self.totalRecordedDuration = nil
         self.differenceDuration = nil
         self.pausedDuration = CMTime(seconds: 0, preferredTimescale: 600)
@@ -340,82 +340,63 @@ extension CKGifCameraController : AVCaptureVideoDataOutputSampleBufferDelegate {
         
         if (captureOutput == self.videoDataOutput) {
             
-            let unmanagedBufferCopy = UnsafeMutablePointer<CMSampleBuffer?>.alloc(1)
-            if CMSampleBufferCreateCopy(kCFAllocatorDefault, sampleBuffer, unmanagedBufferCopy) == noErr {
+            let previewImage = getCroppedPreviewImageFromBuffer(sampleBuffer)
+            self.imageTarget?.setImage(previewImage)
+            
+            if self.recording {
                 
-                let mirrored: Bool
-                
-                if self.activeCamera() == self.frontCameraDevice {
-                    mirrored = true
-                } else {
-                    mirrored = false
+                if self.differenceDuration == nil {
+                    self.differenceDuration = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
+                } else if self.pausedDuration > CMTime(seconds: 0, preferredTimescale: 600) {
+                    self.differenceDuration = self.differenceDuration + self.pausedDuration
+                    self.pausedDuration = CMTime(seconds: 0, preferredTimescale: 600)
                 }
                 
-                let previewImage = getCroppedPreviewImageFromBuffer(unmanagedBufferCopy.memory!, mirrored: mirrored)
-                self.imageTarget?.setImage(previewImage)
+                self.totalRecordedDuration = CMSampleBufferGetPresentationTimeStamp(sampleBuffer) - self.differenceDuration
                 
-                if self.recording {
+                print(self.totalRecordedDuration.seconds)
+                
+                if self.totalRecordedDuration >= self.timePoints[self.currentFrame] {
                     
-                    if self.differenceDuration == nil {
-                        self.differenceDuration = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
-                    } else if self.pausedDuration > CMTime(seconds: 0, preferredTimescale: 600) {
-                        self.differenceDuration = self.differenceDuration + self.pausedDuration
-                        self.pausedDuration = CMTime(seconds: 0, preferredTimescale: 600)
+                    self.gifWriter.appendFrame(previewImage)
+                    delegate?.controller(self, didAppendFrameNumber: self.gifWriter.frameCount)
+                    
+                    if (self.timePoints.count - 1) == self.currentFrame {
+                        self.stopRecording()
+                    } else {
+                        self.currentFrame = self.currentFrame + 1
                     }
-                    
-                    self.totalRecordedDuration = CMSampleBufferGetPresentationTimeStamp(sampleBuffer) - self.differenceDuration
-                    
-                    print(self.totalRecordedDuration.seconds)
-                    
-                    if self.totalRecordedDuration >= self.timePoints[self.currentFrame] {
-
-                        
-                        self.gifWriter.appendBuffer(unmanagedBufferCopy, mirrored: mirrored)
-                        delegate?.controller(self, didAppendFrameNumber: self.gifWriter.frameCount)
-                        
-//                        let unmanagedBufferCopy = UnsafeMutablePointer<CMSampleBuffer?>.alloc(1)
-//                        if CMSampleBufferCreateCopy(kCFAllocatorDefault, sampleBuffer, unmanagedBufferCopy) == noErr {
-//                            self.gifWriter.appendBuffer(unmanagedBufferCopy, mirrored: mirrored)
-//                            delegate?.controller(self, didAppendFrameNumber: self.gifWriter.frameCount)
-//                        } else {
-//                            
-//                        }
-                        
-                        if (self.timePoints.count - 1) == self.currentFrame {
-                            self.stopRecording()
-                        } else {
-                            self.currentFrame = self.currentFrame + 1
-                        }
-                    }
-                    
-                } else if self.paused {
-                    unmanagedBufferCopy.destroy()
-                    if self.totalRecordedDuration != nil && self.differenceDuration != nil {
-                        self.pausedDuration = CMSampleBufferGetPresentationTimeStamp(sampleBuffer) - self.totalRecordedDuration - self.differenceDuration
-                        
-                    }
-                } else {
-                  unmanagedBufferCopy.destroy()
                 }
+                
+            } else if self.paused {
+                
+                if self.totalRecordedDuration != nil && self.differenceDuration != nil {
+                    self.pausedDuration = CMSampleBufferGetPresentationTimeStamp(sampleBuffer) - self.totalRecordedDuration - self.differenceDuration
+                    
+                }
+                
             }
         }
     }
     
     // MARK: - Preview Image Methods
-    private func getCroppedPreviewImageFromBuffer(buffer: CMSampleBuffer, mirrored: Bool) -> CIImage {
+    private func getCroppedPreviewImageFromBuffer(buffer: CMSampleBuffer) -> CIImage {
         let imageBuffer: CVPixelBufferRef = CMSampleBufferGetImageBuffer(buffer)!
         let sourceImage: CIImage = CIImage(CVPixelBuffer: imageBuffer).copy() as! CIImage
         let croppedSourceImage = sourceImage.imageByCroppingToRect(CGRectMake(0, 0, 720, 720))
         
-        if mirrored {
-            let transform: CGAffineTransform!
+        let transform: CGAffineTransform!
+        
+        if self.activeCamera() == self.frontCameraDevice {
             transform = CGAffineTransformMakeScale(-1.0, 1.0)
-            return croppedSourceImage.imageByApplyingTransform(transform)
         } else {
-            return croppedSourceImage
+            transform = CGAffineTransformMakeScale(1.0, 1.0)
         }
-    }
-}
+        
+        let correctedImage = croppedSourceImage.imageByApplyingTransform(transform)
+        
+        return correctedImage
+    }}
 
 // MARK: - Protocol CKCaptureSessionDelegate
 protocol CKGifCameraControllerDelegate {
