@@ -483,7 +483,7 @@ class CKCameraViewController: UIViewController {
     }
     
     func showNotification(sender: AnyObject) {
-        let alert = UIAlertController(title: "Install Keyboard", message: "Use your Cake Gifs everywhere! \n\n Settings > General > Keyboard > Keyboards > Add New Keyboard > Cake \n\n Allow Full Access is required", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Install Keyboard", message: "Use your gifs everywhere! \n\n Settings > General > Keyboard > Keyboards > Add New Keyboard > Slice \n\n Allow Full Access is required", preferredStyle: UIAlertControllerStyle.Alert)
         
 
 //        alert.addAction(UIAlertAction(title: "Open Settings", style: .Default, handler: { (action) -> Void in

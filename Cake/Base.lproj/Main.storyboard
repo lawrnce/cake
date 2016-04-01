@@ -168,7 +168,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="gkx-bs-92E" secondAttribute="trailing" id="ET6-b7-FLJ"/>
                             <constraint firstItem="gkx-bs-92E" firstAttribute="leading" secondItem="oYP-XU-48v" secondAttribute="leading" id="MRI-QQ-yRE"/>
@@ -204,7 +204,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="CJe-da-rbu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="1" green="0.40000000000000002" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.49019607840000001" green="0.97647058819999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
