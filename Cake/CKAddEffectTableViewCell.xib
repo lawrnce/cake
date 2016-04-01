@@ -17,15 +17,14 @@
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c1T-1f-K3q">
                         <rect key="frame" x="24" y="5" width="272" height="33"/>
-                        <color key="backgroundColor" red="0.4313725531" green="0.83137255909999996" blue="0.69019609689999994" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="FPh-Sf-HQ7"/>
                             <constraint firstAttribute="height" constant="44" id="QEc-JR-GEM"/>
                             <constraint firstAttribute="height" constant="44" id="aM0-yA-kuv"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
                         <state key="normal" title="Add Text">
-                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="titleColor" red="0.4313725531" green="0.83137255909999996" blue="0.69019609689999994" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                         <variation key="default">
                             <mask key="constraints">
