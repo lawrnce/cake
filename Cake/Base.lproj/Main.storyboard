@@ -45,23 +45,14 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rym-ct-zSA">
-                                <rect key="frame" x="164" y="617" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="showCloud:" destination="BYZ-38-t0r" eventType="touchUpInside" id="je8-Be-oE9"/>
-                                </connections>
-                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
                             <constraint firstItem="4uA-2N-wMf" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="7JG-bI-SHt"/>
                             <constraint firstItem="ajj-O0-HBY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="7bW-18-NQY"/>
                             <constraint firstItem="4uA-2N-wMf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="BLb-HY-hmU"/>
                             <constraint firstAttribute="trailing" secondItem="ajj-O0-HBY" secondAttribute="trailing" id="BhI-Re-qbJ"/>
                             <constraint firstItem="ajj-O0-HBY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="DWh-8O-ENb"/>
-                            <constraint firstItem="Rym-ct-zSA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Vyc-sW-F4f"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Rym-ct-zSA" secondAttribute="bottom" constant="20" id="d6o-GB-Lqd"/>
                             <constraint firstAttribute="trailing" secondItem="ajj-O0-HBY" secondAttribute="trailing" id="mob-fw-pXZ"/>
                             <constraint firstItem="ajj-O0-HBY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="ydP-Wi-0B5"/>
                         </constraints>
@@ -100,7 +91,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="E1T-Sy-W6P">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tgy-b0-OYX">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -133,12 +124,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Myi-xh-oy1">
-                        <barButtonItem key="leftBarButtonItem" title="More" id="Mpd-Re-k6D">
-                            <connections>
-                                <action selector="moreButtonPressed:" destination="oFa-z2-DOZ" id="AhC-eK-htT"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="8b3-OX-kz4">
+                            <color key="tintColor" red="0.49019607843137253" green="0.97647058823529409" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="doneButtonPressed:" destination="oFa-z2-DOZ" id="3UH-Ul-tYY"/>
                             </connections>
@@ -218,6 +205,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="0.40000000000000002" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -247,12 +235,15 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vvf-Rx-G2p">
-                                <rect key="frame" x="157" y="607" width="60" height="60"/>
+                                <rect key="frame" x="37" y="607" width="300" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="Pce-NL-AUy"/>
+                                    <constraint firstAttribute="width" constant="300" id="Pce-NL-AUy"/>
                                     <constraint firstAttribute="height" constant="60" id="en5-fN-Wz5"/>
                                 </constraints>
-                                <state key="normal" image="DoneButton"/>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="24"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="doneButtonPressed:" destination="ngH-lX-AxE" eventType="touchUpInside" id="NjA-2p-AWw"/>
                                 </connections>
@@ -262,21 +253,20 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UZk-eU-5AZ" customClass="TTRangeSlider">
                                         <rect key="frame" x="20" y="8" width="335" height="64"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="tintColor" red="1" green="0.40000000000000002" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" red="0.49019607840000001" green="0.97647058819999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="Xi6-MR-IZT"/>
                                         </constraints>
                                     </view>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="GWR-1E-hHd">
                                         <rect key="frame" x="30" y="116" width="315" height="31"/>
-                                        <color key="tintColor" red="1" green="0.40000000000000002" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" red="0.49019607840000001" green="0.97647058819999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="fontSizeSliderValueChanged:" destination="ngH-lX-AxE" eventType="valueChanged" id="PIU-ye-V9e"/>
                                         </connections>
                                     </slider>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAp-aJ-hpE">
-                                        <rect key="frame" x="28" y="219" width="319" height="44"/>
+                                        <rect key="frame" x="28" y="209" width="319" height="44"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="5T4-qZ-MRo"/>
@@ -286,7 +276,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="GWR-1E-hHd" firstAttribute="leading" secondItem="AIN-zn-9EP" secondAttribute="leading" constant="32" id="0qZ-7g-Tpf"/>
                                     <constraint firstAttribute="trailing" secondItem="HAp-aJ-hpE" secondAttribute="trailing" constant="28" id="1J7-6T-h9D"/>
@@ -295,7 +285,7 @@
                                     <constraint firstAttribute="trailing" secondItem="UZk-eU-5AZ" secondAttribute="trailing" constant="20" id="Rjq-cF-v3x"/>
                                     <constraint firstItem="GWR-1E-hHd" firstAttribute="centerX" secondItem="AIN-zn-9EP" secondAttribute="centerX" id="gxc-Rf-xdh"/>
                                     <constraint firstAttribute="trailing" secondItem="GWR-1E-hHd" secondAttribute="trailing" constant="32" id="mxn-Hi-ZUT"/>
-                                    <constraint firstAttribute="bottom" secondItem="HAp-aJ-hpE" secondAttribute="bottom" id="rQg-oY-m4B"/>
+                                    <constraint firstAttribute="bottom" secondItem="HAp-aJ-hpE" secondAttribute="bottom" constant="10" id="rQg-oY-m4B"/>
                                     <constraint firstItem="GWR-1E-hHd" firstAttribute="centerY" secondItem="AIN-zn-9EP" secondAttribute="centerY" id="tjP-Do-IfL"/>
                                     <constraint firstItem="UZk-eU-5AZ" firstAttribute="leading" secondItem="AIN-zn-9EP" secondAttribute="leading" constant="20" id="v0s-wf-njR"/>
                                 </constraints>
@@ -315,7 +305,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
                             <constraint firstItem="AIN-zn-9EP" firstAttribute="top" secondItem="Jxg-e3-W9z" secondAttribute="bottom" id="3Wf-jh-lwt"/>
                             <constraint firstItem="Jxg-e3-W9z" firstAttribute="width" secondItem="cYT-XU-tZd" secondAttribute="width" id="NYb-CP-LNq"/>
@@ -361,7 +351,7 @@
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
                             <constraint firstItem="38c-Py-m9k" firstAttribute="top" secondItem="clS-S9-68e" secondAttribute="bottom" id="9BF-y5-X5A"/>
                             <constraint firstItem="wBX-U7-F9c" firstAttribute="top" secondItem="38c-Py-m9k" secondAttribute="bottom" id="Or8-6i-Rvn"/>
@@ -395,24 +385,27 @@
                                     <constraint firstAttribute="height" constant="64" id="6Xa-FV-gAb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
-                                <color key="textColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.49019607840000001" green="0.97647058819999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="L62-UJ-ShU">
                                 <rect key="frame" x="42" y="265" width="291" height="31"/>
-                                <color key="tintColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.49019607840000001" green="0.97647058819999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="frameSliderValueChanged:" destination="8fG-yi-vsg" eventType="valueChanged" id="kVS-sZ-kug"/>
                                 </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hcr-0H-yrN">
-                                <rect key="frame" x="158" y="607" width="60" height="60"/>
+                                <rect key="frame" x="38" y="607" width="300" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="nzC-nM-sZ4"/>
-                                    <constraint firstAttribute="width" constant="60" id="snF-UI-6RB"/>
+                                    <constraint firstAttribute="width" constant="300" id="snF-UI-6RB"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="22"/>
                                 <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" image="PlayButtonNormal"/>
+                                <state key="normal" title="Preview">
+                                    <color key="titleColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="playButtonPressed:" destination="8fG-yi-vsg" eventType="touchUpInside" id="wza-lW-4jY"/>
                                 </connections>
@@ -422,14 +415,14 @@
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QMa-5p-tbh">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="336"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="dataSource" destination="8fG-yi-vsg" id="8Pg-Xr-cH0"/>
                                             <outlet property="delegate" destination="8fG-yi-vsg" id="PeV-pF-lhG"/>
                                         </connections>
                                     </tableView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
                                     <constraint firstItem="QMa-5p-tbh" firstAttribute="leading" secondItem="EOW-7l-sNt" secondAttribute="leading" id="Iqe-L6-7h4"/>
                                     <constraint firstAttribute="bottom" secondItem="QMa-5p-tbh" secondAttribute="bottom" id="d7g-2p-OG7"/>
@@ -439,7 +432,7 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7F3-Ac-pEJ" customClass="iCarousel">
                                 <rect key="frame" x="0.0" y="84" width="375" height="167"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="0dN-bI-39I"/>
                                 </constraints>
@@ -458,7 +451,7 @@
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
                             <constraint firstItem="L62-UJ-ShU" firstAttribute="top" secondItem="7F3-Ac-pEJ" secondAttribute="bottom" constant="14" id="0MH-wK-MMs"/>
                             <constraint firstAttribute="trailing" secondItem="7F3-Ac-pEJ" secondAttribute="trailing" id="2QT-Bg-mic"/>
@@ -544,15 +537,15 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ocw-a9-zQA">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ocw-a9-zQA">
                                         <rect key="frame" x="20" y="573" width="335" height="44"/>
-                                        <color key="backgroundColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="kNy-Em-aVH"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="27"/>
                                         <state key="normal" title="Select">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="selectColorButtonPressed:" destination="8Y9-AL-JqG" eventType="touchUpInside" id="K9a-Sf-QoQ"/>
@@ -567,7 +560,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="Sod-fS-sqb" firstAttribute="top" secondItem="Ot1-Jc-ECS" secondAttribute="top" constant="10" id="Fhg-oS-hfz"/>
                                     <constraint firstAttribute="trailing" secondItem="ocw-a9-zQA" secondAttribute="trailing" constant="20" id="Hbj-Uo-eVD"/>
@@ -622,18 +615,8 @@
             </objects>
             <point key="canvasLocation" x="2206.5" y="483.5"/>
         </scene>
-        <!--Cloud-->
-        <scene sceneID="ceG-eL-m2I">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Cloud" id="P1Y-E2-Va1" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7dF-oh-HDu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="282" y="1047"/>
-        </scene>
     </scenes>
     <resources>
         <image name="CopiedLarge" width="150" height="150"/>
-        <image name="DoneButton" width="24" height="20"/>
-        <image name="PlayButtonNormal" width="33" height="42"/>
     </resources>
 </document>

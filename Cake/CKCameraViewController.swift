@@ -333,7 +333,7 @@ class CKCameraViewController: UIViewController {
         self.cancelRecordingButton = LTColorPanningButton(frame: CGRectMake(0, 0, 64, 64),
             withSVG: "Close",
             withForegroundColor: kRecordingTint,
-            withBackgroundColor: UIColor.whiteColor())
+            withBackgroundColor: UIColor.blackColor())
         self.cancelRecordingButton.addTarget(self, action: Selector("cancelRecordingPressed:"), forControlEvents: .TouchUpInside)
         self.cancelRecordingButton.alpha = 0.0
         self.cancelRecordingButton.hidden = true
@@ -343,7 +343,7 @@ class CKCameraViewController: UIViewController {
         self.finishRecordingButton = LTColorPanningButton(frame: CGRectMake(kSCREEN_WIDTH - 64.0, 0, 64, 64),
             withSVG: "Check",
             withForegroundColor: kRecordingTint,
-            withBackgroundColor: UIColor.whiteColor())
+            withBackgroundColor: UIColor.blackColor())
         self.finishRecordingButton.addTarget(self, action: Selector("finishRecordingPressed:"), forControlEvents: .TouchUpInside)
         self.finishRecordingButton.alpha = 0.0
         self.finishRecordingButton.hidden = true
@@ -353,7 +353,7 @@ class CKCameraViewController: UIViewController {
         self.cameraToggleButton = LTColorPanningButton(frame: CGRectMake(0, 0, 64, 64),
             withSVG: "Flip",
             withForegroundColor: kRecordingTint,
-            withBackgroundColor: UIColor.whiteColor())
+            withBackgroundColor: UIColor.blackColor())
         self.cameraToggleButton.addTarget(self, action: Selector("cameraToggleButtonPressed:"), forControlEvents: .TouchUpInside)
         self.cameraToggleButton.center.x = kSCREEN_WIDTH * (1.0/3.0)
         
@@ -363,7 +363,7 @@ class CKCameraViewController: UIViewController {
         self.torchButton = LTColorPanningButton(frame: CGRectMake(0, 0, 64, 64),
             withSVG: "TorchOff",
             withForegroundColor: kRecordingTint,
-            withBackgroundColor: UIColor.whiteColor())
+            withBackgroundColor: UIColor.blackColor())
         self.torchButton.addTarget(self, action: Selector("torchButtonPressed:"), forControlEvents: .TouchUpInside)
         self.torchButton.center.x = kSCREEN_WIDTH * (2.0/3.0)
     }

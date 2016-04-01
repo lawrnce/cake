@@ -10,13 +10,6 @@
 		22531BF50906F603211FCF17 /* Pods_CakeKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F784EC50281E10039A806E8A /* Pods_CakeKeyboard.framework */; };
 		7B2441C3FA38A7F3E746B9C9 /* Pods_Cake.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6317CD457A943ADA64327D72 /* Pods_Cake.framework */; };
 		E601E21F1C7539F100F37C41 /* UIColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = E601E21E1C7539F100F37C41 /* UIColorHex.swift */; };
-		E627F5131C87D58F00961C44 /* Cloud.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E627F5111C87D58F00961C44 /* Cloud.storyboard */; };
-		E627F5181C87D66600961C44 /* CKCloudViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E627F5171C87D66600961C44 /* CKCloudViewController.swift */; };
-		E627F51A1C87D78E00961C44 /* CKTabBarSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E627F5191C87D78E00961C44 /* CKTabBarSegue.swift */; };
-		E627F51D1C87D8B500961C44 /* CKOriginalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E627F51C1C87D8B500961C44 /* CKOriginalsViewController.swift */; };
-		E627F5201C87D8E000961C44 /* CKMashUpsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E627F51F1C87D8E000961C44 /* CKMashUpsViewController.swift */; };
-		E627F5231C87E12D00961C44 /* CKOriginalsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E627F5221C87E12D00961C44 /* CKOriginalsDetailViewController.swift */; };
-		E627F5251C87E13E00961C44 /* CKMashUpDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E627F5241C87E13E00961C44 /* CKMashUpDetailViewController.swift */; };
 		E6366CBF1C77D47D00A04C8C /* CKColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6366CBE1C77D47D00A04C8C /* CKColorPickerViewController.swift */; };
 		E6366CC41C78184E00A04C8C /* TorchOff.svg in Resources */ = {isa = PBXBuildFile; fileRef = E6366CC21C78184E00A04C8C /* TorchOff.svg */; };
 		E6366CC51C78184E00A04C8C /* TorchOn.svg in Resources */ = {isa = PBXBuildFile; fileRef = E6366CC31C78184E00A04C8C /* TorchOn.svg */; };
@@ -24,7 +17,6 @@
 		E6366CCB1C781C4200A04C8C /* Flip.svg in Resources */ = {isa = PBXBuildFile; fileRef = E6366CC81C781C4200A04C8C /* Flip.svg */; };
 		E6366CCF1C7823EC00A04C8C /* Close.svg in Resources */ = {isa = PBXBuildFile; fileRef = E6366CCE1C7823EC00A04C8C /* Close.svg */; };
 		E657B9541C7689E300B680E7 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E657B9531C7689E300B680E7 /* UIImageExtension.swift */; };
-		E65ED42C1C87EC9C00129200 /* CKBuildGifViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65ED42B1C87EC9C00129200 /* CKBuildGifViewController.swift */; };
 		E66D61B31C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66D61B11C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.swift */; };
 		E66D61B41C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E66D61B21C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.xib */; };
 		E66D61B71C73B9860013CB6E /* CKAddEffectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66D61B51C73B9860013CB6E /* CKAddEffectTableViewCell.swift */; };
@@ -112,13 +104,6 @@
 		65DBFFBCF3A6A36BFA21509F /* Pods-Cake.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cake.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cake/Pods-Cake.release.xcconfig"; sourceTree = "<group>"; };
 		7F398A49C6C09186E3DBACB8 /* Pods-CakeKeyboard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CakeKeyboard.release.xcconfig"; path = "Pods/Target Support Files/Pods-CakeKeyboard/Pods-CakeKeyboard.release.xcconfig"; sourceTree = "<group>"; };
 		E601E21E1C7539F100F37C41 /* UIColorHex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorHex.swift; sourceTree = "<group>"; };
-		E627F5121C87D58F00961C44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Cloud.storyboard; sourceTree = "<group>"; };
-		E627F5171C87D66600961C44 /* CKCloudViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKCloudViewController.swift; sourceTree = "<group>"; };
-		E627F5191C87D78E00961C44 /* CKTabBarSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKTabBarSegue.swift; sourceTree = "<group>"; };
-		E627F51C1C87D8B500961C44 /* CKOriginalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKOriginalsViewController.swift; sourceTree = "<group>"; };
-		E627F51F1C87D8E000961C44 /* CKMashUpsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKMashUpsViewController.swift; sourceTree = "<group>"; };
-		E627F5221C87E12D00961C44 /* CKOriginalsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKOriginalsDetailViewController.swift; sourceTree = "<group>"; };
-		E627F5241C87E13E00961C44 /* CKMashUpDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKMashUpDetailViewController.swift; sourceTree = "<group>"; };
 		E6366CBE1C77D47D00A04C8C /* CKColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKColorPickerViewController.swift; sourceTree = "<group>"; };
 		E6366CC21C78184E00A04C8C /* TorchOff.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TorchOff.svg; sourceTree = "<group>"; };
 		E6366CC31C78184E00A04C8C /* TorchOn.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TorchOn.svg; sourceTree = "<group>"; };
@@ -126,7 +111,6 @@
 		E6366CC81C781C4200A04C8C /* Flip.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Flip.svg; sourceTree = "<group>"; };
 		E6366CCE1C7823EC00A04C8C /* Close.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Close.svg; sourceTree = "<group>"; };
 		E657B9531C7689E300B680E7 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
-		E65ED42B1C87EC9C00129200 /* CKBuildGifViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKBuildGifViewController.swift; sourceTree = "<group>"; };
 		E66D61B11C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKTextEffectAuxiliaryTableViewCell.swift; sourceTree = "<group>"; };
 		E66D61B21C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CKTextEffectAuxiliaryTableViewCell.xib; sourceTree = "<group>"; };
 		E66D61B51C73B9860013CB6E /* CKAddEffectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKAddEffectTableViewCell.swift; sourceTree = "<group>"; };
@@ -234,44 +218,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E627F5161C87D5FF00961C44 /* Cloud */ = {
-			isa = PBXGroup;
-			children = (
-				E627F51B1C87D8A000961C44 /* Tab Control */,
-				E65ED42D1C87ECA000129200 /* Build */,
-				E627F51E1C87D8BE00961C44 /* Originals */,
-				E627F5211C87D8E800961C44 /* Mash Ups */,
-			);
-			name = Cloud;
-			sourceTree = "<group>";
-		};
-		E627F51B1C87D8A000961C44 /* Tab Control */ = {
-			isa = PBXGroup;
-			children = (
-				E627F5171C87D66600961C44 /* CKCloudViewController.swift */,
-				E627F5191C87D78E00961C44 /* CKTabBarSegue.swift */,
-			);
-			name = "Tab Control";
-			sourceTree = "<group>";
-		};
-		E627F51E1C87D8BE00961C44 /* Originals */ = {
-			isa = PBXGroup;
-			children = (
-				E627F51C1C87D8B500961C44 /* CKOriginalsViewController.swift */,
-				E627F5221C87E12D00961C44 /* CKOriginalsDetailViewController.swift */,
-			);
-			name = Originals;
-			sourceTree = "<group>";
-		};
-		E627F5211C87D8E800961C44 /* Mash Ups */ = {
-			isa = PBXGroup;
-			children = (
-				E627F51F1C87D8E000961C44 /* CKMashUpsViewController.swift */,
-				E627F5241C87E13E00961C44 /* CKMashUpDetailViewController.swift */,
-			);
-			name = "Mash Ups";
-			sourceTree = "<group>";
-		};
 		E62C976C1C72A32C00287F5A /* Text Effect */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,14 +227,6 @@
 				E66D61B21C73B9470013CB6E /* CKTextEffectAuxiliaryTableViewCell.xib */,
 			);
 			name = "Text Effect";
-			sourceTree = "<group>";
-		};
-		E65ED42D1C87ECA000129200 /* Build */ = {
-			isa = PBXGroup;
-			children = (
-				E65ED42B1C87EC9C00129200 /* CKBuildGifViewController.swift */,
-			);
-			name = Build;
 			sourceTree = "<group>";
 		};
 		E68F555B1C73EC950029A086 /* Support */ = {
@@ -377,8 +315,6 @@
 				E6996BA41C76CCB600AE76EF /* Preview */,
 				E6B3F1281C70289200031B87 /* Edit */,
 				E6BA125E1C7003760075F98D /* Gifs */,
-				E627F5161C87D5FF00961C44 /* Cloud */,
-				E627F5111C87D58F00961C44 /* Cloud.storyboard */,
 				E6BA121A1C6FFA520075F98D /* Main.storyboard */,
 				E6BA121D1C6FFA520075F98D /* Assets.xcassets */,
 				E68ABC0C1C7919FA003BB269 /* LaunchScreen.storyboard */,
@@ -590,7 +526,6 @@
 				E6366CC41C78184E00A04C8C /* TorchOff.svg in Resources */,
 				E6366CCB1C781C4200A04C8C /* Flip.svg in Resources */,
 				E6BA121E1C6FFA520075F98D /* Assets.xcassets in Resources */,
-				E627F5131C87D58F00961C44 /* Cloud.storyboard in Resources */,
 				E68F55641C73F07F0029A086 /* CKGifCollectionViewCell.xib in Resources */,
 				E6366CCF1C7823EC00A04C8C /* Close.svg in Resources */,
 				E6366CC51C78184E00A04C8C /* TorchOn.svg in Resources */,
@@ -741,13 +676,10 @@
 				E6C0342F1C724BAC00A61141 /* iCarousel.m in Sources */,
 				E66D61B71C73B9860013CB6E /* CKAddEffectTableViewCell.swift in Sources */,
 				E6B3F1271C70285000031B87 /* CKEditViewController.swift in Sources */,
-				E627F5231C87E12D00961C44 /* CKOriginalsDetailViewController.swift in Sources */,
 				E6A363391C75698800986712 /* CKGifsDetailViewController.swift in Sources */,
 				E6D23D3B1C77AB5600817DF7 /* CKDashedBorder.swift in Sources */,
-				E627F51A1C87D78E00961C44 /* CKTabBarSegue.swift in Sources */,
 				E68F55631C73F07F0029A086 /* CKGifCollectionViewCell.swift in Sources */,
 				E6366CBF1C77D47D00A04C8C /* CKColorPickerViewController.swift in Sources */,
-				E65ED42C1C87EC9C00129200 /* CKBuildGifViewController.swift in Sources */,
 				E6BA12191C6FFA520075F98D /* CKCameraViewController.swift in Sources */,
 				E6BA12171C6FFA520075F98D /* AppDelegate.swift in Sources */,
 				E6C034311C727AAA00A61141 /* CKTextEffectViewController.swift in Sources */,
@@ -755,17 +687,13 @@
 				E6BA12451C6FFD0E0075F98D /* Constants.swift in Sources */,
 				E6B597371C7533B20034EDE5 /* LTMaskedView.swift in Sources */,
 				E6BA125A1C6FFE7D0075F98D /* CKPreviewView.swift in Sources */,
-				E627F5181C87D66600961C44 /* CKCloudViewController.swift in Sources */,
 				E6BA12581C6FFE1E0075F98D /* CKGifCameraController.swift in Sources */,
 				E68ABC0B1C78F884003BB269 /* CKGifWriter.swift in Sources */,
 				E6BA12601C7007720075F98D /* CKRecordGestureRecognizer.swift in Sources */,
 				E68F55601C73EEC30029A086 /* NSDateISO8601.swift in Sources */,
-				E627F51D1C87D8B500961C44 /* CKOriginalsViewController.swift in Sources */,
 				E657B9541C7689E300B680E7 /* UIImageExtension.swift in Sources */,
-				E627F5251C87E13E00961C44 /* CKMashUpDetailViewController.swift in Sources */,
 				E66D61BA1C73EBB90013CB6E /* CKBackendManager.swift in Sources */,
 				E6B597381C7533B20034EDE5 /* PocketSVG.m in Sources */,
-				E627F5201C87D8E000961C44 /* CKMashUpsViewController.swift in Sources */,
 				E6996BA31C76CB2600AE76EF /* CKPreviewViewController.swift in Sources */,
 				E6B597361C7533B20034EDE5 /* LTColorPanningButton.swift in Sources */,
 				E601E21F1C7539F100F37C41 /* UIColorHex.swift in Sources */,
@@ -823,14 +751,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E627F5111C87D58F00961C44 /* Cloud.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E627F5121C87D58F00961C44 /* Base */,
-			);
-			name = Cloud.storyboard;
-			sourceTree = "<group>";
-		};
 		E6BA121A1C6FFA520075F98D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -67,19 +67,28 @@ class CKPreviewViewController: UIViewController {
     
     private func setupEditButton() {
         self.editButton = UIButton(frame: CGRectMake(0, 0, 150, 150))
-        self.editButton.setImage(UIImage(named: "EditButtonNormal"), forState: .Normal)
+        self.editButton.setTitle("EDIT", forState: .Normal)
+        self.editButton.setTitleColor(UIColor(rgba: "#FFFF00"), forState: .Normal)
+        self.editButton.titleLabel?.font = UIFont(name: "Chalkduster", size: 30.0)
+//        self.editButton.setImage(UIImage(named: "EditButtonNormal"), forState: .Normal)
         self.editButton.addTarget(self, action: Selector("editButtonPressed:"), forControlEvents: .TouchUpInside)
     }
     
     private func setupCancelButton() {
         self.cancelButton = UIButton(frame: CGRectMake(0, 0, 44, 44))
         self.cancelButton.setImage(UIImage(named: "CancelButtonNormal"), forState: .Normal)
+//        self.cancelButton.setTitle("NO", forState: .Normal)
+//        self.cancelButton.setTitleColor(UIColor(rgba: "#FFFF00"), forState: .Normal)
+//        self.cancelButton.titleLabel?.font = UIFont(name: "Chalkduster", size: 26.0)
         self.cancelButton.addTarget(self, action: Selector("cancelButtonPressed:"), forControlEvents: .TouchUpInside)
     }
     
     private func setupSaveButton() {
         self.saveButton = UIButton(frame: CGRectMake(0, 0, 44, 44))
         self.saveButton.setImage(UIImage(named: "SaveButtonNormal"), forState: .Normal)
+//        self.saveButton.setTitle("YES", forState: .Normal)
+//        self.saveButton.setTitleColor(UIColor(rgba: "#FFFF00"), forState: .Normal)
+//        self.saveButton.titleLabel?.font = UIFont(name: "Chalkduster", size: 26.0)
         self.saveButton.addTarget(self, action: Selector("saveButtonPressed:"), forControlEvents: .TouchUpInside)
     }
     

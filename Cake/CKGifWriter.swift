@@ -20,9 +20,10 @@ class CKGifWriter: NSObject {
     }
     
     func appendFrame(frameData: CIImage) {
-        let cgImage = convertCIImageToCGImage(frameData)
-        self.bitmaps.append(cgImage)
-        self.frameCount++
+        if let cgImage = getDownscaleImage(frameData) {
+            self.bitmaps.append(cgImage)
+            self.frameCount++
+        }
     }
     
     private func convertCIImageToCGImage(inputImage: CIImage) -> CGImage! {
@@ -30,23 +31,23 @@ class CKGifWriter: NSObject {
         return context.createCGImage(inputImage, fromRect: inputImage.extent)
     }
     
-    //    private func getDownscaleImageMirrored(sourceImage: CIImage) -> CGImage? {
-    //        let filteredImage = sourceImage.imageByApplyingFilter("CIUnsharpMask", withInputParameters: ["inputImage" : sourceImage])
-    //        let frame: CGImage = CKContextManager.sharedInstance.ciContext.createCGImage(filteredImage, fromRect: filteredImage.extent)
-    //        let width = 360
-    //        let height = 360
-    //        let bitsPerComponent = CGImageGetBitsPerComponent(frame)
-    //        let bytesPerRow = CGImageGetBytesPerRow(frame)
-    //        let colorSpace = CGImageGetColorSpace(frame)
-    //        let bitmapInfo = CGImageGetBitmapInfo(frame)
-    //        let context = CGBitmapContextCreate(nil, width, height, bitsPerComponent, bytesPerRow, colorSpace, bitmapInfo.rawValue)
-    //        CGContextSetInterpolationQuality(context, .High)
-    //        CGContextDrawImage(context, CGRect(origin: CGPointZero, size: CGSize(width: CGFloat(width), height: CGFloat(height))), frame)
-    //
-    //        if let scaledFrame = CGBitmapContextCreateImage(context) {
-    //            return scaledFrame
-    //        } else {
-    //            return nil
-    //        }
-    //    }
+        private func getDownscaleImage(sourceImage: CIImage) -> CGImage? {
+            let filteredImage = sourceImage.imageByApplyingFilter("CIUnsharpMask", withInputParameters: ["inputImage" : sourceImage])
+            let frame: CGImage = CKContextManager.sharedInstance.ciContext.createCGImage(filteredImage, fromRect: filteredImage.extent)
+            let width = 280
+            let height = 280
+            let bitsPerComponent = CGImageGetBitsPerComponent(frame)
+            let bytesPerRow = CGImageGetBytesPerRow(frame)
+            let colorSpace = CGImageGetColorSpace(frame)
+            let bitmapInfo = CGImageGetBitmapInfo(frame)
+            let context = CGBitmapContextCreate(nil, width, height, bitsPerComponent, bytesPerRow, colorSpace, bitmapInfo.rawValue)
+            CGContextSetInterpolationQuality(context, .High)
+            CGContextDrawImage(context, CGRect(origin: CGPointZero, size: CGSize(width: CGFloat(width), height: CGFloat(height))), frame)
+    
+            if let scaledFrame = CGBitmapContextCreateImage(context) {
+                return scaledFrame
+            } else {
+                return nil
+            }
+        }
 }
