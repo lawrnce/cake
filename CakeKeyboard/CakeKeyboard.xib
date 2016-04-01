@@ -125,7 +125,7 @@
                             <state key="normal" image="NextKeyboardButton"/>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                     <constraints>
                         <constraint firstItem="pVe-Zd-IfK" firstAttribute="centerY" secondItem="nSP-M7-WKv" secondAttribute="centerY" id="2lT-sY-mW2"/>
                         <constraint firstItem="0qo-iN-B92" firstAttribute="centerY" secondItem="nSP-M7-WKv" secondAttribute="centerY" id="Kj5-oF-Htl"/>
