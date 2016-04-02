@@ -69,7 +69,7 @@ class CKPreviewViewController: UIViewController {
         self.editButton = UIButton(frame: CGRectMake(0, 0, 150, 150))
         self.editButton.setTitle("EDIT", forState: .Normal)
         self.editButton.setTitleColor(UIColor(rgba: "#FFFF00"), forState: .Normal)
-        self.editButton.titleLabel?.font = UIFont(name: "Neon80s-Regular", size: 46.0)
+        self.editButton.titleLabel?.font = UIFont(name: "Neon80s", size: 32.0)
 //        self.editButton.setImage(UIImage(named: "EditButtonNormal"), forState: .Normal)
         self.editButton.addTarget(self, action: Selector("editButtonPressed:"), forControlEvents: .TouchUpInside)
     }

@@ -27,7 +27,7 @@
                             <constraint firstAttribute="height" constant="44" id="QEc-JR-GEM"/>
                             <constraint firstAttribute="height" constant="44" id="aM0-yA-kuv"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Neon80s" family="Neon 80s" pointSize="22"/>
+                        <fontDescription key="fontDescription" name="Neon80s" family="Neon 80s" pointSize="26"/>
                         <state key="normal" title="Add Text">
                             <color key="titleColor" red="0.4313725531" green="0.83137255909999996" blue="0.69019609689999994" alpha="1" colorSpace="calibratedRGB"/>
                         </state>

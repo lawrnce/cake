@@ -89,7 +89,7 @@ class CKTextEffectViewController: UIViewController {
         self.textView.layer.borderColor = UIColor.lightGrayColor().CGColor
         self.textView.delegate = self
         self.textView.contentInset = UIEdgeInsetsZero
-        self.textView.font = UIFont(name: "Helvetica-Bold", size: 72)
+        self.textView.font = UIFont(name: "Neon80s", size: 72)
         
         self.textView.text = "TESTIN"
         self.textView.sizeToFit()
@@ -278,7 +278,7 @@ class CKTextEffectViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction func fontSizeSliderValueChanged(sender: UISlider) {
-        self.textView.font = UIFont(name: "Helvetica-Bold", size: CGFloat(sender.value))
+        self.textView.font = UIFont(name: "Neon80s", size: CGFloat(sender.value))
         let string: NSString = self.textView.text as NSString
         var size = string.sizeWithAttributes([NSFontAttributeName: (self.textView.font)!])
         size.width = size.width + 20
