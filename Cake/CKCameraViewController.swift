@@ -157,9 +157,10 @@ class CKCameraViewController: UIViewController {
             
             if self.openSettingsButton == nil {
                 self.openSettingsButton = UIButton(frame: CGRect(x: 0, y: 0, width: kSCREEN_WIDTH - 80.0, height: 44.0))
-                self.openSettingsButton.backgroundColor = kRecordingTint
+//                self.openSettingsButton.backgroundColor = kRecordingTint
                 self.openSettingsButton.layer.cornerRadius = 4.0
                 self.openSettingsButton.clipsToBounds = true
+                self.openSettingsButton.titleLabel?.font = UIFont(name: "Neon80s", size: 22.0)
                 self.openSettingsButton.setTitle("Allow Camera Access", forState: .Normal)
                 self.openSettingsButton.addTarget(self, action: Selector("openSettingsButtonPressed:"), forControlEvents: .TouchUpInside)
 //                self.openSettingsButton.titleLabel?.font = UIFont(name: "Helvetica-Bold", size: 24.0)

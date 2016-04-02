@@ -100,8 +100,8 @@ class KeyboardViewController: UIInputViewController {
     
     // MARK: - Mix Panel
     private func loadMixPanel() {
-        self.mixpanel = Mixpanel.sharedInstanceWithToken(MixpanelToken)
-        self.mixpanel.track("Keyboard Opened")
+//        self.mixpanel = Mixpanel.sharedInstanceWithToken(MixpanelToken)
+//        self.mixpanel.track("Keyboard Opened")
     }
 
     // MARK: - Init Subviews
@@ -234,7 +234,7 @@ extension KeyboardViewController: UICollectionViewDataSource {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CKGifCollectionViewCell
         cell.animateCopiedImageView()
         
-        self.mixpanel.track("Gif Copied From Keyboard")
+//        self.mixpanel.track("Gif Copied From Keyboard")
         
 //        let center = cell.center
 //        let transform = CGAffineTransformMakeScale(1.0, 1.0)
