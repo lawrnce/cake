@@ -36,17 +36,18 @@ class CKGifCollectionViewCell: UICollectionViewCell {
         self.copiedImageView.alpha = 0.0
         self.copiedImageView.hidden = false
         
-        UIView.animateWithDuration(0.5, animations: { () -> Void in
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
             self.copiedImageView.alpha = 1.0
             }) { (done) -> Void in
                 
-                let seconds = 1.0
+                let seconds = 0.5
                 let delay = seconds * Double(NSEC_PER_SEC)  // nanoseconds per seconds
                 let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
                 
                 dispatch_after(dispatchTime, dispatch_get_main_queue(), {
                     
-                    UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    
+                    UIView.animateWithDuration(0.3, animations: { () -> Void in
                         
                         self.copiedImageView.alpha = 0.0
                         
@@ -55,6 +56,7 @@ class CKGifCollectionViewCell: UICollectionViewCell {
                     })
                     
                 })
+
         }
         
     }

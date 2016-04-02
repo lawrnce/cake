@@ -113,15 +113,24 @@ class CKGifsDetailViewController: UIViewController {
         self.copiedImageView.hidden = false
         
         UIView.animateWithDuration(0.3, animations: { () -> Void in
-            self.copiedImageView.alpha = 0.7
+            self.copiedImageView.alpha = 1.0
             }) { (done) -> Void in
                 
-                UIView.animateWithDuration(0.3, animations: { () -> Void in
+                let seconds = 0.5
+                let delay = seconds * Double(NSEC_PER_SEC)  // nanoseconds per seconds
+                let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                
+                dispatch_after(dispatchTime, dispatch_get_main_queue(), {
                     
-                    self.copiedImageView.alpha = 0.0
                     
-                    }, completion: { (done) -> Void in
-                        self.copiedImageView.hidden = true
+                    UIView.animateWithDuration(0.3, animations: { () -> Void in
+                        
+                        self.copiedImageView.alpha = 0.0
+                        
+                        }, completion: { (done) -> Void in
+                            self.copiedImageView.hidden = true
+                    })
+                    
                 })
                 
         }
