@@ -5,6 +5,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Neon.ttf">
+            <string>Neon80s</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -22,7 +27,7 @@
                             <constraint firstAttribute="height" constant="44" id="QEc-JR-GEM"/>
                             <constraint firstAttribute="height" constant="44" id="aM0-yA-kuv"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
+                        <fontDescription key="fontDescription" name="Neon80s" family="Neon 80s" pointSize="22"/>
                         <state key="normal" title="Add Text">
                             <color key="titleColor" red="0.4313725531" green="0.83137255909999996" blue="0.69019609689999994" alpha="1" colorSpace="calibratedRGB"/>
                         </state>

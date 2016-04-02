@@ -58,6 +58,8 @@
 		E6D23D3B1C77AB5600817DF7 /* CKDashedBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D23D3A1C77AB5600817DF7 /* CKDashedBorder.swift */; };
 		E6F24D091C758FB800FDAD3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6BA121D1C6FFA520075F98D /* Assets.xcassets */; };
 		E6F24D0A1C75911600FDAD3E /* UIColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = E601E21E1C7539F100F37C41 /* UIColorHex.swift */; };
+		E6F69D2F1CAF514A00F8C69D /* Neon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6F69D2E1CAF514A00F8C69D /* Neon.ttf */; };
+		E6F69D301CAF514A00F8C69D /* Neon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6F69D2E1CAF514A00F8C69D /* Neon.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +160,7 @@
 		E6C0342E1C724BAC00A61141 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		E6C034301C727AAA00A61141 /* CKTextEffectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKTextEffectViewController.swift; sourceTree = "<group>"; };
 		E6D23D3A1C77AB5600817DF7 /* CKDashedBorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKDashedBorder.swift; sourceTree = "<group>"; };
+		E6F69D2E1CAF514A00F8C69D /* Neon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Neon.ttf; sourceTree = "<group>"; };
 		F1F4D3BBE70B940B708211FC /* Pods-Cake.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cake.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cake/Pods-Cake.debug.xcconfig"; sourceTree = "<group>"; };
 		F784EC50281E10039A806E8A /* Pods_CakeKeyboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CakeKeyboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -316,6 +319,7 @@
 				E6B3F1281C70289200031B87 /* Edit */,
 				E6BA125E1C7003760075F98D /* Gifs */,
 				E6BA121A1C6FFA520075F98D /* Main.storyboard */,
+				E6F69D2E1CAF514A00F8C69D /* Neon.ttf */,
 				E6BA121D1C6FFA520075F98D /* Assets.xcassets */,
 				E68ABC0C1C7919FA003BB269 /* LaunchScreen.storyboard */,
 				E6BA12221C6FFA520075F98D /* Info.plist */,
@@ -522,6 +526,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6F69D2F1CAF514A00F8C69D /* Neon.ttf in Resources */,
 				E66D61B81C73B9860013CB6E /* CKAddEffectTableViewCell.xib in Resources */,
 				E6366CC41C78184E00A04C8C /* TorchOff.svg in Resources */,
 				E6366CCB1C781C4200A04C8C /* Flip.svg in Resources */,
@@ -554,6 +559,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6F69D301CAF514A00F8C69D /* Neon.ttf in Resources */,
 				E684914B1C758E2900BDB711 /* CakeKeyboard.xib in Resources */,
 				E6F24D091C758FB800FDAD3E /* Assets.xcassets in Resources */,
 				E684914F1C758E8600BDB711 /* CKGifCollectionViewCell.xib in Resources */,
