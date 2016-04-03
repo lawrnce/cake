@@ -316,7 +316,7 @@ class CKCameraViewController: UIViewController {
     
     private func setupNotificationButton() {
         self.notificationButton = UIButton()
-        self.notificationButton.frame = CGRectMake(0, 0, 50, 50)
+        self.notificationButton.frame = CGRectMake(0, 0, 44, 44)
         self.notificationButton.setImage(UIImage(named: "NotificationButton"), forState: .Normal)
         self.notificationButton.addTarget(self, action: Selector("showNotification:"), forControlEvents: .TouchUpInside)
     }
